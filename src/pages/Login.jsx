@@ -28,16 +28,23 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await login({ ...details }).unwrap();
-    disptach(userInfo({ ...response }));
-    if (response?.status === 200) {
-      setTimeout(() => {
-        navigate("/");
-      }, 4000);
-      toast.success(response?.message);
-    }
-    if (response?.status === 400) {
-      toast.error(response?.data);
+    try {
+      const response = await login({ ...details }).unwrap();
+      console.log(response)
+      if (response?.status === 200) {
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
+        toast.success(response?.message);
+      }
+      if (response?.status === 400) {
+        toast.error(response?.data || response?.message);
+      }
+      disptach(userInfo({ ...response }));
+      
+    } catch (error) {
+      
+      console.log(error)
     }
   };
 
