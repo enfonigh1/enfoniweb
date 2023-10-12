@@ -23,16 +23,16 @@
 
   
   .swiper-slide {
-    width: 24rem;
-    height: 30rem;
+    width: 22rem;
+    height: 35rem;
     margin: 4rem 0;
     position: relative;
    
   }
   
   .swiper-slide img {
-    width: 28em;
-    height: 30rem;
+    width: 24rem;
+    height: 35rem;
     border-radius: 2rem;
     object-fit: cover;
   }
@@ -50,6 +50,11 @@
 .slider-controler .slider-arrow ion-icon {
   font-size: 2rem;
   color: #22222477;
+}
+.slider-controler .slider-arrow ion-icon:hover {
+  /* font-size: 2rem; */
+  color: green;
+  transition: all 0.3s ease-in-out;
 }
 
 .slider-controler .slider-arrow::after {

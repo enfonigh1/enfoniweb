@@ -26,8 +26,7 @@ export default {
         fadedown: 'fadedown 1s ease-out'
       },
       
-      boxShadow: {
-        
+      boxShadow: {    
         '3xl': ['40px -50px 10px rgba(71,159,9,0.1)', '-2px 1px 30px rgba(0,0,0,0.07)']
       },
       fontFamily: {

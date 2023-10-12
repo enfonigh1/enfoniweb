@@ -16,7 +16,7 @@ import {
 import slide_image_1 from "../assets/images/asantewaa.svg";
 import slide_image_2 from "../assets/images/financial derrick.svg";
 import slide_image_3 from "../assets/images/lady.svg";
-import slide_image_4 from "../assets/images/michael abuah.svg";
+import slide_image_4 from "../assets/images/2.jpg";
 import slide_image_5 from "../assets/images/greysuit.svg";
 import slide_image_6 from "../assets/images/alhaji.jpg";
 import slide_image_7 from "../assets/images/lady.svg";
@@ -37,7 +37,7 @@ function Swiper3D() {
         rotate: 0,
         stretch: 0,
         depth: 100,
-        modifier: 8,
+        modifier: 10,
       }}
       //   pagination={{ el: ".swiper-pagination", clickable: true }}
       navigation={{
