@@ -1,11 +1,11 @@
 import React from "react";
 import DashboardLayout from "./dashbordLayout";
 import DashBoardHeader from '../components/dashboardHeader';
-// import Ellipse5 from "../assets/images/ellipse5.svg";
+import Ellipse5 from "../assets/images/Ellipse5.svg";
 import shirt1 from "../assets/images/shirt1.svg";
 import shirt2 from "../assets/images/shirt2.svg";
 import Ellipse6 from "../assets/images/Ellipse6.svg";
-// import Ellipse7 from "../assets/images/Ellipse7.svg";
+import Ellipse7 from "../assets/images/Ellipse7.svg";
 import shirt6 from "../assets/images/shirt6.svg";
 import shirt3 from "../assets/images/shirt3.svg";
 import shirt4 from "../assets/images/shirt4.svg";
@@ -49,7 +49,7 @@ const OrderHistory = () => {
             <div className=" bg-[#F5F6F8] py-2 px-4 text-zinc-500 text-xs font-normal font-['Lato'] lg:flex-row flex flex-col justify-between mb-8 md:flex-col items-center border-0 outline-none max-w-6xl">
               <div className="">
                 <div className="flex items-center py-6">
-                  {/* <img src={Ellipse5} alt="" className="w-2.5 mr-2" /> */}
+                  <img src={Ellipse5} alt="" className="w-2.5 mr-2" />
                   Dispatched
                 </div>
                 <div className="flex flex-col justify-end bg-white rounded-lg shadow py-4 px-12 ">
@@ -142,7 +142,7 @@ const OrderHistory = () => {
             <div className=" bg-[#F5F6F8] py-2 px-4 text-zinc-500 text-xs font-normal font-['Lato'] lg:flex-row flex flex-col justify-between mb-8 md:flex-col md:items-center border-0 outline-none max-w-6xl">
               <div className="">
                 <div className="flex items-center py-6">
-                  {/* <img src={Ellipse7} alt="" className="w-2.5 mr-2" /> */}
+                  <img src={Ellipse7} alt="" className="w-2.5 mr-2" />
                   Delivered 20th August
                 </div>
                 <div className="flex flex-col bg-white rounded-lg shadow py-8 px-12 ">

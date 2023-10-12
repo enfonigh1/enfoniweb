@@ -1,5 +1,5 @@
 import React from "react";
-// import Kentecloth from "../assets/images/kentecloth.svg";
+import Kentecloth from "../assets/images/Kentecloth.svg";
 import enfoni from "../assets/images/enfoni.svg";
 import {BiSolidDashboard} from "react-icons/bi";
 
@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }) => {
   };
 
 
-  // const imageUrl = `url(${Kentecloth})`;
+  const imageUrl = `url(${Kentecloth})`;
   
 
   return (
@@ -92,8 +92,8 @@ const DashboardLayout = ({ children }) => {
             </div>
             
           </div>
-          <div className="kente absolute bottom-0 w-full bg-no-repeat bg-cover" style={{backgroundImage: ""}}>
-              {/* <img src={Kentecloth} alt="" className="object-cover w-full h-full block  mx-auto mix-blend-darken"/> */}
+          <div className="kente absolute bottom-0 w-full bg-no-repeat bg-cover" style={{backgroundImage: imageUrl}}>
+              <img src={Kentecloth} alt="" className="object-cover w-full h-full block  mx-auto mix-blend-darken"/>
             </div>
         </div>
         

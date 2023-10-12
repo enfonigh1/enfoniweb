@@ -4,12 +4,12 @@ import SecurityData from './securitydata';
 import { BsPersonExclamation } from 'react-icons/bs';
 import { GiHouseKeys } from 'react-icons/gi';
 import { TbLogout } from 'react-icons/tb';
-// import ProfileHome from './ProfileHome';
+import ProfileHome from './profileHome';
 import { useSelector } from 'react-redux';
 import { profile } from '../app/features/profile/profileSlice';
 
 const Profile = () => {
-  const [profilePage, setProfilePage] = React.useState(<></>);
+  const [profilePage, setProfilePage] = React.useState(<ProfileHome />);
 
   const profiles = useSelector(profile)
 
@@ -22,10 +22,10 @@ const Profile = () => {
         setProfilePage(<SecurityData />);
         break;
       case 'back':
-        setProfilePage(<></>);
+        setProfilePage(<ProfileHome />);
         break;
       default:
-        setProfilePage(<></>);
+        setProfilePage(<ProfileHome />);
         break;
     }
 
