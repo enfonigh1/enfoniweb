@@ -12,6 +12,8 @@ import Popup from "../components/popupmenu";
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from 'react-icons/io';
 import Profile from '../components/profile';
+import { useSelector } from "react-redux";
+import { pcliecked } from "../app/features/profile/profileSlice";
 
 
 export const SavedItems = () => {
@@ -19,6 +21,8 @@ export const SavedItems = () => {
   const[toggleMenu, setToggleMenu] =React.useState(false);
   const [isOPen, setISOpen] = React.useState(false);
   const [profile, setProfile] = React.useState(false);
+  const profileclicked = useSelector(pcliecked)
+
 
   function handleOpen() {
     setToggleMenu(true)

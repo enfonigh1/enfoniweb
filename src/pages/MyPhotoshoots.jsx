@@ -16,6 +16,8 @@ import Popup from "../components/popupmenu";
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from 'react-icons/io';
 import Profile from '../components/profile';
+import { useSelector } from "react-redux";
+import { pcliecked } from "../app/features/profile/profileSlice";
 
 const MyPhotoshoots = () => {
   const shoots = [
@@ -92,6 +94,8 @@ const MyPhotoshoots = () => {
   const [total, setTotal] = useState(0);
   const [isOPen, setISOpen] = useState(false);
   const [profile, setProfile] = useState(false);
+  const profileclicked = useSelector(pcliecked)
+
 
   function handleOpen() {
     setToggleMenu(true);
@@ -125,12 +129,12 @@ const MyPhotoshoots = () => {
       {toggleMenu ? (
         <Menu closeMenu={handleClose} />
       ) : (
-        <div className="w-full flex flex-col items-center justify-center h-screen overflow-y-auto relative md:top-[90px] top-[90px]">
+        <div className="w-screen  relative top-[90px]">
           <DashBoardHeader setProfile={setProfile} />
           {profile ? <Profile /> : <></>}
-          <div className="flex justify-between flex-grow">
+          <div className="flex justify-center items-center mb-">
             <div>
-              <div className="flex mb-4 justify-between">
+              <div className="flex mb-4  justify-between">
                 <div
                   className="block fixed z-[10001] top-7 left-4 md:hidden"
                   onClick={handleOpen}
@@ -138,7 +142,7 @@ const MyPhotoshoots = () => {
                   <FaBarsStaggered />
                 </div>
               </div>
-              <div className="grid  lg:grid-cols-3 2xl:grid-cols-4 grid-cols-2 gap-7 relative">
+              <div className="grid  lg:grid-cols-3 2xl:grid-cols-4 grid-cols-2 gap-7 relative mb-10">
                 {isZoomed && (
                   <div
                     className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-[2000]"
@@ -177,12 +181,13 @@ const MyPhotoshoots = () => {
                     />
                     <div className="flex justify-between px-4 w-full">
                       <div>
-                        <button
+                        <a href=""
+                        download={img}
                           className="download-button"
-                          onClick={() => window.open(img, '_blank')}
+                          // onClick={() => window.open(img, '_blank')}
                         >
                           <BiDownload className="text-white text-2xl" />
-                        </button>
+                        </a>
                       </div>
                       <div>
                         <AiFillEye
@@ -196,18 +201,20 @@ const MyPhotoshoots = () => {
               </div>
             </div>
           </div>
+          {details.length > 0 && (
+        <div className="mt-4 fixed bottom-0 left-[30%] px-8 flex md:left-[20%] right-0  justify-between rounded-tl-lg w-6xl rounded-tr-lg rounded-tr-lg h-16  bg-light-green">
+          <p className="ml-4 font-bold font-['poppins'] text-gray-700 text-lg tracking-wide self-center">Total Price: GH¢{total}</p>
+          <button className="py-1 self-center mr-8 bg-[#537d3d] px-8 text-white rounded-lg font-[900] font-['poppins'] text-[16px] tracking-wide">Pay</button>
+        </div>
+      )}
           {isOPen ? <Popup /> : <></>}
         </div>
       )}
 
-      {details.length > 0 && (
-        <div className="mt-4 rounded-tl-lg rounded-tr-lg h-16 w-full flex bg-light-green">
-          <p className="ml-4 text-white font-bold">Total Price: ${total}</p>
-        </div>
-      )}
+
 
       {isOPen ? (
-        <div className="absolute right-6 p bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white">
+        <div className="absolute right-6 p bottom-16 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white">
           <IoMdCloseCircle
             onClick={() => {
               setISOpen(false);
@@ -216,7 +223,7 @@ const MyPhotoshoots = () => {
           />
         </div>
       ) : (
-        <div className="absolute right-6 p bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white">
+        <div className="absolute right-6 p bottom-16 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white">
           <IoSettingsSharp
             onClick={() => {
               setISOpen((prevState) => !prevState);

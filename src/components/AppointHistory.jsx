@@ -11,7 +11,7 @@ const AppointHistory = () => {
       <div className=" overflow-auto max-h-[30rem] absolute bg-neutral-100 rounded-lg shadow border -mt-5 border-neutral-400 py-2 px-5 w-full">
       
         <div className="flex px-1 bg-white mb-2 py-2 md:px-8 rounded-md shadow">
-          <div className="bg-[#1A5D1E] p-2 w-[35px] h-[35px] mr-10 rounded-full">
+          <div className="bg-[#1A5D1E] p-2 w-[30px] h-[30px] mr-10 rounded-full">
             <IoCalendarOutline className='text-white h-full w-full'/>
           </div>
           <div  className="b"> 
@@ -22,7 +22,7 @@ const AppointHistory = () => {
           </div>
         </div>
         <div className="flex px-1 mb-2 py-2 md:px-8 bg-white rounded-md shadow">
-          <div className="bg-[#1A5D1E] p-2 w-[35px] h-[35px] mr-10 rounded-full">
+          <div className="bg-[#1A5D1E] p-2 w-[30px] h-[30px] mr-10 rounded-full">
             <IoCalendarOutline className='text-white h-full w-full'/>
           </div>
           <div className="">
@@ -33,7 +33,7 @@ const AppointHistory = () => {
           </div>
         </div>
         <div className="flex px-1 mb-2 py-2 md:px-8 bg-white rounded-md shadow">
-          <div className="bg-[#1A5D1E] p-2 w-[35px] h-[35px] mr-10 rounded-full">
+          <div className="bg-[#1A5D1E] p-2 w-[30px] h-[30px] mr-10 rounded-full">
             <IoCalendarOutline className='text-white h-full w-full'/>
           </div>
           <div className="">

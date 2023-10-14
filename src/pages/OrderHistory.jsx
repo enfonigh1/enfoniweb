@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardLayout from "./dashbordLayout";
 import DashBoardHeader from '../components/dashboardHeader';
 import Ellipse5 from "../assets/images/Ellipse5.svg";
@@ -15,6 +15,8 @@ import Popup from "../components/popupmenu";
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from 'react-icons/io';
 import Profile from '../components/profile';
+import { useSelector } from "react-redux";
+import { pcliecked } from "../app/features/profile/profileSlice";
 
 
 const OrderHistory = () => {
@@ -31,6 +33,8 @@ const OrderHistory = () => {
     setToggleMenu(false)
   }
 
+const profileclicked = useSelector(pcliecked)
+
 
   return (
     <DashboardLayout>
@@ -40,7 +44,7 @@ const OrderHistory = () => {
 
           <div className="w-full relative top-[88px] ">
             <DashBoardHeader setProfile={setProfile} />
-            {profile ? <Profile /> : <></>}
+            {/* {profileclicked ? <Profile /> : <></>} */}
           <div className="orders flex flex-col sm:pb-0 md:px-12 md:pt-4 md:-pb-8 ">
             
           <div className="block fixed z-[10001] top-7 left-4 md:hidden" onClick={handleOpen}><FaBarsStaggered /></div>

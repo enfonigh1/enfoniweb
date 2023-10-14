@@ -1,36 +1,23 @@
-// import React from 'react'
-// import PersonInfo from './personalinformation';
-// import SecurityData from './securitydata';
-// import Profile from './Profile';
+import React from 'react'
+import PersonInfo from './personalinformation';
+import SecurityData from './securitydata';
+import Profile from './profile';
+import ProfileHome from './profileHome';
 
-//   const ProfileLayout =  () =>{
-//     const [profilePage, setProfilePage] = React.useState(<Profile/>);
-
-//     const handleProfile = (profile) => {
-//       switch (profile) {
-//         case 'personal-information':
-//           setProfilePage(<PersonInfo />);
-//           break;
-//         case 'security-and-data':
-//           setProfilePage(<SecurityData />);
-//           break;
-//         default:
-//           setProfilePage(<Profile />);
-//           break;
-//       }
+  const ProfileLayout =  () =>{
     
-  
-  
-//     return (
-//       <div className="relative z-[500]  w-[320px] right-12 h-[500px] rounded-br-lg rounded-bl-lg bg-white">
-//             {/* {profilePage} */}
-//       </div>
-//     )
-//     }
-
-//   }
-
+    return (
+      <div className='fixed inset-0 bg-black/50 flex justify-end pt-12 pr-14 items-start'>
+            <PersonInfo />
+            <Profile />
+            <ProfileHome />
+            <SecurityData />
+      </div>
+    )
+    }
 
 
 
-// export default ProfileLayout
+
+
+export default ProfileLayout

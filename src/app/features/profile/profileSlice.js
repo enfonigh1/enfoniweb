@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    currentSelected: sessionStorage.getItem("profile") ? sessionStorage.getItem("profile") : ""
+    currentSelected:  "",
+    setprofile: false,
 }
 
 const profileSlice = createSlice({
@@ -11,14 +12,21 @@ const profileSlice = createSlice({
         currentProfile: {
             reducer(state, action) {
                 state.currentSelected = action?.payload
-                sessionStorage.setItem("profile", action?.payload)
+                // sessionStorage.setItem("profile", action?.payload)
+            }
+        },
+        setprofile: {
+            reducer(state, action) {
+                state.setprofile = action?.payload
+                // sessionStorage.setItem("setprofile", action?.payload)
             }
         }
     }
 })
 
-export const {currentProfile} = profileSlice.actions
+export const {currentProfile, setprofile} = profileSlice.actions
 
 export const profile = state => state?.profile?.currentSelected
+export const pcliecked = state => state?.profile?.setprofile
 
 export default profileSlice.reducer

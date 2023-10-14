@@ -5,6 +5,9 @@ import {BiSolidDashboard} from "react-icons/bi";
 
 
 import { NavLink } from "react-router-dom";
+import Profile from "../components/profile";
+import { useSelector } from "react-redux";
+import { pcliecked } from "../app/features/profile/profileSlice";
 
 const DashboardLayout = ({ children }) => {
   const gradientStyle = {
@@ -17,7 +20,7 @@ const DashboardLayout = ({ children }) => {
 
   const imageUrl = `url(${Kentecloth})`;
   
-
+  const profileclicked = useSelector(pcliecked)
   return (
     <div className="w-[100%] flex flex-wrap h-screen  justify-between ">
       <div className=" hidden md:block md:basis-[30%] lg:basis-[20%] w-[100%] h-screen overflow-y-auto">
@@ -25,7 +28,7 @@ const DashboardLayout = ({ children }) => {
           {/* <div className="top w-[100%] relative z-[999] flex justify-center bg-white py-0">
             <NavLink
               to="/dashboard"
-              className="font-semibold text-[12.78px] lg:text-[20px] font-['Poppins'] rounded flex items-center italic  text-white bg-[#537d3d] hover:text-white w-fit capitalize my-8 lg:my-5 py-3 pl-4 pr-12"
+              className="font-semibold text-[12.78px] lg:text-[20px] font-['Poppins'] rounded flex items-center italic  text-white bg-[#537d3d] hover:text-white w-fit capitalize my-4 lg:my-5 py-3 pl-4 pr-12"
               style={({ isActive }) => (isActive ? gradientStyle : {})}
               // data-aos="flip-up"
               data-aos-duration="1000"
@@ -34,12 +37,12 @@ const DashboardLayout = ({ children }) => {
             </NavLink>
           </div> */}
 
-          <div className="middle mt-28">
+          <div className="middle mt-24">
 
       
             <NavLink
               to="/order-history"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-14 lg:my-5 py-3 pl-4 pr-4 justify-center"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my-0 py-3 pl-4 pr-4 justify-center"
               style={({ isActive }) => (isActive ? gradientStyle : {})}
               data-aos="fade-up"
               data-aos-delay="300"
@@ -49,7 +52,7 @@ const DashboardLayout = ({ children }) => {
             </NavLink>
             <NavLink
               to="/saved-items"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-14 lg:my-5 py-3 pl-4 pr-4 justify-center track-[10px]"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my-0 py-3 pl-4 pr-4 justify-center track-[10px]"
               style={({ isActive }) => (isActive ? gradientStyle : {})}
               data-aos="fade-up"
             data-aos-delay="400"
@@ -59,7 +62,7 @@ const DashboardLayout = ({ children }) => {
             </NavLink>
             <NavLink
               to="/my-photoshoots"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-14 lg:my-5 py-3 pl-4 pr-4 justify-center track-[10px]"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my-0 py-3 pl-4 pr-4 justify-center track-[10px]"
               style={({ isActive }) => (isActive ? gradientStyle : {})}
               data-aos="fade-up"
             data-aos-delay="500"
@@ -69,7 +72,7 @@ const DashboardLayout = ({ children }) => {
             </NavLink>
             <NavLink
               to="/Frames"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-14 lg:my-5 py-3 pl-4 pr-4 justify-center track-[10px]"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-f capitalize my-4 my-5 py-3 pl-4 pr-4 justify-center track-[10px]"
               style={({ isActive }) => (isActive ? gradientStyle : {})}
               data-aos="fade-up"
             data-aos-delay="500"
@@ -80,10 +83,10 @@ const DashboardLayout = ({ children }) => {
           </div>
 
          <div className="footer flex flex-col mb-1">
-          <p className="text-[#537d3d] uppercase font-bold tracking-[2px] w-full  mb-4 flash-element">Hello, Mike</p>
+          <p className="text-[#537d3d] uppercase font-bold tracking-[2px] w-full text-center mb-4 flash-element">Hello, Mike</p>
         
         <hr className="border-0 h-[2px] w-full mb-4 bg-slate-400 "/>
-        <p className="whitespace-normal flex justify-center overflow-hidden break-words text-[#537d3d] w-full text-[12px] uppercase font-bold text-center  mb-4">
+        <p className="whitespace-normal relative z-50 flex justify-center overflow-hidden break-words text-[#537d3d] w-full text-[12px] uppercase font-bold text-center  mb-4">
           Kwame Nkrumah University<br /> of Science and Technology</p>
           </div>
           <div className="hero-footerflex justify-center items-center flex-col z-10">
@@ -100,7 +103,11 @@ const DashboardLayout = ({ children }) => {
 
       
       </div>
-      <div className="md:basis-[70%] lg:basis-[80%] basis-[100%] flex justify-cente h-screen bg-[#d7dfd1] overflow-y-scroll ">{children}</div>
+      <div className="md:basis-[70%] lg:basis-[80%] basis-[100%] flex justify-center h-screen bg-[#d7dfd1] overflow-y-scroll ">
+        {children}
+      {profileclicked ? <Profile /> : <></>}
+        
+        </div>
     </div>
   );
 };

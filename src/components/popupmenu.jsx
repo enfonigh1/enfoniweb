@@ -22,7 +22,7 @@ const Popup = () => {
 
   return (
     <div className="w-full  fixed  z-[999] inset-0 bg-black/50">
-    <div className="overflow-x-auto p-4 gap-3 md:w-[380px] absolute right-1 bottom-24 grid
+    <div className="overflow-x-auto p-4 gap-3 md:w-[380px] absolute right-1 bottom-28 grid
  grid-cols-2 bg-white rounded-3xl shadow border-8 border-stone-200 overflow-auto">
       
     <div className='flex flex-col justify-end' >
@@ -87,47 +87,7 @@ const Popup = () => {
               <input type="text" placeholder="Message" className="w-full py-2 px-7 text-zinc-900 outline-none bg-white rounded-2xl shadow border placeholder:text-zinc-900 placeholder:text-base text-base font-normal placeholder:font-normal placeholder:font-['Inter'] font-['Inter'] placeholder:leading-relaxed leading-relaxed border-black" />
                
                <BsPlayCircle className="absolute top-2 right-6 text-3xl text-black"/>
-            </div>
-
-            {/* <div>
-            <div className=" p-2 justify-center items-stretch w-36 h-36 flex bg-white rounded-xl shadow border border-black">
-              <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">1</h1>
-              </div>
-              </div>
-              
-              <h2 className="uppercase text-zinc-900 text-sm font-extrabold font-['Inter'] text-center leading-snug">Appointment</h2>
-            </div> */}
-            {/* <div>
-            <div className=" p-2 justify-center items-stretch w-36 h-36 flex bg-white rounded-xl shadow border border-black">
-              <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">22</h1>
-              </div>
-              </div>
-              
-              <h2 className="uppercase text-zinc-900 text-sm font-extrabold font-['Inter'] text-center leading-snug">Gown Order</h2>
-            </div> */}
-            {/* <div>
-            <div className=" p-2 justify-center items-stretch w-36 h-36 flex bg-white rounded-xl shadow border border-black">
-              <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">15</h1>
-              </div>
-              </div>
-              
-              <h2 className="uppercase text-zinc-900 text-sm font-extrabold font-['Inter'] text-center leading-snug">Order History</h2>
-            </div> */}
-            {/* <div>
-            <div className=" p-2 justify-center items-stretch w-36 h-36 flex bg-white rounded-xl shadow border border-black">
-              <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full">8</h1>
-              </div>
-              </div>
-              
-              <h2 className="uppercase text-zinc-900 text-sm font-extrabold font-['Inter'] text-center leading-snug">Order History</h2>
-            </div> */}
-            
-            
-            
+            </div>            
           </div>
           
           </div>

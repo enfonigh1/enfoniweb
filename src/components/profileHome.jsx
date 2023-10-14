@@ -4,8 +4,8 @@ import SecurityData from './securitydata';
 import { BsPersonExclamation } from 'react-icons/bs';
 import { GiHouseKeys } from 'react-icons/gi';
 import { TbLogout } from 'react-icons/tb';
-import { useDispatch } from 'react-redux';
-import { currentProfile } from '../app/features/profile/profileSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentProfile, pcliecked, setprofile } from '../app/features/profile/profileSlice';
 
 
 const ProfileHome = () => {
@@ -15,8 +15,10 @@ const ProfileHome = () => {
         disptach(currentProfile(data))
     }
 
+    
   return (
-    <div className="bg-gray-100 pb-8 rounded-b-2xl   ">
+
+    <div className="bg-gray-100 pb-8 rounded-b-2xl" >
         <h2 className="rounded-tl-2xl bg-[#537d3d] py-1 w-full text-sm font-semibold px-2 font-['lato'] text-white">
           Hello,
         </h2>

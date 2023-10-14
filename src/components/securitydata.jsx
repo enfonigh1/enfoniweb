@@ -20,7 +20,7 @@ const SecurityData = () => {
          <label htmlFor="password" className="font-[poppins] font-semibold">Password</label>
          <div className=" relative"><input type="password" placeholder="Edit password" className="w-full  border-2 mt-2 pl-3 pr-7 py-1 font-['inter] rounded-2xl border-black outline-0 placeholder:font-['inter']" /><BiPencil className="absolute right-1 bottom-2"/></div>
        </div>
-
+        <button className='bg-black text-white rounded-lg py-1 px-2'>Save</button>
        <h3 className="font-[poppins] font-semibold">
         Request to delete data and account
        </h3>
