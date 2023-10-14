@@ -14,11 +14,11 @@ const Gallery = () => {
         <p className="text-center mt-3 2xl:text-3xl 2xl:w-165 2xl:my-8 2xl:mx-auto lg:w-[27rem] lg:mx-auto">
           Browse Through Our Gallery of Unforgettable Graduation Moments.
         </p>
-        <div className="md:flex  md:mx-auto grid grid-row-3 md:space-y-0 space-y-4 md:w-144 md:justify-between md:items-center mt-3 md:space-x-4">
+        <div className="flex justify-center items-center my-4">
           <button className="focus:bg-green bg-green rounded-md md:px-10  py-2 text-white">
             PHOTOSHOOTS
           </button>
-          <button
+          {/* <button
             disabled
             className="focus:bg-green bg-gray-500 rounded-md md:px-10  py-2 text-white"
           >
@@ -29,7 +29,7 @@ const Gallery = () => {
             className="focus:bg-green bg-gray-500 rounded-md md:px-10  py-2 text-white"
           >
             MERCHANDISE
-          </button>
+          </button> */}
         </div>
         <Swiper3D />
       </div>

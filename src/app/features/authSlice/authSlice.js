@@ -22,6 +22,14 @@ const authSlice = createSlice({
         sessionStorage.setItem("auth", JSON.stringify(action.payload));
       },
     },
+
+    logout: {
+      reducer(state, action) {
+        state.auth = []
+        sessionStorage.clear()
+      }
+    },
+
     userInfo: {
       reducer(state, action) {
         state.userInfo = action?.payload;
@@ -37,7 +45,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { auth, payment, userInfo } = authSlice.actions;
+export const { auth, payment, userInfo, logout } = authSlice.actions;
 export const registerDetails = (state) => state?.auth?.auth;
 export const userinfo = (state) => state?.auth?.userInfo;
 export default authSlice.reducer;

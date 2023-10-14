@@ -6,6 +6,8 @@ import { GiHouseKeys } from 'react-icons/gi';
 import { TbLogout } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentProfile, pcliecked, setprofile } from '../app/features/profile/profileSlice';
+import { logout, userinfo } from '../app/features/authSlice/authSlice';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const ProfileHome = () => {
@@ -15,6 +17,15 @@ const ProfileHome = () => {
         disptach(currentProfile(data))
     }
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const handleLogout = () => {
+      dispatch(logout())
+      navigate("/")
+      window.location.reload()
+    }
+
+      const details = useSelector(userinfo)
     
   return (
 
@@ -24,12 +35,12 @@ const ProfileHome = () => {
         </h2>
 
         <h3 className="font-['poppins'] tracking-wide text-black font-[400] text-2xl px-3 my-4">
-          John,
+          {details?.name?.split(" ")[0]},
         </h3>
         <div className="rounded-lg mx-3 mb-3 shadow-xl bg-black flex-flex-col py-6">
-          <p className='text-white text-ellipsis mx-20 font["inter"]'>John Smith</p>
-          <p className='text-white text-ellipsis mx-20 font["inter"]'>jsmith.mobbin1@gmail.com</p>
-          <p className='text-white text-ellipsis mx-20 font["inter"]'>(628) 267-9041</p>
+          <p className='text-white text-ellipsis mx-20 font["inter"]'>{details?.name}</p>
+          <p className='text-white text-ellipsis mx-20 font["inter"]'>{details?.email}</p>
+          <p className='text-white text-ellipsis mx-20 font["inter"]'>{details?.phone || "N/A - provide phone number"}</p>
         </div>
 
         <div
@@ -56,10 +67,10 @@ const ProfileHome = () => {
           </div>
         </div>
 
-        <p className="font-bold flex items-center font-['poppins'] justify-center =">
+        <Link to="" onClick={handleLogout} className="font-bold flex items-center font-['poppins'] justify-center =">
           <TbLogout className="mr-2" />
           LOGOUT
-        </p>
+        </Link>
       </div>
   )
 }

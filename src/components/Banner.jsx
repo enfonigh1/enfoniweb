@@ -8,10 +8,16 @@ import UCC from "../assets/images/UCC.svg";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpenMenu = () => {
+    // document.querySelector("div[role='dialog']").classList.toggle("hidden");
+    setOpen(!open);
+  };
+ 
   return (
-    <div className="">
+    <div className="" >
       <div className="bg-[url('./assets/images/banner.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
-        <Navbar />
+        <Navbar handleOpenMenu={handleOpenMenu}/>
         <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto">
           <div>
             <Text

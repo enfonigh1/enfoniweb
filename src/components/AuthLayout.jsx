@@ -30,16 +30,18 @@ const AuthLayout = ({
           >
             <img src={chev} alt="" /> <span className="ml-2">Back</span>
           </button>
-          <img
+         <Link to="/">
+         <img
             src={logo}
             alt=""
             className="mx-auto"
             data-aos="fade"
             data-aos-duration="2000"
           />
+         </Link>
           {loggins ? (
             <>
-              <h1 className="font-bold text-center mt-10 lg:block hidden">
+              <h1 className="font-bold text-center mt-2 lg:block hidden">
                 {heading}
               </h1>
               <p className="text-xs text-gray-400 text-center lg:block hidden">

@@ -1,26 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 import notification from "../assets/images/icon _bell_.svg";
 import logo2 from "../assets/images/enfoni.svg";
 import knustlogo from "../assets/images/knustlogo.jpg";
 import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { userinfo } from "../app/features/authSlice/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, userinfo } from "../app/features/authSlice/authSlice";
 
-const Navbar = () => {
+const Navbar = ({handleOpenMenu}) => {
   const [open, setOpen] = React.useState(false);
   const details = useSelector(userinfo);
-  const handleOpenMenu = () => {
-    // document.querySelector("div[role='dialog']").classList.toggle("hidden");
-    setOpen(!open);
-  };
+  // const handleOpenMenu = () => {
+  //   // document.querySelector("div[role='dialog']").classList.toggle("hidden");
+  //   setOpen(!open);
+  // };
+
+  const handleBlur = () => {
+    setOpen(false)
+  }
 
   // function to handle opening of schools
   const handleOpenSchools = () => {
     document.querySelector("div[role='dialog']").classList.toggle("hidden");
   };
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    dispatch(logout())
+    window.location.reload()
+  }
+  const [isDash, setIsDash] = useState(false)
+  const handleDashOpen = () => {
+    setIsDash(!isDash)
+  }
 
   return (
     <header className="bg-transparent">
@@ -34,7 +49,7 @@ const Navbar = () => {
             <img className="lg:h-16 w-auto 2xl:h-28" src={logo2} alt="" />
           </a>
         </div>
-        <div className="flex lg:hidden" onClick={handleOpenMenu}>
+        <div className="flex lg:hidden" onClick={handleOpenMenu} onBlur={handleBlur}>
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
@@ -104,7 +119,7 @@ const Navbar = () => {
               >
                 Schools
                 <svg
-                  class="h-5 w-5 flex-none text-white"
+                  className="h-5 w-5 flex-none text-white "
                   viewBox="0 0 20 20"
                   fill="currentColor"
                   aria-hidden="true"
@@ -219,7 +234,7 @@ const Navbar = () => {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {details?.name ? (
-            <Link to="/dashboard" className="h-8 w-8 rounded-full bg-light-green flex justify-center items-center">
+            <Link to="" onClick={handleDashOpen} className="h-8 w-8 rounded-full bg-light-green flex flex-col relative justify-center items-center">
               {details?.image ? (
                 <img
                   src=""
@@ -231,6 +246,11 @@ const Navbar = () => {
                   {details?.name[0]}
                 </h1>
               )}
+
+             {isDash ?  <div className="absolute z-50 shadow-2xl bg-white w-24 top-10  flex flex-col  p-2 text-xs rounded-md">
+                <Link to="/order-history" className="hover:bg-green hover:text-white py-2 rounded-md px-2 font-bold text-green transition-all duration-500">Dashboard</Link>
+                <Link to="" onClick={handleLogout} className="hover:bg-red-500 hover:text-white py-2 rounded-md px-2 text-red-500 font-bold transition-all duration-500">Logout</Link>
+              </div> : <></>}
             </Link>
           ) : (
             <Link
@@ -244,7 +264,7 @@ const Navbar = () => {
       </nav>
       {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
       {open ? (
-        <div className="lg:hidden" role="dialog" aria-modal="true">
+        <div className="lg:hidden">
           {/* <!-- Background backdrop, show/hide based on slide-over state. --> */}
           <div className="fixed inset-0 z-10"></div>
           <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">

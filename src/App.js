@@ -20,24 +20,33 @@ import OrderHistory from "./pages/OrderHistory";
 import SavedItems from "./pages/SavedItems";
 import MyPhotoshoots from "./pages/MyPhotoshoots";
 import Frames from './pages/frames';
+import Protected from "./hooks/Protected";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+
+          {/* FREE ROUTES */}
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/details" element={<MoreDetails />} />
-          <Route path="/code" element={<Code />} />
-          <Route path="/select-frame" element={<SelectFrame />} />
-          <Route path="/my-account" element={<MyAccount />} />
-          <Route path="/dashboard" element={<OrderHistory />} />
-          <Route path="/order-history" element={<OrderHistory />} />
-          <Route path="/saved-items" element={<SavedItems />} />
-          <Route path="/my-photoshoots" element={<MyPhotoshoots />} />
-          <Route path="/frames" element={<Frames />} />
+
+          {/* PROTECTED ROUTES */}
+          <Route element={<Protected />}>
+            <Route path="/dashboard" element={<OrderHistory />} />
+            <Route path="/code" element={<Code />} />
+            <Route path="/select-frame" element={<SelectFrame />} />
+            <Route path="/details" element={<MoreDetails />} />
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/order-history" element={<OrderHistory />} />
+            <Route path="/saved-items" element={<SavedItems />} />
+            <Route path="/my-photoshoots" element={<MyPhotoshoots />} />
+            <Route path="/frames" element={<Frames />} />
+
+          </Route>
+          {/* 404 PAGE */}
           <Route exact path="*" element={<Error />} />
         </Routes>
       </Router>

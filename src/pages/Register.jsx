@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import register from "../assets/images/register.svg";
 import chev from "../assets/images/chev_left.svg";
 import logo from "../assets/images/enfoni.svg";
@@ -16,6 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const register_details = useSelector(registerDetails);
+  const [visible, setVisible] = useState(false)
   const [details, setDetails] = useState({
     full_name: "",
     email: "",
@@ -89,9 +90,22 @@ const Register = () => {
       }
     }
   };
+
+  const passreg =  /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  const [validPass, setValidPass] = useState(false)
+  useEffect(() => {
+    const result = passreg.test(details.password);
+    console.log(result)
+    setValidPass(result);
+  }, [details.password]);
+
+  const handleShow= () => {
+    setVisible(!visible)
+  }
+
   return (
-    <AuthLayout heading="Create an account">
-      <h1 className="sm:hidden font-bold text-center mt-4">
+    <AuthLayout heading="Create an account" footer={false}>
+      <h1 className="sm:hidden font-bold text-center">
         Create an account
       </h1>
       <p className="text-xs text-gray-400 text-center lg:hidden">
@@ -124,33 +138,7 @@ const Register = () => {
         action=""
         className="mx-auto w-72 mt-8 sm:pb-0 pb-10"
       >
-        <Input
-          label="Full Name"
-          logo={user}
-          type="text"
-          // autoFocus={true}
-          name="full_name"
-          onChange={handleChange}
-          value={details?.full_name}
-          required={true}
-        />
-        <Input
-          label="Email Address"
-          logo={mail}
-          type="email"
-          name="email"
-          onChange={handleChange}
-          value={details?.email}
-        />
-        <Input
-          label="Password"
-          logo={password}
-          type="password"
-          name="password"
-          onChange={handleChange}
-          value={details?.password}
-        />
-        <div className="flex">
+        <div className="flex mb-4 justify-center items-center">
           <div className="flex">
             <input
               type="checkbox"
@@ -176,8 +164,38 @@ const Register = () => {
             </label>
           </div>
         </div>
+        <Input
+          label="Full Name"
+          logo={user}
+          type="text"
+          // autoFocus={true}
+          name="full_name"
+          onChange={handleChange}
+          value={details?.full_name}
+          required={true}
+        />
+        <Input
+          label="Email Address"
+          logo={mail}
+          type="email"
+          name="email"
+          onChange={handleChange}
+          value={details?.email}
+        />
+        <Input
+          label="Password"
+          logo={password}
+          type={visible ? "text" : "password"}
+          name="password"
+          onChange={handleChange}
+          value={details?.password}
+          show={true}
+          handleClick={handleShow}
+        />
+        {details?.password && !validPass ? <p className="text-red-500 mb-2 text-[10px] ">password must be atleast 8 characters and must contain 1 uppercase letter, 1 number and 1 special character</p> : <></>}
+        
         <button className="bg-purple shadow-lg text-white rounded-md py-2.5 block w-full mt-4 disabled:opacity-40 ">
-          {details?.gown || details?.photoshoot
+          {details?.gown  || details?.photoshoot
             ? "Proceed"
             : isLoading
             ? "Loading..."

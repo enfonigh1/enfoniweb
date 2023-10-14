@@ -26,6 +26,14 @@ const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    updateUser: builder.mutation({
+      query: (data) => ({
+        url: "/user/update-user",
+        method: "PUT",
+        body: data,
+      }),
+    }),
+
     postUserPayment: builder.mutation({
       query: (data) => ({
         url: "/payment",
@@ -37,6 +45,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useUpdateUserMutation,
   usePostRegisterMutation,
   usePostLoginMutation,
   usePostUserPaymentMutation,

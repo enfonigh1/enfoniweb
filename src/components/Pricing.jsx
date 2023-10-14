@@ -31,7 +31,7 @@ const Pricing = () => {
           <Link
             to=""
             onClick={handleClick}
-            className="inline-block text-center border-[1px] my-8 hover:transition-all duration-500 hover:bg-green hover:text-white hover:ease-in border-solid border-green text-gray-700 w-full py-3 rounded-md"
+            className="inline-block text-center border-[1px] my-8 hover:transition-all duration-500 bg-green text-white hover:bg-green hover:text-white hover:ease-in border-solid border-green  w-full py-3 rounded-md"
           >
             Choose this plan
           </Link>
@@ -121,7 +121,7 @@ const Pricing = () => {
           data-aos="fade-up"
           data-aos-duration="2000"
           data-aos-delay="1000"
-          className="border-[1px] border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
+          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
         >
           <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
             Framed
@@ -159,7 +159,7 @@ const Pricing = () => {
           data-aos="fade-up"
           data-aos-duration="2000"
           data-aos-delay="1000"
-          className="border-[1px] border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
+          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
         >
           <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
             Mounted
@@ -210,7 +210,7 @@ const Pricing = () => {
           data-aos="fade-up"
           data-aos-duration="2000"
           data-aos-delay="1000"
-          className="border-[1px] border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
+          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
         >
           <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
             Mount Card

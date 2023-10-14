@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import Profile from "../components/profile";
 import { useSelector } from "react-redux";
 import { pcliecked } from "../app/features/profile/profileSlice";
+import { userinfo } from "../app/features/authSlice/authSlice";
 
 const DashboardLayout = ({ children }) => {
   const gradientStyle = {
@@ -19,6 +20,9 @@ const DashboardLayout = ({ children }) => {
 
 
   const imageUrl = `url(${Kentecloth})`;
+
+  const details = useSelector(userinfo)
+  // console.log(details)
   
   const profileclicked = useSelector(pcliecked)
   return (
@@ -83,7 +87,7 @@ const DashboardLayout = ({ children }) => {
           </div>
 
          <div className="footer flex flex-col mb-1">
-          <p className="text-[#537d3d] uppercase font-bold tracking-[2px] w-full text-center mb-4 flash-element">Hello, Mike</p>
+          <p className="text-[#537d3d] uppercase font-bold tracking-[2px] w-full text-center mb-4 flash-element">Hello, {details?.name?.split(" ")[0]}</p>
         
         <hr className="border-0 h-[2px] w-full mb-4 bg-slate-400 "/>
         <p className="whitespace-normal relative z-50 flex justify-center overflow-hidden break-words text-[#537d3d] w-full text-[12px] uppercase font-bold text-center  mb-4">

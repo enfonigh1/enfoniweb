@@ -140,7 +140,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
                     <span
                       className={`${
                         activeItem === index
-                          ? "opacity-100 max-h-[200px]"
+                          ? "opacity-100 max-h-[400px]"
                           : "opacity-0 max-h-0 overflow-hidden"
                       } transition-opacity duration-500 text-gray-700`}
                     >
@@ -150,7 +150,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
                       className="flex justify-between items-center font-semibold  text-lg cursor-pointer"
                       onClick={() => toggleItem(index)}
                     >
-                      <span>{item?.question}</span>
+                      <span className="">{item?.question}</span>
                       <span>{activeItem === index ? "-" : "+"}</span>
                     </span>
                   </div>
