@@ -67,7 +67,7 @@ const ProfileHome = () => {
           </div>
         </div>
 
-        <Link to="" onClick={handleLogout} className="font-bold flex items-center font-['poppins'] justify-center =">
+        <Link to="" onClick={handleLogout} className="font-bold flex text-red-500 items-center font-['poppins'] justify-center =">
           <TbLogout className="mr-2" />
           LOGOUT
         </Link>

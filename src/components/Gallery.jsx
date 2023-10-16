@@ -6,7 +6,7 @@ import Swiper3D from "./Swiper3D";
 
 const Gallery = () => {
   return (
-    <div className="mt-10 " id="gallery">
+    <div className="pt-10 " id="gallery">
       <div className="md:px-24 px-6">
         <h1 className="text-center font-Poppins font-bold  md:text-5xl text-4xl text-green 2xl:text-8xl 2xl:mt-24 lg:mt-28">
           Gallery
@@ -15,7 +15,7 @@ const Gallery = () => {
           Browse Through Our Gallery of Unforgettable Graduation Moments.
         </p>
         <div className="flex justify-center items-center my-4">
-          <button className="focus:bg-green bg-green rounded-md md:px-10  py-2 text-white">
+          <button className="focus:bg-green bg-green rounded-md md:px-10  py-2 text-white px-4">
             PHOTOSHOOTS
           </button>
           {/* <button

@@ -8,14 +8,15 @@ import UCC from "../assets/images/UCC.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, userinfo } from "../app/features/authSlice/authSlice";
+import { BsFillTriangleFill } from "react-icons/bs";
 
-const Navbar = ({handleOpenMenu}) => {
+const Navbar = ({}) => {
   const [open, setOpen] = React.useState(false);
   const details = useSelector(userinfo);
-  // const handleOpenMenu = () => {
-  //   // document.querySelector("div[role='dialog']").classList.toggle("hidden");
-  //   setOpen(!open);
-  // };
+  const handleOpenMenu = () => {
+    document.querySelector("div[role='alert']").classList.toggle("hidden");
+    // setOpen(!open);
+  };
 
   const handleBlur = () => {
     setOpen(false)
@@ -248,6 +249,7 @@ const Navbar = ({handleOpenMenu}) => {
               )}
 
              {isDash ?  <div className="absolute z-50 shadow-2xl bg-white w-24 top-10  flex flex-col  p-2 text-xs rounded-md">
+              <BsFillTriangleFill className="absolute -top-2 text-white right-0 left-0 flex justify-center items-center mx-auto"/>
                 <Link to="/order-history" className="hover:bg-green hover:text-white py-2 rounded-md px-2 font-bold text-green transition-all duration-500">Dashboard</Link>
                 <Link to="" onClick={handleLogout} className="hover:bg-red-500 hover:text-white py-2 rounded-md px-2 text-red-500 font-bold transition-all duration-500">Logout</Link>
               </div> : <></>}
@@ -263,8 +265,8 @@ const Navbar = ({handleOpenMenu}) => {
         </div>
       </nav>
       {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
-      {open ? (
-        <div className="lg:hidden">
+   
+        <div className="lg:hidden" role="alert">
           {/* <!-- Background backdrop, show/hide based on slide-over state. --> */}
           <div className="fixed inset-0 z-10"></div>
           <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -304,6 +306,7 @@ const Navbar = ({handleOpenMenu}) => {
                       className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                       aria-controls="disclosure-1"
                       aria-expanded="false"
+                      onClick={handleOpenMenu}
                     >
                       Home
                       {/* <!--
@@ -373,34 +376,40 @@ const Navbar = ({handleOpenMenu}) => {
                     {/*  */}
                   </div>
                   <a
-                    href="#"
+                  onClick={handleOpenMenu}
+                    href="#services"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Services
                   </a>
                   <a
-                    href="#"
+                   onClick={handleOpenMenu}
+                    href="#gallery"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Gallery
                   </a>
                   <a
-                    href="#"
+                   onClick={handleOpenMenu}
+                    href="#pricing"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Pricing
                   </a>
                   <a
+                   onClick={handleOpenMenu}
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     About
                   </a>
+                
                   <a
+                   onClick={handleOpenMenu}
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Team
+                    Schools
                   </a>
                 </div>
                 <div className="py-6">
@@ -415,9 +424,8 @@ const Navbar = ({handleOpenMenu}) => {
             </div>
           </div>
         </div>
-      ) : (
-        <></>
-      )}
+   
+     
     </header>
   );
 };

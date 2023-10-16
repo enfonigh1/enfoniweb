@@ -108,7 +108,7 @@ const Login = () => {
         />
 
         <button className="bg-blue shadow-lg text-white rounded-md py-2.5 block w-full mt-4">
-          Sign in
+        {isLoading ? "Loading..." : "Login"}
         </button>
       </form>
       <p className="text-center mt-10 text-xs lg:w-128 mx-auto text-gray-500 lg:hidden sm:px-0 px-10 sm:pb-0 pb-10">
