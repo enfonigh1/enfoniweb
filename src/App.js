@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import logo from './logo.svg';
 import './App.css';
@@ -15,14 +15,18 @@ import Error from "./pages/Error";
 import Code from "./pages/Code";
 import SelectFrame from "./pages/SelectFrame";
 import MyAccount from "./pages/MyAccount";
-
 import OrderHistory from "./pages/OrderHistory";
 import SavedItems from "./pages/SavedItems";
 import MyPhotoshoots from "./pages/MyPhotoshoots";
 import Frames from './pages/frames';
 import Protected from "./hooks/Protected";
+import Aos from "aos";
 
 function App() {
+  useEffect(() => {
+    // Aos.init()
+  }, [])
+
   return (
     <>
       <Router>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import howtoorder from "../assets/images/howtoorder.svg";
 import faq from "../assets/images/faq.svg";
+import faqframe from "../assets/images/faqframe.svg";
 import enfonigif from "../assets/gif/mobile.gif";
 
 const Images = () => {
@@ -112,9 +113,10 @@ Yes, EEP takes the security of your personal information seriously. We use indus
           </div>
         </div>
       </div>
-      <div className=" lg:mt-10 lg:mb-24 mt-24">
+      <div className="lg:mt-10 lg:mb-24 mt-24 bg-[url('./assets/images/faqb.jpg')] bg-no-repeat bg-cover bg-center">
         <div className="lg:px-10 lg:grid lg:grid-cols-2 px-6">
           <div className="lg:w-[25rem]">
+            {/* <p>hLLO</p> */}
             <h1 className="text-4xl font-Poppins font-bold lg:text-black text-green">
               Frequently
             </h1>
@@ -125,6 +127,8 @@ Yes, EEP takes the security of your personal information seriously. We use indus
               Answers for common questions about services and clients usually
               ask
             </h3>
+            <img src={faqframe} alt="" className="mx-auto"/>
+          
           </div>
           <div>
             <ul className="flex flex-col space-y-4 my-10">

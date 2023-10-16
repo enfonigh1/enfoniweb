@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import register from "../assets/images/register.svg";
 import chev from "../assets/images/chev_left.svg";
 import logo from "../assets/images/enfoni.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import image1 from "../assets/images/1.jpg";
+import image2 from "../assets/images/2.jpg";
+import image3 from "../assets/images/3.jpg";
+import image4 from "../assets/images/4.jpg";
+import image5 from "../assets/images/5.jpg";
+import { FaChevronCircleLeft } from "react-icons/fa";
+
 const AuthLayout = ({
   image = register,
   heading,
@@ -15,20 +22,46 @@ const AuthLayout = ({
     navigate(-1);
   };
 
-  const images = ["../assets/images/michaelabuah.svg"];
+  const images = [image1, image2, image3, image4, image5];
+
+  // Make the image a slideshow of three images
+
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => {
+        if (prev === images.length - 1) {
+          return 0;
+        } else {
+          return prev + 1;
+        }
+      });
+    }, 3000);
+    // return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
       <div className="lg:grid lg:grid-cols-2 relative lg:bg-none bg-[url(./assets/images/register.svg)] bg-no-repeat bg-cover bg-center h-[calc(100vh-20px)]">
-        <div data-aos="fade" data-aos-duration="2000">
-          <img src={image} alt="" className="h-screen lg:block hidden " />
+      <div
+          // data-aos="fade"
+          // data-aos-duration="2000"
+          className="w-full animate-fadedown"
+        >
+          <img
+            src={images[index]}
+            alt=""
+            data-aos="fade"
+            data-aos-duration="2000"
+            className="h-screen lg:block hidden object-cover w-full  pointer-events-none "
+          />
         </div>
         <div>
-          <button
+        <button
             onClick={handleClick}
-            className="sm:text-purple text-white flex items-center mt-3 ml-3"
+            className="sm:text-gray-500 text-white flex items-center mt-3 ml-3"
           >
-            <img src={chev} alt="" /> <span className="ml-2">Back</span>
+            <FaChevronCircleLeft className="text-2xl" />
           </button>
          <Link to="/">
          <img

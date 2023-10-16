@@ -6,6 +6,8 @@ import knust from "../assets/images/KNUST.svg";
 import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { userinfo } from "../app/features/authSlice/authSlice";
 
 const Banner = () => {
   const [open, setOpen] = React.useState(false);
@@ -14,6 +16,8 @@ const Banner = () => {
     setOpen(!open);
   };
  
+  const details = useSelector(userinfo)
+
   return (
     <div className="" >
       <div className="bg-[url('./assets/images/banner.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
@@ -46,7 +50,7 @@ const Banner = () => {
               <Link
                 data-aos="fade-up"
                 data-aos-duration="2000"
-                to="/register"
+                to={details?.name ? "/select-frame" : "/register"}
                 className="bg-white rounded-full text-green py-3 px-8 inline-block mt-8"
               >
                 GET STARTED

@@ -9,6 +9,59 @@ const Pricing = () => {
   const handleClick = (e) => {
     console.log(e.target);
   };
+
+  const data = [
+    {
+      id: 1,
+      name: "Flat Rate",
+      price: 300,
+      plan1: {
+        desc: "7 Digita Pictures",
+        checked: true
+      },
+      plan2: {
+        desc: "Retouched",
+        checked: true
+      },
+    },
+    {
+      id: 2,
+      name: "Standard",
+      price: 400,
+      plan1: {
+        desc: "7 Digita Pictures",
+        checked: true
+      }
+    },
+    {
+      id: 1,
+      name: "Flat Rate",
+      price: 300,
+      plan1: {
+        desc: "7 Digita Pictures",
+        checked: true
+      }
+    },
+    {
+      id: 1,
+      name: "Flat Rate",
+      price: 300,
+      plan1: {
+        desc: "7 Digita Pictures",
+        checked: true
+      }
+    },
+    {
+      id: 1,
+      name: "Flat Rate",
+      price: 300,
+      plan1: {
+        desc: "7 Digita Pictures",
+        checked: true
+      }
+    },
+  ]
+
   return (
     <div className="lg:mx-20 px-6" id="pricing">
       <h1 className="text-center font-bold  md:text-5xl text-4xl text-green 2xl:text-8xl 2xl:mt-24 lg:mt-28">

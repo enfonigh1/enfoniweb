@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AuthLayout from "../components/AuthLayout";
-import michael from "../assets/images/michaelabuah.svg";
+import michael from "../assets/images/register.svg";
 import Input from "../components/Input";
 import mail from "../assets/images/mail.svg";
 import password from "../assets/images/icon _lock key_.svg";
