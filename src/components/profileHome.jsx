@@ -28,16 +28,16 @@ const ProfileHome = () => {
       const details = useSelector(userinfo)
     
   return (
-
-    <div className="pb-8 rounded-b-2xl" >
-        <h2 className="rounded-tl-2xl bg-[#537d3d] py-1 w-full text-sm font-semibold px-2 font-['lato'] text-white">
+    
+    <div className="pb-1 rounded-b-2xl  h-auto " >
+        <h2 className="rounded-tl-2xl bg-[#537d3d] py-1 w-20md:w-full text-sm font-semibold px-2 font-['lato'] text-white">
           Hello,
         </h2>
 
-        <h3 className="font-['poppins'] tracking-wide text-black font-[400] text-2xl px-3 my-4">
+        <h3 className="font-['poppins'] tracking-wide text-black font-[400] text-xl px-3 my-2">
           {details?.name?.split(" ")[0]},
         </h3>
-        <div className="rounded-lg mx-3 mb-3 shadow-xl bg-black flex-flex-col py-6">
+        <div className="rounded-lg mx-3 mb-1 shadow-xl bg-black flex-flex-col py-3 md:py-4">
           <p className='text-white mb-2 px-7 text-ellipsis overflow-hidden  font["inter"]'>{details?.name}</p>
           <p className='text-white mb-2 px-7 overflow-hidden text-ellipsis font["inter"]'>{details?.email}</p>
           <p className='text-white mb-2 px-7 text-ellipsis overflow-hidden  font["inter"]'>{details?.phone || "N/A - provide phone number"}</p>
@@ -47,7 +47,7 @@ const ProfileHome = () => {
           onClick={() => handleProfile('personal-information')}
           data-type='personal-information' // Add data-type attribute
         >
-          <div className="rounded-lg mx-3 cursor-pointer mb-3 shadow-xl bg-black px-7 py-6 flex items-center">
+          <div className="rounded-lg mx-3 cursor-pointer mb-1 shadow-xl bg-black px-7 py-3 md:py-4 flex items-center">
             <div className="bg-white p-2 rounded-md">
               <BsPersonExclamation className='text-4xl' />
             </div>
@@ -59,7 +59,7 @@ const ProfileHome = () => {
           onClick={() => handleProfile('security-and-data')}
           data-type='security-and-data' // Add data-type attribute
         >
-          <div className="rounded-lg mx-3 mb-3 shadow-xl bg-black cursor-pointer px-7 py-6 flex items-center">
+          <div className="rounded-lg mx-3 mb-1 shadow-xl bg-black cursor-pointer px-7 py-3 md:py-4 flex items-center">
             <div className="bg-white p-2 rounded-md">
               <GiHouseKeys className='text-4xl' />
             </div>
@@ -67,11 +67,12 @@ const ProfileHome = () => {
           </div>
         </div>
 
-        <Link to="" onClick={handleLogout} className="font-bold flex text-red-500 items-center font-['poppins'] justify-center =">
+        <Link to="" onClick={handleLogout} className="font-bold flex text-red-500 items-center font-['poppins'] justify-center">
           <TbLogout className="mr-2" />
           LOGOUT
         </Link>
       </div>
+      
   )
 }
 

@@ -7,6 +7,7 @@ import { TbLogout } from 'react-icons/tb';
 import ProfileHome from './profileHome';
 import { useSelector } from 'react-redux';
 import { profile } from '../app/features/profile/profileSlice';
+import {Popup} from '../components/popupmenu'
 
 const Profile = () => {
   const [profilePage, setProfilePage] = React.useState(<ProfileHome />);
@@ -35,7 +36,7 @@ const Profile = () => {
   const profilearray = [<Profile />,<PersonInfo />,<SecurityData />]
   
   return (
-    <div className="fixed z-[2000] rounded-2xl top-14 w-[320px] right-8 md:right-12 h-auto bg-gray-100">
+    <div className="fixed z-[2000] rounded-2xl top-14 w-['280px'] md:w-[320px] right-2 md:right-12 h-auto bg-gray-100 ">
       
       {profilePage}
     </div>

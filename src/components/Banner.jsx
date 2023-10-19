@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Text from "./Text";
 import bannerimg from "../assets/images/bannerlady.png";
@@ -6,23 +6,60 @@ import knust from "../assets/images/KNUST.svg";
 import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { userinfo } from "../app/features/authSlice/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { closePopUp, closepop, userinfo } from "../app/features/authSlice/authSlice";
+import { MdAddAPhoto } from "react-icons/md";
+import { BsCamera } from "react-icons/bs";
+import { PiGraduationCapThin } from "react-icons/pi";
+import { IoIosCloseCircle } from "react-icons/io";
+
 
 const Banner = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpenMenu = () => {
     // document.querySelector("div[role='dialog']").classList.toggle("hidden");
     setOpen(!open);
   };
- 
+  
   const details = useSelector(userinfo)
 
+  const pop = useSelector(closepop)
+
+  const [openPopUp, setOpenPopUp] = useState(pop);
+
+  const dispatch = useDispatch()
+const handleClosePopup = () => {
+  dispatch(closePopUp(false))
+  setOpenPopUp(pop)
+}
+
+
   return (
-    <div className="" >
+    <div className="relative" >
       <div className="bg-[url('./assets/images/banner.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
         <Navbar handleOpenMenu={handleOpenMenu}/>
-        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto">
+       {
+        openPopUp ?  <div className="relative z-50">
+
+        <div className="absolute left-0 right-0 top-5 w-full flex justify-center items-center">
+          <div className="w-96 p-5 ">
+            <div className="flex space-x-3 relative bg-white/95 justify-center items-center p-6 rounded-lg">
+            <IoIosCloseCircle onClick={handleClosePopup} className="absolute top-0 right-1 cursor-pointer"/>
+              <p className="font-bold">Quick Navigate</p>
+              <Link to="/details" className="shadow-lg bg-gray-200 text-center cursor-pointer border border-solid border-gray-700 flex flex-col justify-center items-center rounded-lg p-3">
+                <BsCamera  size={80}/>
+                <h1>Book Photoshoot</h1>
+              </Link>
+              <Link to="/details" className="shadow-lg bg-gray-200 text-center cursor-pointer border border-solid border-gray-700 flex flex-col justify-center items-center rounded-lg p-3">
+                <PiGraduationCapThin  size={80}/>
+                <h1>Book Gown</h1>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div> : <></>
+       }
+        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative">
           <div>
             <Text
               data-aos="fade-up"
@@ -46,16 +83,18 @@ const Banner = () => {
             >
               Create an account to join the community.
             </p>
-            <div className="flex justify-center items-center lg:justify-start lg:items-start">
-              <Link
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                to={details?.photoshoot ? "/select-frame" : "/details"}
-                className="bg-white rounded-full text-green py-3 px-8 inline-block mt-8"
-              >
-                GET STARTED
-              </Link>
-            </div>
+           {
+            details?.name ? <></> :  <div className="flex justify-center items-center lg:justify-start lg:items-start">
+            <Link
+              data-aos="fade-up"
+              data-aos-duration="2000"
+              to="/register"
+              className="bg-white rounded-full text-green py-3 px-8 inline-block mt-8"
+            >
+              GET STARTED
+            </Link>
+          </div>
+           }
           </div>
           <div data-aos="fade-left" data-aos-duration="3000">
             <img className="" src={bannerimg} alt="" />

@@ -34,26 +34,8 @@ const DashboardLayout = ({ children }) => {
           <div className="middle mt-24">
 
       
-            <NavLink
-              to="/order-history"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded relative z-50  flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my20 py-1 pl-4 pr-4 justify-center"
-              style={({ isActive }) => (isActive ? gradientStyle : {})}
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <BsFillBookFill className="mr-3" />
-              Order history
-            </NavLink>
-            <NavLink
-              to="/saved-items"
-              className=" font-[900] text-[16px] font-['Poppins'] relative z-50  rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my-2 py-1 pl-4 pr-4 justify-center track-[10px]"
-              style={({ isActive }) => (isActive ? gradientStyle : {})}
-              data-aos="fade-up"
-            data-aos-delay="400"
-            >
-              <BsFillBookmarkFill className="mr-3" />
-              Saved items
-            </NavLink>
+            
+            
             <NavLink
               to="/my-photoshoots"
               className=" font-[900] text-[16px] relative z-50  font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my-2 py-1 pl-4 pr-4 justify-center track-[10px]"
@@ -73,6 +55,26 @@ const DashboardLayout = ({ children }) => {
             >
               <GiWoodFrame className="mr-3" />
               Frames
+            </NavLink>
+            <NavLink
+              to="/order-history"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded relative z-50  flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my20 py-1 pl-4 pr-4 justify-center"
+              style={({ isActive }) => (isActive ? gradientStyle : {})}
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <BsFillBookFill className="mr-3" />
+              Order history
+            </NavLink>
+            <NavLink
+              to="/saved-items"
+              className=" font-[900] text-[16px] font-['Poppins'] relative z-50  rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize  my-2 py-1 pl-4 pr-4 justify-center track-[10px]"
+              style={({ isActive }) => (isActive ? gradientStyle : {})}
+              data-aos="fade-up"
+            data-aos-delay="400"
+            >
+              <BsFillBookmarkFill className="mr-3" />
+              Saved items
             </NavLink>
           </div>
 

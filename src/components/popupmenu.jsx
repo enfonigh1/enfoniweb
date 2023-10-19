@@ -21,12 +21,12 @@ const Popup = () => {
   console.log(isOpen)
 
   return (
-    <div className="w-full  fixed  z-[999] inset-0 bg-black/50">
-    <div className="overflow-x-auto p-4 gap-3 md:w-[380px] absolute right-1 bottom-28 grid
+    <div className="w-full  fixed  z-[1000] inset-0 bg-black/50">
+    <div className="overflow-x-auto p-4 gap-2 md:w-[380px] absolute right-1 bottom-24 lg:bottom-24 grid
  grid-cols-2 bg-white rounded-3xl shadow border-8 border-stone-200 overflow-auto">
       
     <div className='flex flex-col justify-end' >
-              <div onClick={handleClick} className="p-2 cursor-pointer justify-center items-stretch h-36 md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
+              <div onClick={handleClick} className="p-2 cursor-pointer justify-center items-stretch h-24  md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center  rounded-lg shadow flex-1">
                 <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">1</h1>
               </div>
@@ -40,7 +40,7 @@ const Popup = () => {
               {isOpen ? <AppointmentLayout onClick={handleBackButton} goBackToAppointment={handleBackButton} /> : ""}
             </div>  
             <div className='flex flex-col justify-end ' >
-              <div className=" p-2 justify-center items-stretch h-36 md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
+              <div className=" p-2 justify-center items-stretch h-24  md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
                 <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">22</h1>
               </div>
@@ -54,7 +54,7 @@ const Popup = () => {
               {isOpen ? <AppointmentLayout onClick={handleBackButton} goBackToAppointment={handleBackButton} /> : ""}
             </div>  
             <div className='flex flex-col justify-end  ' >
-              <div className=" p-2 justify-center items-stretch h-36 md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
+              <div className=" p-2 justify-center items-stretch h-24  md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
                 <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">15</h1>
               </div>
@@ -68,7 +68,7 @@ const Popup = () => {
               {isOpen ? <AppointmentLayout onClick={handleBackButton} goBackToAppointment={handleBackButton} /> : ""}
             </div>  
             <div className='flex flex-col justify-end ' >
-              <div className=" p-2 justify-center items-stretch h-36 md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
+              <div className=" p-2 justify-center items-stretch h-24  md:w-36 md:h-36 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
                 <h1 className="font-[900] text-4xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">8</h1>
               </div>

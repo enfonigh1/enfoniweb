@@ -21,36 +21,19 @@ export const Menu = ({closeMenu}) => {
     data-aos="fade-right"
     data-aos-duration="500"
     >
+     
       <div className="absolute right-4 z-[1000] top-3 md:hidden sm:block" onClick={closeMenu}><AiFillCloseCircle className="text-[35px] text-zinc-600" /></div>
         
       <div data-aos="zoom-in"
            data-aos-duration="1000"          
       >
-
-            <div className="-mt-24">
-            <NavLink
-              to="/order-history"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-8 lg:my-5 py-3 pl-4 pr-4 justify-center"
-              style={({ isActive }) => (isActive ? gradientStyle : {})}
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <BiSolidDashboard className="mr-3" />
-              Order history
-            </NavLink>
-            <NavLink
-              to="/saved-items"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-8 lg:my-5 py-3 pl-4 pr-4 justify-center track-[10px]"
-              style={({ isActive }) => (isActive ? gradientStyle : {})}
-              data-aos="fade-up"
-            data-aos-delay="400"
-            >
-              <BiSolidDashboard className="mr-3" />
-              Saved items
-            </NavLink>
+ <div className="h-screen overflow-y-scroll">
+            <div className="-mt-16">
+            
+           
             <NavLink
               to="/my-photoshoots"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-8 lg:my-5 py-3 pl-4 pr-4 justify-center track-[10px]"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-2 py-3 pl-4 pr-4 justify-center track-[10px]"
               style={({ isActive }) => (isActive ? gradientStyle : {})}
               data-aos="fade-up"
             data-aos-delay="500"
@@ -60,7 +43,7 @@ export const Menu = ({closeMenu}) => {
             </NavLink>
             <NavLink
               to="/Frames"
-              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-8 lg:my-5 py-3 pl-4 pr-4 justify-center track-[10px]"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-2 py-3 pl-4 pr-4 justify-center track-[10px]"
               style={({ isActive }) => (isActive ? gradientStyle : {})}
               data-aos="fade-up"
             data-aos-delay="500"
@@ -68,13 +51,34 @@ export const Menu = ({closeMenu}) => {
               <BiSolidDashboard className="mr-3" />
               Frames
             </NavLink>
+            <NavLink
+              to="/order-history"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-2 py-3 pl-4 pr-4 justify-center"
+              style={({ isActive }) => (isActive ? gradientStyle : {})}
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <BiSolidDashboard className="mr-3" />
+              Order history
+            </NavLink>
+            <NavLink
+              to="/saved-items"
+              className=" font-[900] text-[16px] font-['Poppins'] rounded flex items-center hover:bg-[#537d3d] hover:text-white w-fit capitalize my-2 py-3 pl-4 pr-4 justify-center track-[10px]"
+              style={({ isActive }) => (isActive ? gradientStyle : {})}
+              data-aos="fade-up"
+            data-aos-delay="400"
+            >
+              <BiSolidDashboard className="mr-3" />
+              Saved items
+            </NavLink>
             </div>
+            
       </div>
       <div className="footer flex flex-col mb-1">
-          <p className="text-[#537d3d] uppercase font-bold tracking-[2px] w-full  mb-4 flash-element">Hello, Mike</p>
+          <p className="text-[#537d3d] text-center uppercase font-bold tracking-[2px] w-full  mb-4 flash-element">Hello, Mike</p>
         
         <hr className="border-0 h-[2px] w-full mb-4 bg-slate-400 "/>
-        <p className="whitespace-normal flex justify-center overflow-hidden break-words text-[#537d3d] w-full text-[12px] uppercase font-bold text-center  mb-4">
+        <p className="whitespace-normal relative z-50  flex justify-center overflow-hidden break-words text-[#537d3d] w-full text-[12px] uppercase font-bold text-center  mb-4">
           Kwame Nkrumah University<br /> of Science and Technology</p>
           </div>
           <div className="hero-footerflex justify-center items-center flex-col z-10">
@@ -83,6 +87,7 @@ export const Menu = ({closeMenu}) => {
             </div>
             
           </div>
+          </div>   
           <div className="kente absolute bottom-0 w-full bg-no-repeat bg-cover" style={{backgroundImage: imageUrl}}>
               <img src={Kentecloth} alt="" className="object-cover w-full h-full block  mx-auto mix-blend-darken"/>
           </div>

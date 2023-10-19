@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import howtoorder from "../assets/images/howtoorder.svg";
 import faq from "../assets/images/faq.svg";
-import faqframe from "../assets/images/faqframe.svg";
+import faqframe from "../assets/images/faqframe.png";
 import enfonigif from "../assets/gif/mobile.gif";
 
 const Images = () => {
@@ -141,6 +141,15 @@ Yes, EEP takes the security of your personal information seriously. We use indus
                   // data-aos-delay="100"
                 >
                   <div className="flex flex-col divide-y-4 divide-y-reverse divide-black">
+                    
+                    <span
+                      className="flex justify-between items-center font-semibold  text-lg cursor-pointer"
+                      onClick={() => toggleItem(index)}
+                    >
+                      <span className="">{item?.question}</span>
+                      <span>{activeItem === index ? "-" : "+"}</span>
+                    </span>
+
                     <span
                       className={`${
                         activeItem === index
@@ -149,13 +158,6 @@ Yes, EEP takes the security of your personal information seriously. We use indus
                       } transition-opacity duration-500 text-gray-700`}
                     >
                       {item?.answer}
-                    </span>
-                    <span
-                      className="flex justify-between items-center font-semibold  text-lg cursor-pointer"
-                      onClick={() => toggleItem(index)}
-                    >
-                      <span className="">{item?.question}</span>
-                      <span>{activeItem === index ? "-" : "+"}</span>
                     </span>
                   </div>
                 </li>
