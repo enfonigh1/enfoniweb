@@ -10,6 +10,7 @@ const initialState = {
   userpayment: sessionStorage.getItem("payment")
     ? JSON.parse(sessionStorage.getItem("payment"))
     : [],
+  service: sessionStorage.getItem("service") ? sessionStorage.getItem("service") : ""
 };
 
 const authSlice = createSlice({
@@ -36,6 +37,13 @@ const authSlice = createSlice({
         sessionStorage.setItem("userInfo", JSON.stringify(action.payload));
       },
     },
+
+    userService: {
+      reducer(state, action) {
+        state.service = action?.payload;
+        sessionStorage.setItem("service", action.payload);
+      },
+    },
     payment: {
       reducer(state, action) {
         state.userpayment = action?.payload;
@@ -45,7 +53,9 @@ const authSlice = createSlice({
   },
 });
 
-export const { auth, payment, userInfo, logout } = authSlice.actions;
+export const { auth, payment, userInfo, logout, userService } = authSlice.actions;
 export const registerDetails = (state) => state?.auth?.auth;
 export const userinfo = (state) => state?.auth?.userInfo;
+
+export const service = (state) => state?.auth?.service;
 export default authSlice.reducer;

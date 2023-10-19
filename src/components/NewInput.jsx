@@ -14,7 +14,7 @@ const NewInput = ({ name, type, label, onChange, value }) => {
           required
           onChange={onChange}
           value={value}
-          class="block w-full rounded-md border-0 p-3 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+          className="block w-full rounded-md border-0 p-3 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
         />
       </div>
     </div>

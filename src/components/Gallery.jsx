@@ -48,12 +48,9 @@ const Gallery = () => {
                 data-aos="fade-right"
                 data-aos-duration="2000"
               >
-                Hear From Our Graduates: Heartfelt Experiences Shared by Those
-                We've Proudly Served. Discover how our meticulous attention to
-                detail in gown fittings, the artistry of our photoshoots, and
-                the exceptional quality of our merchandise have left an
-                indelible mark on our clients.
-                <p className="my-3">
+                Experience the Joy: Discover heartfelt testimonials from our graduates, celebrating the unforgettable moments we've created together.
+                  Join the chorus of voices celebrating their remarkable journey with us.
+                {/* <p className="my-3">
                   Read these genuine testimonials that reflect the joy, pride,
                   and satisfaction of our graduates
                 </p>
@@ -61,7 +58,7 @@ const Gallery = () => {
                   Join the chorus of voices celebrating their remarkable journey
                   through our services, making their graduations truly
                   unforgettable.
-                </p>
+                </p> */}
               </p>
             </div>
             <ReviewCard />

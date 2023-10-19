@@ -33,7 +33,7 @@ const Register = () => {
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setDetails({ ...details, [name]: value });
   };
-  // console.log(details);
+  console.log(details);
 
   const dispatch = useDispatch();
 
@@ -43,27 +43,13 @@ const Register = () => {
       toast("Please enter all fields");
     } else {
       if (details?.gown || details?.photoshoot) {
-        const response = await register({ ...details }).unwrap();
-
+        // const response = await register({ ...details }).unwrap();
         dispatch(auth({ ...details }));
-
-        if (response?.status === 400) {
-          toast.error(response?.data || response?.message, {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        } else {
           navigate("/details");
-        }
+     
       } else {
         try {
-          const response = await register({ ...details }).unwrap();
+          const response = await register({ ...details   }).unwrap();
           console.log(response);
           if (response?.status === 400) {
             toast.error(response?.data || response?.message, {
@@ -79,7 +65,7 @@ const Register = () => {
           }
           if (response?.status === 200) {
             setTimeout(() => {
-              navigate("/login");
+              navigate("/verify");
             }, 4000);
             toast.success(response?.message);
             // toast.success(response?.message);
@@ -138,7 +124,7 @@ const Register = () => {
         action=""
         className="mx-auto w-72 mt-8 sm:pb-0 pb-10"
       >
-        <div className="flex mb-4 justify-center items-center">
+        {/* <div className="flex mb-4 justify-center items-center">
           <div className="flex">
             <input
               type="checkbox"
@@ -164,7 +150,7 @@ const Register = () => {
               Photoshoot
             </label>
           </div>
-        </div>
+        </div> */}
         <Input
           label="Full Name"
           logo={user}

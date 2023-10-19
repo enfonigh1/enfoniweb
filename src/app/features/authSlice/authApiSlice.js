@@ -1,6 +1,6 @@
 import { apiSlice } from "../api/apiSlice";
 
-const authApiSlice = apiSlice.injectEndpoints({
+export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     postRegister: builder.mutation({
       query: (data) => ({
@@ -15,6 +15,14 @@ const authApiSlice = apiSlice.injectEndpoints({
           phone_number: data?.phone_number,
           date_of_graduation: data?.date_of_graduation,
         },
+      }),
+    }),
+
+    verifyEmail: builder.query({
+      query: (data) => ({
+        url: "/verify-email",
+        method: "GET",
+
       }),
     }),
 
@@ -49,4 +57,5 @@ export const {
   usePostRegisterMutation,
   usePostLoginMutation,
   usePostUserPaymentMutation,
+  useVerifyEmailQuery,
 } = authApiSlice;

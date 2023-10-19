@@ -29,7 +29,7 @@ const ProfileHome = () => {
     
   return (
 
-    <div className="bg-gray-100 pb-8 rounded-b-2xl" >
+    <div className="pb-8 rounded-b-2xl" >
         <h2 className="rounded-tl-2xl bg-[#537d3d] py-1 w-full text-sm font-semibold px-2 font-['lato'] text-white">
           Hello,
         </h2>
@@ -38,9 +38,9 @@ const ProfileHome = () => {
           {details?.name?.split(" ")[0]},
         </h3>
         <div className="rounded-lg mx-3 mb-3 shadow-xl bg-black flex-flex-col py-6">
-          <p className='text-white text-ellipsis mx-20 font["inter"]'>{details?.name}</p>
-          <p className='text-white text-ellipsis mx-20 font["inter"]'>{details?.email}</p>
-          <p className='text-white text-ellipsis mx-20 font["inter"]'>{details?.phone || "N/A - provide phone number"}</p>
+          <p className='text-white mb-2 px-7 text-ellipsis overflow-hidden  font["inter"]'>{details?.name}</p>
+          <p className='text-white mb-2 px-7 overflow-hidden text-ellipsis font["inter"]'>{details?.email}</p>
+          <p className='text-white mb-2 px-7 text-ellipsis overflow-hidden  font["inter"]'>{details?.phone || "N/A - provide phone number"}</p>
         </div>
 
         <div

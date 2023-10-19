@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import logo from './logo.svg';
 import './App.css';
@@ -14,19 +14,18 @@ import MoreDetails from "./pages/MoreDetails";
 import Error from "./pages/Error";
 import Code from "./pages/Code";
 import SelectFrame from "./pages/SelectFrame";
-import MyAccount from "./pages/MyAccount";
+import AdminLayout from "./pages/AdminLayout";
+
 import OrderHistory from "./pages/OrderHistory";
 import SavedItems from "./pages/SavedItems";
 import MyPhotoshoots from "./pages/MyPhotoshoots";
 import Frames from './pages/frames';
 import Protected from "./hooks/Protected";
-import Aos from "aos";
+import AdminDataTable from "./components/AdminDataTable";
+import Emailsent from "./pages/Emailsent";
+import Verified from "./pages/Verified";
 
 function App() {
-  useEffect(() => {
-    // Aos.init()
-  }, [])
-
   return (
     <>
       <Router>
@@ -36,6 +35,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/verify" element={<Emailsent />} />
+          <Route path="/verified" element={<Verified />} />
 
           {/* PROTECTED ROUTES */}
           <Route element={<Protected />}>
@@ -43,11 +44,11 @@ function App() {
             <Route path="/code" element={<Code />} />
             <Route path="/select-frame" element={<SelectFrame />} />
             <Route path="/details" element={<MoreDetails />} />
-            <Route path="/my-account" element={<MyAccount />} />
             <Route path="/order-history" element={<OrderHistory />} />
             <Route path="/saved-items" element={<SavedItems />} />
             <Route path="/my-photoshoots" element={<MyPhotoshoots />} />
             <Route path="/frames" element={<Frames />} />
+            <Route path="/admin" element={<AdminDataTable />} />
 
           </Route>
           {/* 404 PAGE */}

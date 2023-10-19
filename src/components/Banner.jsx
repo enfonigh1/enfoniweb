@@ -50,7 +50,7 @@ const Banner = () => {
               <Link
                 data-aos="fade-up"
                 data-aos-duration="2000"
-                to={details?.name ? "/select-frame" : "/register"}
+                to={details?.photoshoot ? "/select-frame" : "/details"}
                 className="bg-white rounded-full text-green py-3 px-8 inline-block mt-8"
               >
                 GET STARTED

@@ -7,7 +7,7 @@ import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, userinfo } from "../app/features/authSlice/authSlice";
+import { logout, userService, userinfo } from "../app/features/authSlice/authSlice";
 import { BsFillTriangleFill } from "react-icons/bs";
 import {MdAddAPhoto} from "react-icons/md"
 import {GiShirt} from "react-icons/gi"
@@ -42,6 +42,13 @@ const Navbar = ({}) => {
   const [isDash, setIsDash] = useState(false)
   const handleDashOpen = () => {
     setIsDash(!isDash)
+  }
+
+  const handleGown = () => {
+    dispatch(userService("gown"))
+  }
+  const handlePhoto = () => {
+    dispatch(userService("photo"))
   }
 
   return (
@@ -121,32 +128,36 @@ const Navbar = ({}) => {
                 aria-modal="false"
               >
                 <div class="p-1">
-                  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
-                    <div class="flex h-4 w-5 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <GiShirt size={35}/>
-                    </div>
-                    <div class="flex-auto">
-                      <a href="#" class="block font-semibold text-gray-900">
-                        Book A Gown
-                        <span class="absolute inset-0"></span>
-                      </a>
-                      {/* <p class=" text-gray-600">
-                        Kwame Nkrumah University of Science and Technology
-                      </p> */}
-                    </div>
+                 {
+                  details?.gown === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
+                  <div class="flex h-4 w-5 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                    <GiShirt size={35}/>
                   </div>
-                  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
-                    <div class="flex h-6 w-7 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <MdAddAPhoto size={30}/>
-                    </div>
-                    <div class="flex-auto">
-                      <a href="#" class="block font-semibold text-gray-900">
-                        Book A Photoshoot
-                        <span class="absolute inset-0"></span>
-                      </a>
-                      {/* <p class=" text-gray-600">University of Ghana</p> */}
-                    </div>
+                  <div class="flex-auto">
+                    <Link to="/details" class="block font-semibold text-gray-900" onClick={handleGown}>
+                      Book A Gown
+                      <span class="absolute inset-0"></span>
+                    </Link>
+                    {/* <p class=" text-gray-600">
+                      Kwame Nkrumah University of Science and Technology
+                    </p> */}
                   </div>
+                </div>
+                 }
+                 {
+                  details?.photoshoot === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
+                  <div class="flex h-6 w-7 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                    <MdAddAPhoto size={30}/>
+                  </div>
+                  <div class="flex-auto">
+                    <Link to="/details" class="block font-semibold text-gray-900" onClick={handlePhoto}>
+                      Book A Photoshoot
+                      <span class="absolute inset-0"></span>
+                    </Link>
+                    {/* <p class=" text-gray-600">University of Ghana</p> */}
+                  </div>
+                </div>
+                 }
                   {/* <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
                     <div class="flex h-4 w-5 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                       <img src={UCC} alt="" />

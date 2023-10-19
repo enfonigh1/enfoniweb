@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { userInfo } from "../app/features/authSlice/authSlice";
 import { useDispatch } from "react-redux";
+// import { useH } from "react-router-dom";
 
 const Login = () => {
   // const { register, handleSubmit } = useForm();
@@ -27,11 +28,19 @@ const Login = () => {
     setDetails({ ...details, [name]: value });
   };
 
+  // const history = useHistory()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await login({ ...details }).unwrap();
       console.log(response)
+      console.log(response)
+      if(response?.verified === false){
+
+        toast.error("Please verify your email to continue");
+        return;
+      }
       if (response?.status === 200) {
         setTimeout(() => {
           navigate("/");
