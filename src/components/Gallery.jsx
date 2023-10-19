@@ -1,5 +1,5 @@
 import React from "react";
-import SimpleSlider from "./Carousel";
+// import SimpleSlider from "./Carousel";
 import ReviewCard from "./ReviewCard";
 import ReviewCarousel from "./ReviewCarousel";
 import Swiper3D from "./Swiper3D";

@@ -138,13 +138,13 @@ const MyPhotoshoots = () => {
             <div>
               <div className="flex mb-4  justify-between">
                 <div
-                  className="block fixed z-[10001] top-7 left-4 md:hidden"
+                  className="block fixed z-[1000] top-7 left-4 md:hidden"
                   onClick={handleOpen}
                 >
                   <FaBarsStaggered />
                 </div>
               </div>
-              <div className="grid px-4 md:px-0  lg:grid-cols-3 2xl:grid-cols-4 grid-cols-2 gap-7 relative mb-10">
+              <div className="grid px-2 md:px-0 justify-center items-center  lg:grid-cols-3 2xl:grid-cols-4 grid-cols-2 gap-5 md:gap-7 relative mb-10">
                 {isZoomed && (
                   <div
                     className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-[2000]"
@@ -168,7 +168,7 @@ const MyPhotoshoots = () => {
                 {noPhotos.map(({ img, price }, index) => (
                   <div
                     key={index}
-                    className="flash-photo w-[150px] h-[150px] md:w-[280px] md:h-[340px] rounded-lg shadow flex items-end"
+                    className="flash-photo w-[140px] h-[140px] md:w-[280px] md:h-[340px] rounded-lg shadow flex items-end"
                     style={{
                       backgroundImage: `url(${img}`,
                       backgroundSize: "cover",
@@ -216,25 +216,17 @@ const MyPhotoshoots = () => {
 
 
 
-      {isOPen ? (
-        <div className="absolute right-6 p bottom-16 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white">
-          <IoMdCloseCircle
-            onClick={() => {
-              setISOpen(false);
-            }}
-            className="cursor-pointer"
-          />
-        </div>
-      ) : (
-        <div className="absolute right-6 p bottom-16 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white">
-          <IoSettingsSharp
-            onClick={() => {
-              setISOpen((prevState) => !prevState);
-            }}
-            className="cursor-pointer"
-          />
-        </div>
-      )}
+{
+        isOPen ? <div className="absolute right-6 bottom-2 md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
+        <IoMdCloseCircle onClick={()=>{
+              setISOpen(false)
+            } } className="cursor-pointer"/>
+        </div>  : <div className="absolute right-6 bottom-2 md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
+        <IoSettingsSharp onClick={()=>{
+              setISOpen(prevState => !prevState)
+            } } className="cursor-pointer"/>
+        </div> 
+      }
     </DashboardLayout>
   );
 };

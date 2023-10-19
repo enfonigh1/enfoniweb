@@ -6,8 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import store from "./app/store.js";
 import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
+import Aos from 'aos';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+Aos.init()
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>

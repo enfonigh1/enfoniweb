@@ -47,16 +47,16 @@ const Frames = () => {
           <DashBoardHeader setProfile={setProfile} />
           {profile ? <Profile /> : <></>}
           <div
-            className="block fixed z-[10001] top-7 left-4 md:hidden"
+            className="block fixed z-[1000] top-7 left-4 md:hidden"
             onClick={handleOpen}
           >
             <FaBarsStaggered />
           </div>
-          <div className="grid grid-cols-2 mt-3 md:grid-cols-3 lg:grid-cols-7 gap-6 px-7 ">
+          <div className="grid grid-cols-2 mt-3 md:grid-cols-3 lg:grid-cols-6 gap-6 px-7 ">
             {frameData.map((frame, index) => (
               <div
                 key={index}
-                className=" bg-white pt-5 pb-6 mt-2 flex flex-col rounded-lg shadow-lg shadow-light-green"
+                className=" bg-white pt-5 pb-6 mt-2  flex flex-col rounded-lg shadow-lg shadow-light-green"
               >
                 <img src={frame.frame} alt="" className=" self-center lg:w-[100px] w-[10rem]" />
                 
@@ -80,16 +80,16 @@ const Frames = () => {
         </div>
       )}
       {
-        isOPen ? <div className="absolute right-6 p bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
+        isOPen ? <div className="absolute right-6 bottom-2 md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
         <IoMdCloseCircle onClick={()=>{
               setISOpen(false)
-            } } className=""/>
-        </div>  : <div className="absolute right-6 p bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
+            } } className="cursor-pointer"/>
+        </div>  : <div className="absolute right-6 bottom-2 md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
         <IoSettingsSharp onClick={()=>{
               setISOpen(prevState => !prevState)
-            } } className=""/>
+            } } className="cursor-pointer"/>
         </div> 
-      } 
+      }
     </DashboardLayout>
   );
 };

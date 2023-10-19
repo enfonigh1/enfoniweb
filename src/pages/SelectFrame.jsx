@@ -86,7 +86,7 @@ const SelectFrame = () => {
     <div>
       <ToastContainer />
       <div className="lg:grid lg:grid-cols-2">
-        <div className=" inset-0 bg-[url(./assets/images/uptoGod.svg)] bg-no-repeat bg-cover h-screen">
+        <div className=" inset-0 bg-[url(./assets/images/uptoGod.png)] bg-no-repeat bg-cover h-screen">
           <div className="flex justify-center items-center flex-col space-y-5 bg-white/95 h-screen">
             <img
               src={knustlogo}

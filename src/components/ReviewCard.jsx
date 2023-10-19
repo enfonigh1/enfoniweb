@@ -1,6 +1,6 @@
 import React from "react";
-import star from "../assets/images/star.svg";
-import star_outlined from "../assets/images/star_outlined.svg";
+
+import { BsStar, BsStarFill } from "react-icons/bs";
 const ReviewCard = ({
   image = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   name = "Andrews",
@@ -31,12 +31,12 @@ const ReviewCard = ({
             <p className="lg:text-18px] font-Lato">{position}</p>
           </div>
         </div>
-        <div className="flex lg:mr-14">
-          <img src={star} alt="" className="" />
-          <img src={star} alt="" className="" />
-          <img src={star} alt="" className="" />
-          <img src={star} alt="" className="" />
-          <img src={star_outlined} alt="" className="" />
+        <div className="flex space-x-1 lg:mr-14">
+          <BsStarFill className="text-yellow-500"/>
+          <BsStarFill className="text-yellow-500"/>
+          <BsStarFill className="text-yellow-500"/>
+          <BsStarFill className="text-yellow-500"/>
+          <BsStar className="text-yellow-500"/>
         </div>
       </div>
       <div className="text-justify">

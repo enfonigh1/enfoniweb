@@ -38,10 +38,10 @@ const handleClosePopup = () => {
     <div className="relative" >
       <div className="bg-[url('./assets/images/banner.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
         <Navbar handleOpenMenu={handleOpenMenu}/>
-       {
-        openPopUp ?  <div className="relative z-50">
+       {/* {
+        openPopUp ?  <div className="relative z-50" data-aos="fade" data-aos-duration="3000">
 
-        <div className="absolute left-0 right-0 top-5 w-full flex justify-center items-center">
+        <div className="sticky  top-5 w-full flex justify-center items-center">
           <div className="w-96 p-5 ">
             <div className="flex space-x-3 relative bg-white/95 justify-center items-center p-6 rounded-lg">
             <IoIosCloseCircle onClick={handleClosePopup} className="absolute top-0 right-1 cursor-pointer"/>
@@ -58,7 +58,7 @@ const handleClosePopup = () => {
           </div>
         </div>
       </div> : <></>
-       }
+       } */}
         <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative">
           <div>
             <Text
@@ -76,6 +76,8 @@ const handleClosePopup = () => {
               pride. Discover how we make your graduation experience truly
               unforgettable.
             </p>
+           {
+            details?.name ? <></> :  <div className="flex justify-center items-center lg:justify-start lg:items-start">
             <p
               data-aos="fade-right"
               data-aos-duration="2000"
@@ -83,8 +85,6 @@ const handleClosePopup = () => {
             >
               Create an account to join the community.
             </p>
-           {
-            details?.name ? <></> :  <div className="flex justify-center items-center lg:justify-start lg:items-start">
             <Link
               data-aos="fade-up"
               data-aos-duration="2000"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import logo from './logo.svg';
 import './App.css';
@@ -24,8 +24,11 @@ import Protected from "./hooks/Protected";
 import AdminDataTable from "./components/AdminDataTable";
 import Emailsent from "./pages/Emailsent";
 import Verified from "./pages/Verified";
+import Aos from "aos";
 
 function App() {
+
+
   return (
     <>
       <Router>

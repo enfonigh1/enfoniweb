@@ -115,7 +115,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
       </div>
       <div className="lg:mt-10 lg:mb-24 mt-24 bg-[url('./assets/images/faqb.jpg')] bg-no-repeat bg-cover bg-center">
         <div className="lg:px-10 lg:grid lg:grid-cols-2 px-6">
-          <div className="lg:w-[25rem]">
+          <div className="lg:w-[30rem]">
             {/* <p>hLLO</p> */}
             <h1 className="text-4xl font-Poppins font-bold lg:text-black text-green">
               Frequently
@@ -127,10 +127,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
               Answers for common questions about services and clients usually
               ask
             </h3>
-            <img src={faqframe} alt="" className="mx-auto"/>
-          
-          </div>
-          <div>
+            <div>
             <ul className="flex flex-col space-y-4 my-10">
               {faqItems.map((item, index) => (
                 <li
@@ -164,6 +161,13 @@ Yes, EEP takes the security of your personal information seriously. We use indus
               ))}
             </ul>
           </div>
+          
+          </div>
+          <div>
+          <img src={faqframe} alt="" className="mx-auto"/>
+          </div>
+
+          {/*  */}
         </div>
       </div>
     </>

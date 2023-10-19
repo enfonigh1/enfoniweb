@@ -43,16 +43,16 @@ const profileclicked = useSelector(pcliecked)
           </div>
       )}
        {
-        isOPen ? <div className="absolute right-6 p bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
+        isOPen ? <div className="absolute right-6 bottom-2 md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
         <IoMdCloseCircle onClick={()=>{
               setISOpen(false)
             } } className="cursor-pointer"/>
-        </div>  : <div className="absolute right-6 p bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
+        </div>  : <div className="absolute right-6 bottom-2 md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
         <IoSettingsSharp onClick={()=>{
               setISOpen(prevState => !prevState)
             } } className="cursor-pointer"/>
         </div> 
-      }  
+      } 
     </DashboardLayout>
   );
 };

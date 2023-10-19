@@ -42,7 +42,7 @@ const dispatch = useDispatch()
             data-aos-duration="1500"
           />
         </div>
-        <div className="flex justify-end md:mr-36">
+        <div className="flex justify-end md:mr-36 lg:mr-48">
           <div className="md:w-10 md:h-10 w-7 h-7 lg:p-2 p-1 bg-slate-100 rounded-full mr-4">
             <div
               className="w-full h-full cursor-pointer"
