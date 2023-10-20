@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 import notification from "../assets/images/icon _bell_.svg";
 import logo2 from "../assets/images/enfoni.svg";
@@ -7,13 +7,15 @@ import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, userService, userinfo } from "../app/features/authSlice/authSlice";
+import { logout, openSchool, openService, openschool, openservice, userService, userinfo } from "../app/features/authSlice/authSlice";
 import { BsFillTriangleFill } from "react-icons/bs";
 import {MdAddAPhoto} from "react-icons/md"
 import {GiShirt} from "react-icons/gi"
 
 const Navbar = ({}) => {
   const [open, setOpen] = React.useState(false);
+  const [isOpenService, setIsOpenService] = React.useState(false);
+
   const details = useSelector(userinfo);
   const handleOpenMenu = () => {
     document.querySelector("div[role='alert']").classList.toggle("hidden");
@@ -21,16 +23,19 @@ const Navbar = ({}) => {
   };
 
   const handleBlur = () => {
-    setOpen(false)
+    // setOpen(false)
+    // dispatch(openService(false))
   }
 
   // function to handle opening of schools
   const handleOpenSchools = () => {
-    document.querySelector("div[role='dialog']").classList.toggle("hidden");
+    // document.querySelector("div[role='dialog']").classList.toggle("hidden");
+    dispatch(openSchool(true))
   };
   // function to handle opening of schools
   const handleOpenService = () => {
-    document.querySelector("div[role='alertdialog']").classList.toggle("hidden");
+    // document.querySelector("div[role='alertdialog']").classList.toggle("hidden");
+    dispatch(openService(true))
   };
 
   const dispatch = useDispatch()
@@ -50,6 +55,10 @@ const Navbar = ({}) => {
   const handlePhoto = () => {
     dispatch(userService("photo"))
   }
+  const openserv = useSelector(openservice)
+  const opensch = useSelector(openschool)
+
+  console.log(openserv, opensch)
 
   return (
     <header className="bg-transparent">
@@ -63,7 +72,7 @@ const Navbar = ({}) => {
             <img className="lg:h-16 w-auto 2xl:h-28" src={logo2} alt="" />
           </a>
         </div>
-        <div className="flex lg:hidden" onClick={handleOpenMenu} onBlur={handleBlur}>
+        <div className="flex lg:hidden" onClick={handleOpenMenu} >
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
@@ -98,13 +107,14 @@ const Navbar = ({}) => {
             {/*  */}
           </div>
 
-          <div class="hidden lg:flex lg:gap-x-12">
+          <div class="lg:flex lg:gap-x-12">
             <div class="relative">
               <button
                 type="button"
                 className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white 2xl:text-3xl"
                 aria-expanded="false"
                 onClick={handleOpenService}
+                // onBlur={handleBlur}
               >
                 Services
                 <svg
@@ -121,84 +131,57 @@ const Navbar = ({}) => {
                 </svg>
               </button>
 
-              <div
-                class="absolute -left-8 top-full z-10 mt-3  w-52 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-white hidden"
-                role="alertdialog"
-              
-                aria-modal="false"
-              >
-                <div class="p-1">
-                 {
-                  details?.gown === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
-                  <div class="flex h-4 w-5 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <GiShirt size={35}/>
-                  </div>
-                  <div class="flex-auto">
-                    <Link to="/details" class="block font-semibold text-gray-900" onClick={handleGown}>
-                      Book A Gown
-                      <span class="absolute inset-0"></span>
-                    </Link>
-                    {/* <p class=" text-gray-600">
-                      Kwame Nkrumah University of Science and Technology
-                    </p> */}
-                  </div>
+            {/*  */}
+            {
+              openserv ? <div
+              class="absolute -left-8 top-full z-10 mt-3  w-52 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-white"
+           
+            >
+              <div class="p-1">
+               {
+                details?.gown === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
+                <div class="flex h-4 w-5 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <GiShirt size={35}/>
                 </div>
-                 }
-                 {
-                  details?.photoshoot === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
-                  <div class="flex h-6 w-7 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <MdAddAPhoto size={30}/>
-                  </div>
-                  <div class="flex-auto">
-                    <Link to="/details" class="block font-semibold text-gray-900" onClick={handlePhoto}>
-                      Book A Photoshoot
-                      <span class="absolute inset-0"></span>
-                    </Link>
-                    {/* <p class=" text-gray-600">University of Ghana</p> */}
-                  </div>
-                </div>
-                 }
-                  {/* <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
-                    <div class="flex h-4 w-5 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <img src={UCC} alt="" />
-                    </div>
-                    <div class="flex-auto">
-                      <a href="#" class="block font-semibold text-gray-900">
-                        UCC
-                        <span class="absolute inset-0"></span>
-                      </a>
-                      <p class=" text-gray-600">University of Cape Coast</p>
-                    </div>
-                  </div> */}
+                <div class="flex-auto">
+                  <Link to="/details" class="block font-semibold text-gray-900" onClick={handleGown}>
+                    Book A Gown
+                    <span class="absolute inset-0"></span>
+                  </Link>
+                  {/* <p class=" text-gray-600">
+                    Kwame Nkrumah University of Science and Technology
+                  </p> */}
                 </div>
               </div>
+               }
+               {
+                details?.photoshoot === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
+                <div class="flex h-6 w-7 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <MdAddAPhoto size={30}/>
+                </div>
+                <div class="flex-auto">
+                  <Link to="/details" class="block font-semibold text-gray-900" onClick={handlePhoto}>
+                    Book A Photoshoot
+                    <span class="absolute inset-0"></span>
+                  </Link>
+                  {/* <p class=" text-gray-600">University of Ghana</p> */}
+                </div>
+              </div>
+               }
+               
+              </div>
+            </div> : <></>
+            }
+
             </div>
           </div>
-          <a
-            href="#gallery"
-            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
-          >
-            Gallery
-          </a>
-          <a
-            href="#pricing"
-            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
-          >
-            Pricing
-          </a>
-          <a
-            href="#"
-            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
-          >
-            About
-          </a>
 
-          <div class="hidden lg:flex lg:gap-x-12">
+          <div class="lg:flex lg:gap-x-12">
             <div class="relative">
               <button
                 type="button"
                 className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white 2xl:text-3xl"
-                aria-expanded="false"
+                // aria-expanded="false"
                 onClick={handleOpenSchools}
               >
                 Schools
@@ -216,10 +199,9 @@ const Navbar = ({}) => {
                 </svg>
               </button>
 
-              <div
-                class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-white hidden"
-                role="dialog"
-              
+              {
+                opensch ? <div
+                class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-white"
                 aria-modal="false"
               >
                 <div class="p-1">
@@ -262,11 +244,35 @@ const Navbar = ({}) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> : <></>
+              }
+
             </div>
           </div>
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+
+          <a
+            href="#gallery"
+            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
+          >
+            Gallery
+          </a>
+          <a
+            href="#pricing"
+            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
+          >
+            Pricing
+          </a>
+          <a
+            href="#"
+            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
+          >
+            About
+          </a>
+
+          
+
+
+        <div className="lg:flex lg:flex-1 lg:justify-end">
           {details?.name ? (
             <Link to="" onClick={handleDashOpen} className="h-8 w-8 rounded-full bg-light-green flex flex-col relative justify-center items-center">
               {details?.image ? (
@@ -295,6 +301,7 @@ const Navbar = ({}) => {
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
           )}
+        </div>
         </div>
       </nav>
       {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
@@ -447,13 +454,13 @@ const Navbar = ({}) => {
                 </div>
                 <div className="py-6">
                  {details?.name ? <Link to="/order-history" className=" font-bold flex justify-between items-center space-x-2">
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 items-center">
                 <Link to="" className="h-10 w-10 bg-light-green rounded-full font-bold flex justify-center items-center">
                   <h1>{details?.name[0]}</h1>
                  </Link>
                 <div className="flex flex-col leading-tight">
                 <p>{details?.name?.split(" ")[0]}</p>
-                 <p>{details?.name?.split(" ")[1]}</p>
+                 {/* <p>{details?.name?.split(" ")[1]}</p> */}
                 </div>
                 </div>
                 <Link to="" className="text-red-500" onClick={handleLogout}>Logout</Link>

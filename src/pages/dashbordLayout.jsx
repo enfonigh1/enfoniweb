@@ -10,7 +10,7 @@ import Profile from "../components/profile";
 import { useSelector } from "react-redux";
 import { pcliecked } from "../app/features/profile/profileSlice";
 import { userinfo } from "../app/features/authSlice/authSlice";
-
+import {IoChevronBackCircleSharp} from 'react-icons/io5'
 const DashboardLayout = ({ children }) => {
   const gradientStyle = {
     backgroundColor: "#537d3d",
@@ -29,12 +29,14 @@ const DashboardLayout = ({ children }) => {
     <div className="w-[100%] flex h-screen  justify-between ">
       <div className=" hidden md:block md: md:basis-[30%] lg:basis-[20%] w-[100%] h-screen overflow-y-auto">
         <div className="overflow-y-scroll scrollbar-hide flex items-center wrap  h-screen flex-col relative">
-          
+         <NavLink to="/" className="absolute top-8 2xl:top-12 text-xl 2xl:text-2xl text-zinc-600  z-[20000]">
+        <IoChevronBackCircleSharp  className="cursor md:w-10 md:h-10 w-7 h-7 lg:p-2 p-1 2xl:w-16 2xl:h-16 bg-slate-50 rounded-full"/>
+        </NavLink>
 
-        <div className="middle mt-24 flex flex-col items-start ">
+        <div className="middle mt-24 2xl:mt-40 flex flex-col items-start ">
   <NavLink
     to="/my-photoshoots"
-    className="font-[900] text-[16px] relative z-50 font-['Poppins'] rounded flex items-center w-full hover:bg-[#537d3d] hover:text-white capitalize my-2 py-1 px-2  track-[10px]"
+    className="font-[900] text-[16px] 2xl:text-4xl relative z-50 font-['Poppins'] rounded flex items-center w-full hover:bg-[#537d3d] hover:text-white capitalize 2xl:rounded-xl my-2 py-1 md:py-2 lg:py-1.5 2xl:py-4 2xl:my-8 2xl:px-8 px-2  track-[10px] 2xl:track-[20px]"
     style={({ isActive }) => (isActive ? gradientStyle : {})}
     data-aos="fade-up"
     data-aos-delay="500"
@@ -46,7 +48,7 @@ const DashboardLayout = ({ children }) => {
   {/* Adjusted styling for "Frames" NavLink */}
   <NavLink
     to="/frames"
-    className="font-[900] text-[16px] relative z-50 font-['Poppins'] rounded flex flex-1 w-full items-center hover:bg-[#537d3d] hover:text-white capitalize my-2 py-1 px-2  track-[10px]"
+    className="font-[900] text-[16px] 2xl:text-4xl relative z-50 font-['Poppins'] rounded flex flex-1 w-full items-center hover:bg-[#537d3d] hover:text-white capitalize 2xl:rounded-xl my-2 py-1 md:py-2 lg:py-1.5 2xl:py-4 2xl:my-8 2xl:px-8  px-2  track-[10px] 2xl:track-[20px]"
     style={({ isActive }) => (isActive ? gradientStyle : {})}
     data-aos="fade-up"
     data-aos-delay="500"
@@ -57,7 +59,7 @@ const DashboardLayout = ({ children }) => {
 
   <NavLink
     to="/order-history"
-    className="font-[900] text-[16px] font-['Poppins'] rounded relative z-50 flex items-center flex-1 w-full hover:bg-[#537d3d] hover:text-white capitalize my-2 py-1 px-2 "
+    className="font-[900] text-[16px] 2xl:text-4xl font-['Poppins'] rounded relative z-50 flex items-center flex-1 w-full hover:bg-[#537d3d] hover:text-white capitalize 2xl:rounded-xl my-2 xl:my-0 py-1 md:py-2 lg:py-1.5 2xl:py-4 2xl:my-8 2xl:px-8 px-2 "
     style={({ isActive }) => (isActive ? gradientStyle : {})}
     data-aos="fade-up"
     data-aos-delay="300"
@@ -68,7 +70,7 @@ const DashboardLayout = ({ children }) => {
 
   <NavLink
     to="/saved-items"
-    className="font-[900] text-[16px] font-['Poppins'] relative z-50 rounded flex items-center flex-1 w-full  hover:bg-[#537d3d] hover:text-white capitalize my-2 py-1 px-2  track-[10px]"
+    className="font-[900] text-[16px] 2xl:text-4xl font-['Poppins'] relative z-50 rounded flex items-center flex-1 w-full  hover:bg-[#537d3d] hover:text-white capitalize 2xl:rounded-xl my-2 py-1 md:py-2 lg:py-1.5 2xl:py-4 2xl:my-8 2xl:px-8 px-2  track-[10px] 2xl:track-[20px]"
     style={({ isActive }) => (isActive ? gradientStyle : {})}
     data-aos="fade-up"
     data-aos-delay="400"
@@ -80,16 +82,16 @@ const DashboardLayout = ({ children }) => {
 
 
          <div className="footer flex flex-col mb-1">
-          <p className="text-[#537d3d] relative z-50  uppercase font-bold tracking-[2px] w-full 
+          <p className="text-[#537d3d] px-0 2xl:px-8 md:px-6 lg:px-4 md:text-xl lg:text-xl relative z-50 uppercase tracking-tighter font-bold sm:text-left text-lg 2xl:text-5xl 2xl:pl-20 text-center w-full 
          mb-4 flash-element">Hello, {details?.name?.split(" ")[0]}</p>
         
-        <hr className="border-0 h-[2px] w-full mb-4 bg-slate-400 "/>
-        <p className="whitespace-normal relative z-50 flex  overflow-hidden break-words text-[#537d3d] w-full text-[12px] uppercase font-bold 
+        <hr className="border-0 h-[2px] w-full mb-4 2xl:mt-8 mx-auto 2xl:w-[85%] 2xl:mb-12 md:mb-6 text-center bg-slate-400"/>
+        <p className="whitespace-normal relative z-50 flex md:text-md text-center  overflow-hidden break-words lg:text-md  2xl:text-4xl text-[#537d3d] w-full text-[12px] md:pl-1 uppercase font-bold 2xl:mt-6 2xl:mb-12
         mb-4">
           Kwame Nkrumah University<br /> of Science and Technology</p>
           </div>
-          <div className="hero-footerflex  items-center flex-col z-10">
-            <div className="logo absolute bottom-20 md:left-[35%]">
+          <div className="hero-footerflex  flex-col justify-center z-10">
+            <div className=" w-48 md:w-40 justify-self-center lg:w-40 xl:w-28 2xl:w-64 ">
             <img src={enfoni} alt="enfoni-logo " className="object-cover block mx-auto w-full"/>
             </div>
             

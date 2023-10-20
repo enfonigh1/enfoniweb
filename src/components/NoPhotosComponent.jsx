@@ -23,9 +23,9 @@ const NoPhotosComponent = () => {
           <div className="block fixed z-[1000] top-7 left-4 md:hidden" onClick={handleOpen}>
             <FaBarsStaggered />
           </div>
-          <div className="w-24">
+          <div className="w-24 2xl:w-60">
             <img src={emptyphotogallery} className="w-full" alt="" />
-            <p className="text-md text-center font-['poppins'] font-bold mt-2">
+            <p className="text-md 2xl:text-4xl  text-center font-['poppins'] font-bold mt-2">
               No Photos
             </p>
           </div>

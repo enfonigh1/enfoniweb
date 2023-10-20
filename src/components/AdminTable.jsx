@@ -9,6 +9,7 @@ import {IoMdCall} from 'react-icons/io';
 import { useGetAdminsQuery } from '../app/features/admin/adminApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAdmins, setAdmins } from '../app/features/admin/adminSlice';
+import axios from 'axios';
 
 
 const AdminTable = () => {
@@ -43,21 +44,15 @@ const AdminTable = () => {
     })
   }
 
-  const {data: fetchAdmin} = useGetAdminsQuery()
-  const disptach =  useDispatch()
-  useEffect(() => {
-    const getAdmin = async () => {
-      try {
-        
-        const results = await fetchAdmin
-        // disptach(setAdmins(results?.data))
-        setData(results?.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getAdmin()
-  }, [])
+
+useEffect(() => {
+  const fetchAdmins = async () => {
+    const response = await axios.get('http://localhost:3001/api/v1/user/fetch-all-users')
+    console.log(response?.data?.data)
+    setData(response?.data?.data)
+  }
+  fetchAdmins()
+}, [])
 
 console.log(data)
 

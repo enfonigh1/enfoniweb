@@ -35,7 +35,7 @@ const profileclicked = useSelector(pcliecked)
       {toggleMenu ? <Menu closeMenu={handleClose} />: (
 
 
-          <div className="w-full relative top-[88px] ">
+          <div className="w-full relative top-[88px] 2xl:top-[150px] ">
             <DashBoardHeader setProfile={setProfile} />
             {/* {profileclicked ? <Profile /> : <></>} */}
             <OrderComponent handleOpen = {handleOpen} />

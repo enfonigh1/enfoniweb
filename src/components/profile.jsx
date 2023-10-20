@@ -36,7 +36,7 @@ const Profile = () => {
   const profilearray = [<Profile />,<PersonInfo />,<SecurityData />]
   
   return (
-    <div className="fixed z-[2000] rounded-2xl top-16 w-['280px'] md:w-[320px] right-2 md:right-12 lg:right-24 h-auto bg-gray-100 ">
+    <div className="fixed z-[2000] rounded-2xl top-16  w-['280px'] md:w-[320px] right-2 md:right-12 lg:right-24 2xl:w-[560px] 2xl:right-24 2xl:top-28 h-auto bg-gray-100 ">
       
       {profilePage}
     </div>

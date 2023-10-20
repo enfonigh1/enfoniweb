@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ServiceCard = ({ heading, description, route, image, ...props }) => {
   return (
     <div
-      className="group  shadow-2xl p-6 2xl:p-14 rounded-3xl md:mb-0 mb-10 relative"
+      className="group  shadow-2xl p-6 2xl:p-14 rounded-3xl md:mb-0 mb-10 relative border border-solid border-green"
       {...props}
     >
       <h3 className="text-green  font-bold lg:text-2xl 2xl:text-4xl lg:w-[60%]">

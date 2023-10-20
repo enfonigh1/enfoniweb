@@ -19,6 +19,7 @@ import { IoMdCloseCircle } from 'react-icons/io';
 import Profile from '../components/profile';
 import { useSelector } from "react-redux";
 import { pcliecked } from "../app/features/profile/profileSlice";
+import {IoChevronBackCircleSharp} from 'react-icons/io5'
 
 const MyPhotoshoots = () => {
   const shoots = [
@@ -65,24 +66,24 @@ const MyPhotoshoots = () => {
     // { price: 200, img: shoot4 },
     // { price: 100, img: shoot5 },
     // { price: 350, img: shoot6 },
-    // { price: 200, img: shoot4 },
-    // { price: 100, img: shoot5 },
-    // { price: 350, img: shoot6 },
-    // { price: 200, img: shoot4 },
-    // { price: 100, img: shoot5 },
-    // { price: 350, img: shoot6 },
-    // { price: 200, img: shoot4 },
-    // { price: 100, img: shoot5 },
-    // { price: 350, img: shoot6 },
-    // { price: 200, img: shoot4 },
-    // { price: 100, img: shoot5 },
-    // { price: 350, img: shoot6 },
-    // { price: 200, img: shoot4 },
-    // { price: 100, img: shoot5 },
-    // { price: 350, img: shoot6 },
-    // { price: 200, img: shoot4 },
-    // { price: 100, img: shoot5 },
-    // { price: 350, img: shoot6 },
+    { price: 200, img: shoot4 },
+    { price: 100, img: shoot5 },
+    { price: 350, img: shoot6 },
+    { price: 200, img: shoot4 },
+    { price: 100, img: shoot5 },
+    { price: 350, img: shoot6 },
+    { price: 200, img: shoot4 },
+    { price: 100, img: shoot5 },
+    { price: 350, img: shoot6 },
+    { price: 200, img: shoot4 },
+    { price: 100, img: shoot5 },
+    { price: 350, img: shoot6 },
+    { price: 200, img: shoot4 },
+    { price: 100, img: shoot5 },
+    { price: 350, img: shoot6 },
+    { price: 200, img: shoot4 },
+    { price: 100, img: shoot5 },
+    { price: 350, img: shoot6 },
     // { price: 200, img: shoot4 },
     // { price: 100, img: shoot5 },
     // { price: 350, img: shoot6 },
@@ -131,7 +132,8 @@ const MyPhotoshoots = () => {
       {toggleMenu ? (
         <Menu closeMenu={handleClose} />
       ) : (
-        <div className="w-screen h-full  relative top-[90px]">
+        <div className="w-screen h-full  relative top-[90px] 2xl:top-[150px]">
+          
           <DashBoardHeader setProfile={setProfile} />
           {profile ? <Profile /> : <></>}
           {noPhotos.length === 0 ? <NoPhotosComponent  /> : <div className="flex justify-center items-center mb-">
@@ -144,6 +146,7 @@ const MyPhotoshoots = () => {
                   <FaBarsStaggered />
                 </div>
               </div>
+              
               <div className="grid px-2 md:px-0 justify-center items-center  lg:grid-cols-3 2xl:grid-cols-4 grid-cols-2 gap-5 md:gap-7 relative mb-10">
                 {isZoomed && (
                   <div
@@ -154,21 +157,21 @@ const MyPhotoshoots = () => {
                       <img
                         src={zoomedSrc}
                         alt=""
-                        className="mx-auto h-full w-full md:h-160 xl:h-138"
+                        className="mx-auto h-full w-full  md:h-160 xl:w-[40%] xl:h-[40%]"
                         data-aos="zoom-in"
                         data-aos-duration="1000"
                       />
                     </div>
                     <AiOutlineClose
                       onClick={handleCloseZoom}
-                      className="absolute top-4 right-4 text-white text-2xl cursor-pointer"
+                      className="absolute top-4 right-4 text-white text-2xl xl:text-4xl cursor-pointer"
                     />
                   </div>
                 )}
                 {noPhotos.map(({ img, price }, index) => (
                   <div
                     key={index}
-                    className="flash-photo w-[140px] h-[140px] md:w-[280px] md:h-[340px] rounded-lg shadow flex items-end"
+                    className="flash-photo w-[140px] h-[140px] md:w-[240px] md:h-[300px] 2xl:w-[400px] 2xl:h-[560px] rounded-lg shadow flex items-end"
                     style={{
                       backgroundImage: `url(${img}`,
                       backgroundSize: "cover",

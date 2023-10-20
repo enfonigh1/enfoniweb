@@ -40,13 +40,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/verify" element={<Emailsent />} />
           <Route path="/verified" element={<Verified />} />
+            <Route path="/details" element={<MoreDetails />} />
 
           {/* PROTECTED ROUTES */}
           <Route element={<Protected />}>
             <Route path="/dashboard" element={<OrderHistory />} />
             <Route path="/code" element={<Code />} />
             <Route path="/select-frame" element={<SelectFrame />} />
-            <Route path="/details" element={<MoreDetails />} />
             <Route path="/order-history" element={<OrderHistory />} />
             <Route path="/saved-items" element={<SavedItems />} />
             <Route path="/my-photoshoots" element={<MyPhotoshoots />} />

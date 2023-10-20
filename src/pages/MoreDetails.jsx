@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { registerDetails, service, userinfo } from "../app/features/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
+import MoreDetailsLayout from "../components/MoreDetailsLayout";
 
 const MoreDetails = () => {
 
@@ -220,7 +221,7 @@ const MoreDetails = () => {
   };
 
   return (
-    <AuthLayout loggins={false} footer={false}>
+    <MoreDetailsLayout loggins={false} footer={false}>
       {
         userdetails?.gown || userdetails?.photoshoot ? <>
         <form action="" className="w-72 mx-auto mt-8 sm:pb-0 pb-10">
@@ -239,10 +240,11 @@ const MoreDetails = () => {
         </form>
         </> : <form action="" className="w-72 mx-auto mt-8 sm:pb-0 pb-10">
        
-        <select name="" id="" onChange={e => setFaculty(e.target.value)} className="block w-72 rounded-md border-0 p-3 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400">
+        <select name="" id="" onChange={e => setFaculty(e.target.value)} className="block appearance-none w-72 rounded-md border-0 p-3 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400">
           <option value="">Select Faculty</option>
           {graduation_info?.map((info, index) => (
-            <option value={info.faculty} className="w-full">{info.faculty}</option>
+            <option value={info.faculty} className="w-48 inline-block py-3">{info.faculty}</option>
+            
           ))}
         </select>
         <NewInput
@@ -281,7 +283,7 @@ const MoreDetails = () => {
       </form>
       }
       <ToastContainer />
-    </AuthLayout>
+    </MoreDetailsLayout>
   );
 };
 

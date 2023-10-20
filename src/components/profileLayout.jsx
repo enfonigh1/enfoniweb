@@ -7,7 +7,7 @@ import ProfileHome from './profileHome';
   const ProfileLayout =  () =>{
     
     return (
-      <div className='fixed inset-0 bg-black/50 flex justify-end pt-12 pr-14 items-start'>
+      <div className='fixed inset-0 bg-black/50'>
             <PersonInfo />
             <Profile />
             <ProfileHome />

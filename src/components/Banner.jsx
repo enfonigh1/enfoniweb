@@ -7,7 +7,7 @@ import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { closePopUp, closepop, userinfo } from "../app/features/authSlice/authSlice";
+import { closePopUp, closepop, openSchool, openService, userinfo } from "../app/features/authSlice/authSlice";
 import { MdAddAPhoto } from "react-icons/md";
 import { BsCamera } from "react-icons/bs";
 import { PiGraduationCapThin } from "react-icons/pi";
@@ -33,11 +33,16 @@ const handleClosePopup = () => {
   setOpenPopUp(pop)
 }
 
+const handleClose = () => {
+  dispatch(openService(false))
+  dispatch(openSchool(false))
+}
+
 
   return (
     <div className="relative" >
       <div className="bg-[url('./assets/images/banner.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
-        <Navbar handleOpenMenu={handleOpenMenu}/>
+        <Navbar />
        {/* {
         openPopUp ?  <div className="relative z-50" data-aos="fade" data-aos-duration="3000">
 
@@ -59,7 +64,7 @@ const handleClosePopup = () => {
         </div>
       </div> : <></>
        } */}
-        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative">
+        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative" onClick={handleClose}>
           <div>
             <Text
               data-aos="fade-up"
@@ -76,25 +81,25 @@ const handleClosePopup = () => {
               pride. Discover how we make your graduation experience truly
               unforgettable.
             </p>
-           {
-            details?.name ? <></> :  <div className="flex justify-center items-center lg:justify-start lg:items-start">
+           <div className=" flex justify-center items-center lg:justify-start lg:items-start">
             <p
-              data-aos="fade-right"
-              data-aos-duration="2000"
+       
               className="text-white text-center lg:text-left 2xl:text-4xl "
             >
               Create an account to join the community.
             </p>
-            <Link
-              data-aos="fade-up"
-              data-aos-duration="2000"
+          </div>
+          <div className="lg:block flex justify-center items-center lg:my-0 my-4">
+          <Link
+              // data-aos="fade-up"
+              // data-aos-duration="2000"
               to="/register"
               className="bg-white rounded-full text-green py-3 px-8 inline-block mt-8"
             >
               GET STARTED
             </Link>
           </div>
-           }
+          
           </div>
           <div data-aos="fade-left" data-aos-duration="3000">
             <img className="" src={bannerimg} alt="" />

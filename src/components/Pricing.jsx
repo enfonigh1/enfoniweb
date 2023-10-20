@@ -4,6 +4,9 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import howtoorder from "../assets/images/howtoorder.png";
 import faq from "../assets/images/faq.png";
+import list from "../assets/images/list.svg";
+import f1 from "../assets/images/f1.png";
+import f2 from "../assets/images/f2.png";
 
 const Pricing = () => {
   const handleClick = (e) => {
@@ -69,15 +72,19 @@ const Pricing = () => {
       </h1>
       <div className="md:grid md:grid-cols-3 md:my-20 my-10 md:gap-5">
         <div
-          data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="10"
-          className="border-2 border-green/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
+        
+          className="border-2 border-green/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-8 p-8"
         >
-          <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
-            Flat Rate
+          <div className="h-56">       
+          <div className="flex justify-center items-center mb-0 pb-0 h-24">
+            <h1 className="text-green font-Poppins font-semibold text-center text-[7rem]">7</h1>
+          <h1 className="text-gray-700 font-Poppins text-center text-2xl">
+            <h1>DIGITAL</h1>
+            <h1>PHOTOS</h1>
           </h1>
-          <p className="text-gray-700 my-5 text-center">One time payment</p>
+          </div>
+          <img src={list} alt=""  height={800} className="block"/>
+          </div>
           <h1 className="text-gray-700 text-4xl text-center font-semibold">
             GHC 300
           </h1>
@@ -88,12 +95,12 @@ const Pricing = () => {
           >
             Choose this plan
           </Link>
-          <span className="flex items-center text-gray-700 space-x-4">
+          {/* <span className="flex items-center text-gray-700 space-x-4">
             <span>
               <BiCheck className="text-2xl" />
             </span>
             <span>7 Digita Pictures</span>
-          </span>
+          </span> */}
           <span className="flex items-center text-gray-700 space-x-4">
             <span>
               <BiCheck className="text-2xl" />
@@ -121,17 +128,19 @@ const Pricing = () => {
           </span>
         </div>
         <div
-          data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="500"
-          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
+      
+          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-8 p-8"
         >
-          <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
+          {/* <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
             Standard
           </h1>
-          <p className="text-gray-700 my-5 text-center">One time payment</p>
+          <p className="text-gray-700 my-5 text-center">One time payment</p> */}
+          <div className="h-56">
+
+          <img src={f1} alt="" className="h-48 mx-auto block"/>
+          </div>
           <h1 className="text-gray-700 text-4xl text-center font-semibold">
-            GHC 400
+            GHC 450
           </h1>
           <Link
             to=""
@@ -143,23 +152,17 @@ const Pricing = () => {
             <span>
               <BiCheck className="text-2xl" />
             </span>
-            <span>1 Picture</span>
-          </span>
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <BiCheck className="text-2xl" />
-            </span>
             <span>Retouched</span>
           </span>
           <span className="flex items-center text-gray-700 space-x-4">
             <span>
               <BiCheck className="text-2xl font-bold text-gray-700" />
             </span>
-            <span>Wooden Frame</span>
+            <span>Mount Card + 7 digital pictures</span>
           </span>
           <span className="flex items-center text-gray-700 space-x-4">
             <span>
-              <BiCheck className="text-2xl font-bold text-gray-700" />
+              <LiaTimesSolid className="text-xl font-bold text-red-400" />
             </span>
             <span>Free Delivery</span>
           </span>
@@ -171,15 +174,17 @@ const Pricing = () => {
           </span>
         </div>
         <div
-          data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="1000"
-          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
+          
+          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-8 p-8"
         >
-          <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
+          {/* <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
             Framed
           </h1>
-          <p className="text-gray-700 my-5 text-center">One time payment</p>
+          <p className="text-gray-700 my-5 text-center">One time payment</p> */}
+           <div className="h-56">
+
+<img src={f2} alt="" className="h-48 mx-auto block"/>
+</div>
           <h1 className="text-gray-700 text-4xl text-center font-semibold">
             GHC 300
           </h1>
@@ -193,13 +198,13 @@ const Pricing = () => {
             <span>
               <BiCheck className="text-2xl" />
             </span>
-            <span>Frame ONLY</span>
+            <span>Retouched</span>
           </span>
           <span className="flex items-center text-gray-700 space-x-4">
             <span>
               <BiCheck className="text-2xl font-bold text-gray-700" />
             </span>
-            <span>Wooden Frame</span>
+            <span>Mount Card + 7 digital pictures</span>
           </span>
           <span className="flex items-center text-gray-700 space-x-4">
             <span>
@@ -207,97 +212,21 @@ const Pricing = () => {
             </span>
             <span>Free Delivery</span>
           </span>
-        </div>
-        <div
-          data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="1000"
-          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
-        >
-          <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
-            Mounted
-          </h1>
-          <p className="text-gray-700 my-5 text-center">One time payment</p>
-          <h1 className="text-gray-700 text-4xl text-center font-semibold">
-            GHC 150
-          </h1>
-          <Link
-            to=""
-            className="inline-block text-center border-[1px] my-8 hover:transition-all duration-500 hover:bg-green hover:text-white hover:ease-in border-solid border-green text-gray-700 w-full py-3 rounded-md"
-          >
-            Choose this plan
-          </Link>
           <span className="flex items-center text-gray-700 space-x-4">
             <span>
-              <BiCheck className="text-2xl" />
-            </span>
-            <span>1 Picture</span>
-          </span>
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <BiCheck className="text-2xl" />
-            </span>
-            <span>Retouched</span>
-          </span>
-
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <BiCheck className="text-2xl font-bold text-gray-700" />
-            </span>
-            <span>Free Delivery</span>
-          </span>
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <BiCheck className="text-2xl font-bold text-gray-700" />
+              <LiaTimesSolid className="text-xl font-bold text-red-400" />
             </span>
             <span>Mount Card</span>
           </span>
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <LiaTimesSolid className="text-xl font-bold text-red-400" />
-            </span>
-            <span>Wooden Frame</span>
-          </span>
         </div>
-        <div
-          data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="1000"
-          className="border-[1px] md:my-0 my-10 border-gray-400/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-16 p-8"
-        >
-          <h1 className="text-gray-700 font-Poppins font-semibold text-center text-2xl">
-            Mount Card
-          </h1>
-          <p className="text-gray-700 my-5 text-center">One time payment</p>
-          <h1 className="text-gray-700 text-4xl text-center font-semibold">
-            GHC 100
-          </h1>
-          <Link
-            to=""
-            className="inline-block text-center border-[1px] my-8 hover:transition-all duration-500 hover:bg-green hover:text-white hover:ease-in border-solid border-green text-gray-700 w-full py-3 rounded-md"
-          >
-            Choose this plan
-          </Link>
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <BiCheck className="text-2xl" />
-            </span>
-            <span>Mount Card ONLY</span>
-          </span>
+        <div className="flex items-center space-x-3">
+        <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-green"></span>
+      </span>
+      <span className="text-sm">GHC 100 per extra printed photo</span>
+        </div>
 
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <LiaTimesSolid className="text-2xl font-bold text-red-400" />
-            </span>
-            <span>Free Delivery</span>
-          </span>
-          <span className="flex items-center text-gray-700 space-x-4">
-            <span>
-              <LiaTimesSolid className="text-2xl font-bold text-red-400" />
-            </span>
-            <span>Pictures</span>
-          </span>
-        </div>
       </div>
     </div>
   );

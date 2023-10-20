@@ -11,7 +11,9 @@ const initialState = {
     ? JSON.parse(sessionStorage.getItem("payment"))
     : [],
   service: sessionStorage.getItem("service") ? sessionStorage.getItem("service") : "",
-  closepopup: sessionStorage.getItem("closepopup") ? sessionStorage.getItem("closepopup") : true
+  closepopup: sessionStorage.getItem("closepopup") ? sessionStorage.getItem("closepopup") : true,
+  openservice: sessionStorage.getItem("openservice") ? sessionStorage.getItem("openservice") : false,
+  openschool: sessionStorage.getItem("openschool") ? sessionStorage.getItem("openschool") : false
 };
 
 const authSlice = createSlice({
@@ -31,6 +33,20 @@ const authSlice = createSlice({
         sessionStorage.setItem("closepopup", action.payload);
       },
     },
+    openService: {
+      reducer(state, action) {
+        state.openservice = action?.payload;
+        sessionStorage.setItem("openservice", action.payload);
+      },
+    },
+
+    openSchool: {
+      reducer(state, action) {
+        state.openschool = action?.payload;
+        sessionStorage.setItem("openschool", action.payload);
+      },
+    },
+
 
     logout: {
       reducer(state, action) {
@@ -52,6 +68,7 @@ const authSlice = createSlice({
         sessionStorage.setItem("service", action.payload);
       },
     },
+
     payment: {
       reducer(state, action) {
         state.userpayment = action?.payload;
@@ -61,9 +78,11 @@ const authSlice = createSlice({
   },
 });
 
-export const { auth, payment, userInfo, logout, userService, closePopUp } = authSlice.actions;
+export const { auth, payment, userInfo, logout, userService, closePopUp, openService, openSchool } = authSlice.actions;
 export const registerDetails = (state) => state?.auth?.auth;
 export const userinfo = (state) => state?.auth?.userInfo;
 export const closepop = state => state?.auth?.closepopup
 export const service = (state) => state?.auth?.service;
+export const openservice = (state) => state?.auth?.openservice;
+export const openschool = (state) => state?.auth?.openschool;
 export default authSlice.reducer;

@@ -43,7 +43,7 @@ const Frames = () => {
       {toggleMenu ? (
         <Menu closeMenu={handleClose} />
       ) : (
-        <div className="w-full relative top-[88px] h-screen">
+        <div className="w-full relative top-[88px] 2xl:top-[150px] h-screen">
           <DashBoardHeader setProfile={setProfile} />
           {profile ? <Profile /> : <></>}
           <div
@@ -52,23 +52,23 @@ const Frames = () => {
           >
             <FaBarsStaggered />
           </div>
-          <div className="grid grid-cols-2 mt-3 md:grid-cols-3 lg:grid-cols-6 gap-6 px-7 ">
+          <div className="grid grid-cols-2 mt-3  md:grid-cols-3 lg:grid-cols-6 2xl:grid-cols-8 gap-6 px-7 ">
             {frameData.map((frame, index) => (
               <div
                 key={index}
                 className=" bg-white pt-5 pb-6 mt-2  flex flex-col rounded-lg shadow-lg shadow-light-green"
               >
-                <img src={frame.frame} alt="" className=" self-center lg:w-[100px] w-[10rem]" />
+                <img src={frame.frame} alt="" className=" self-center lg:w-[100px] w-[10rem] 2xl:w-48" />
                 
                 
-                <p className="text-center mb-2">{frame.description}</p>
+                <p className="text-center 2xl:text-[2rem] mb-2 2xl:px-4 2xl:font-semibold">{frame.description}</p>
                 
-                  <i className="text-red-700 pl-6 mb-2 text-[.7rem] font-bold font-['Poppins']">
+                  <i className="text-red-700 pl-6 mb-2 text-[.7rem] 2xl:text-[1.8rem] font-bold font-['Poppins']">
                     Ghs {frame.price.toFixed(2)}
                   </i>
                   <a
                     href="#"
-                    className="bg-[#109E09] text-center text-white text-[14px] font-semibold  font-['Poppins'] px-2.5 py-1 rounded-sm  -mb-6 rounded-br-lg rounded-bl-lg"
+                    className="bg-[#109E09] text-center text-white text-[14px] font-semibold  font-['Poppins'] px-2.5 py-1 rounded-sm  -mb-6 rounded-br-lg rounded-bl-lg 2xl:py-2 2xl:text-2xl"
                   >
                     Buy
                   </a>
@@ -80,7 +80,7 @@ const Frames = () => {
         </div>
       )}
       {
-        isOPen ? <div className="absolute right-6 bottom-2 md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
+        isOPen ? <div className="absolute right-6 bottom-2  md:bottom-10 z-[1000] text-4xl rounded-full p-2 bg-black/50 max-w-[400px] max-h-[400px] text-white" >
         <IoMdCloseCircle onClick={()=>{
               setISOpen(false)
             } } className="cursor-pointer"/>
