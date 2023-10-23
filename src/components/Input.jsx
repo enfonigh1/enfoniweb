@@ -32,6 +32,7 @@ const Input = ({
           onChange={onChange}
           value={value}
           required={required}
+          
         />
       </div>
         <span className="absolute right-2 top-0 bottom-0 self-center flex justify-center items-center bg-white">

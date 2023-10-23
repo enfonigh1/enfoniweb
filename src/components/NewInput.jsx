@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewInput = ({ name, type, label, onChange, value }) => {
+const NewInput = ({ name, type, label, onChange, value, required }) => {
   return (
     <div>
       <label for="email" class="block text-sm font-medium text-gray-900">
@@ -11,7 +11,7 @@ const NewInput = ({ name, type, label, onChange, value }) => {
           id="email"
           name={name}
           type={type}
-          required
+          required={required}
           onChange={onChange}
           value={value}
           className="block w-full rounded-md border-0 p-3 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"

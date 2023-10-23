@@ -6,7 +6,7 @@ import { GiHouseKeys } from 'react-icons/gi';
 import { TbLogout } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentProfile, pcliecked, setprofile } from '../app/features/profile/profileSlice';
-import { logout, userinfo } from '../app/features/authSlice/authSlice';
+import { auth, authuser, logout, userinfo } from '../app/features/authSlice/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -35,12 +35,12 @@ const ProfileHome = () => {
         </h2>
 
         <h3 className="font-['poppins'] tracking-wide text-black font-[400] text-xl 2xl:text-6xl px-3 2xl:px-6 my-2">
-          {details?.name?.split(" ")[0]},
+          {details?.full_name?.split(" ")[0]},
         </h3>
         <div className="rounded-lg mx-3 mb-1 2xl:mb-4 2xl:mx-6 2xl:shadow-2xl shadow-xl 2xl:rounded-2xl bg-black flex-flex-col py-3 md:py-4">
-          <p className='text-white mb-2 2xl:mb-6 px-7 2xl:px-14 2xl:text-2xl text-ellipsis overflow-hidden  font["inter"]'>{details?.name}</p>
+          <p className='text-white mb-2 2xl:mb-6 px-7 2xl:px-14 2xl:text-2xl text-ellipsis overflow-hidden  font["inter"]'>{details?.full_name}</p>
           <p className='text-white mb-2 2xl:mb-6 px-7 2xl:px-14 2xl:text-2xl overflow-hidden text-ellipsis font["inter"]'>{details?.email}</p>
-          <p className='text-white mb-2 2xl:mb-6 px-7 2xl:px-14 2xl:text-2xl text-ellipsis overflow-hidden  font["inter"]'>{details?.phone || "N/A - provide phone number"}</p>
+          <p className='text-white mb-2 2xl:mb-6 px-7 2xl:px-14 2xl:text-2xl text-ellipsis overflow-hidden  font["inter"]'>{details?.phone_number || "N/A - provide phone number"}</p>
         </div>
 
         <div

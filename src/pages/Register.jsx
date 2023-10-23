@@ -10,12 +10,12 @@ import Input from "../components/Input";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { auth, registerDetails } from "../app/features/authSlice/authSlice";
+import { auth, userEmail } from "../app/features/authSlice/authSlice";
 import { usePostRegisterMutation } from "../app/features/authSlice/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
-  const register_details = useSelector(registerDetails);
+  // const register_details = useSelector(registerDetails);
   const [visible, setVisible] = useState(false)
   const [details, setDetails] = useState({
     full_name: "",
@@ -49,6 +49,7 @@ const Register = () => {
      
       } else {
         try {
+          dispatch(userEmail(details.email));
           const response = await register({ ...details   }).unwrap();
           console.log(response);
           if (response?.status === 400) {
@@ -90,7 +91,7 @@ const Register = () => {
   }
 
   return (
-    <AuthLayout heading="Create an account" footer={false}>
+    <AuthLayout heading="Create an account" footer={false} toastContainer={true}>
       <h1 className="sm:hidden font-bold text-center">
         Create an account
       </h1>
@@ -189,7 +190,7 @@ const Register = () => {
             : "Signup"}
         </button>
       </form>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </AuthLayout>
   );
 };

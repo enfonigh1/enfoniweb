@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ServiceCard = ({ heading, description, route, image, ...props }) => {
+const ServiceCard = ({ heading, description, route, image, onClick, label, ...props }) => {
   return (
     <div
+    onClick={onClick}
       className="group  shadow-2xl p-6 2xl:p-14 rounded-3xl md:mb-0 mb-10 relative border border-solid border-green"
       {...props}
     >
@@ -17,7 +18,7 @@ const ServiceCard = ({ heading, description, route, image, ...props }) => {
         to={route}
         className="bg-green text-white font-bold rounded-md py-1 px-4 shadow-lg 2xl:py-2 2xl:px-10 2xl:text-3xl"
       >
-        Book
+        {label}
       </Link>
       <img src={image} alt="" className="h-14  absolute right-0 bottom-5" />
     </div>

@@ -7,12 +7,12 @@ import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { closePopUp, closepop, openSchool, openService, userinfo } from "../app/features/authSlice/authSlice";
+import { auth, authuser, closePopUp, closepop, openSchool, openService, userinfo } from "../app/features/authSlice/authSlice";
 import { MdAddAPhoto } from "react-icons/md";
 import { BsCamera } from "react-icons/bs";
 import { PiGraduationCapThin } from "react-icons/pi";
 import { IoIosCloseCircle } from "react-icons/io";
-
+import  Heroslide  from './heroslider/HeroSlider'
 
 const Banner = () => {
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ const Banner = () => {
     setOpen(!open);
   };
   
-  const details = useSelector(userinfo)
+  const details = useSelector(authuser)
 
   const pop = useSelector(closepop)
 
@@ -41,7 +41,7 @@ const handleClose = () => {
 
   return (
     <div className="relative" >
-      <div className="bg-[url('./assets/images/banner.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
+      <div className="bg-[url('./assets/images/banner2.png')] bg-no-repeat bg-cover bg-center  lg:pl-28 pl-6">
         <Navbar />
        {/* {
         openPopUp ?  <div className="relative z-50" data-aos="fade" data-aos-duration="3000">
@@ -64,7 +64,7 @@ const handleClose = () => {
         </div>
       </div> : <></>
        } */}
-        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative" onClick={handleClose}>
+        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative " onClick={handleClose}>
           <div>
             <Text
               data-aos="fade-up"
@@ -90,6 +90,8 @@ const handleClose = () => {
             </p>
           </div>
           <div className="lg:block flex justify-center items-center lg:my-0 my-4">
+            {
+              details?.name ? <></> : 
           <Link
               // data-aos="fade-up"
               // data-aos-duration="2000"
@@ -98,11 +100,13 @@ const handleClose = () => {
             >
               GET STARTED
             </Link>
+            }
           </div>
           
           </div>
           <div data-aos="fade-left" data-aos-duration="3000">
-            <img className="" src={bannerimg} alt="" />
+           <Heroslide />
+            {/* <img className="" src={bannerimg} alt="" /> */}
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import register from "../assets/images/register.svg";
 import chev from "../assets/images/chev_left.svg";
 import logo from "../assets/images/enfoni.svg";
+import knust from "../assets/images/knustlogo.jpg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import image1 from "../assets/images/1.jpg";
 import image2 from "../assets/images/2.jpg";
@@ -9,6 +10,7 @@ import image3 from "../assets/images/3.jpg";
 import image4 from "../assets/images/4.jpg";
 import image5 from "../assets/images/5.jpg";
 import { FaChevronCircleLeft } from "react-icons/fa";
+import { ToastContainer } from "react-toastify";
 
 const AuthLayout = ({
   image = register,
@@ -16,6 +18,7 @@ const AuthLayout = ({
   loggins = true,
   children,
   footer = true,
+  toastContainer = false,
 }) => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -42,6 +45,7 @@ const AuthLayout = ({
 
   return (
     <div>
+      {toastContainer ? <ToastContainer/> : <></>}
       <div className="lg:grid lg:grid-cols-2 relative lg:bg-none bg-[url(./assets/images/register.svg)] bg-no-repeat bg-cover bg-center h-[calc(100vh-20px)]">
       <div
           // data-aos="fade"
@@ -65,11 +69,12 @@ const AuthLayout = ({
           </button>
          <Link to="/">
          <img
-            src={logo}
+            src={knust}
             alt=""
-            className="mx-auto"
+            className="mx-auto h-16"
             data-aos="fade"
             data-aos-duration="2000"
+            
           />
          </Link>
           {loggins ? (
@@ -113,7 +118,7 @@ const AuthLayout = ({
           <div
             data-aos="fade-up"
             data-aos-duration="1000"
-            className="lg:h-72 bg-white lg:relative absolute bottom-0 left-0 right-0 h-96 rounded-tl-[50px] rounded-tr-[50px]"
+            className="lg:h-64 bg-white lg:relative absolute bottom-0 left-0 right-0 h-96 rounded-tl-[50px] rounded-tr-[50px]"
           >
             {children}
           </div>

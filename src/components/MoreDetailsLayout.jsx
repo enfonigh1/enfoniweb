@@ -9,6 +9,7 @@ import image3 from "../assets/images/3.jpg";
 import image4 from "../assets/images/4.jpg";
 import image5 from "../assets/images/5.jpg";
 import { FaChevronCircleLeft } from "react-icons/fa";
+import { ToastContainer } from "react-toastify";
 
 const MoreDetailsLayout = ({
   image = register,
@@ -16,6 +17,7 @@ const MoreDetailsLayout = ({
   loggins = true,
   children,
   footer = true,
+  toastContainer = true,
 }) => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -42,6 +44,7 @@ const MoreDetailsLayout = ({
 
   return (
     <div>
+      {toastContainer ? <ToastContainer position="top-center"/> : <></>}
       <div className="lg:grid lg:grid-cols-2 relative lg:bg-none bg-[url(./assets/images/register.svg)] bg-no-repeat bg-cover bg-center h-[calc(100vh-20px)]">
      
         <div>

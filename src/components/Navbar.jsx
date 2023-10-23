@@ -7,16 +7,21 @@ import UG from "../assets/images/UG.svg";
 import UCC from "../assets/images/UCC.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, openSchool, openService, openschool, openservice, userService, userinfo } from "../app/features/authSlice/authSlice";
+import { auth, authuser, logout, openSchool, openService, openschool, openservice, userInfo, userService, userinfo } from "../app/features/authSlice/authSlice";
 import { BsFillTriangleFill } from "react-icons/bs";
 import {MdAddAPhoto} from "react-icons/md"
+import {TiInfoLargeOutline} from "react-icons/ti"
 import {GiShirt} from "react-icons/gi"
+import { useFetchSingleUserMutation } from "../app/features/authSlice/authApiSlice";
 
 const Navbar = ({}) => {
   const [open, setOpen] = React.useState(false);
   const [isOpenService, setIsOpenService] = React.useState(false);
+  const [fetchUser] = useFetchSingleUserMutation()
 
-  const details = useSelector(userinfo);
+  const details = useSelector(authuser);
+  // console.log(details)
+ 
   const handleOpenMenu = () => {
     document.querySelector("div[role='alert']").classList.toggle("hidden");
     // setOpen(!open);
@@ -44,6 +49,7 @@ const Navbar = ({}) => {
     dispatch(logout())
     window.location.reload()
   }
+
   const [isDash, setIsDash] = useState(false)
   const handleDashOpen = () => {
     setIsDash(!isDash)
@@ -58,7 +64,22 @@ const Navbar = ({}) => {
   const openserv = useSelector(openservice)
   const opensch = useSelector(openschool)
 
-  console.log(openserv, opensch)
+  // console.log(openserv, opensch)
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetchUser({id: details?.user_id})
+        
+        dispatch(userInfo({...response?.data?.data}))
+      } catch (error) {
+        
+      }
+    }
+    fetchUserInfo()
+  }, [details])
+
+  const loggedininfo = useSelector(userinfo)
 
   return (
     <header className="bg-transparent">
@@ -139,7 +160,7 @@ const Navbar = ({}) => {
             >
               <div class="p-1">
                {
-                details?.gown === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
+                loggedininfo?.gown === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
                 <div class="flex h-4 w-5 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                   <GiShirt size={35}/>
                 </div>
@@ -155,7 +176,7 @@ const Navbar = ({}) => {
               </div>
                }
                {
-                details?.photoshoot === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
+                loggedininfo?.photoshoot === true ? <></> :  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
                 <div class="flex h-6 w-7 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                   <MdAddAPhoto size={30}/>
                 </div>
@@ -167,6 +188,20 @@ const Navbar = ({}) => {
                   {/* <p class=" text-gray-600">University of Ghana</p> */}
                 </div>
               </div>
+               }
+               {
+                loggedininfo?.photoshoot === true && loggedininfo?.gown === true ?  <div class="group relative flex items-center gap-x-6 rounded-sm p-2 text-sm leading-6 hover:bg-gray-50">
+                <div class="flex h-6 w-7 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                  <TiInfoLargeOutline size={30}/>
+                </div>
+                <div class="flex-auto">
+                  <Link to="/details" class="block font-semibold text-gray-900" onClick={handlePhoto}>
+                    No more service
+                    <span class="absolute inset-0"></span>
+                  </Link>
+                  {/* <p class=" text-gray-600">University of Ghana</p> */}
+                </div>
+              </div> : <></>
                }
                
               </div>
@@ -289,7 +324,7 @@ const Navbar = ({}) => {
 
              {isDash ?  <div className="absolute z-50 shadow-2xl bg-white w-24 top-10  flex flex-col  p-2 text-xs rounded-md">
               <BsFillTriangleFill className="absolute -top-2 text-white right-0 left-0 flex justify-center items-center mx-auto"/>
-                <Link to="/order-history" className="hover:bg-green hover:text-white py-2 rounded-md px-2 font-bold text-green transition-all duration-500">Dashboard</Link>
+                <Link to="/my-photoshoots" className="hover:bg-green hover:text-white py-2 rounded-md px-2 font-bold text-green transition-all duration-500">Dashboard</Link>
                 <Link to="" onClick={handleLogout} className="hover:bg-red-500 hover:text-white py-2 rounded-md px-2 text-red-500 font-bold transition-all duration-500">Logout</Link>
               </div> : <></>}
             </Link>

@@ -6,10 +6,11 @@ const initialState = {
     : [],
   userInfo: sessionStorage.getItem("userInfo")
     ? JSON.parse(sessionStorage.getItem("userInfo"))
-    : [],
+    : {},
   userpayment: sessionStorage.getItem("payment")
     ? JSON.parse(sessionStorage.getItem("payment"))
     : [],
+  email: sessionStorage.getItem("email") ? sessionStorage.getItem("email") : "",
   service: sessionStorage.getItem("service") ? sessionStorage.getItem("service") : "",
   closepopup: sessionStorage.getItem("closepopup") ? sessionStorage.getItem("closepopup") : true,
   openservice: sessionStorage.getItem("openservice") ? sessionStorage.getItem("openservice") : false,
@@ -20,6 +21,12 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    userEmail: {
+      reducer(state, action) {
+        state.email = action?.payload;
+        sessionStorage.setItem("email", action.payload);
+      }
+    },
     auth: {
       reducer(state, action) {
         state.auth = action?.payload;
@@ -78,11 +85,12 @@ const authSlice = createSlice({
   },
 });
 
-export const { auth, payment, userInfo, logout, userService, closePopUp, openService, openSchool } = authSlice.actions;
-export const registerDetails = (state) => state?.auth?.auth;
+export const { auth, payment, userInfo, logout, userService, closePopUp, openService, openSchool, userEmail } = authSlice.actions;
+export const authuser = (state) => state?.auth?.auth;
 export const userinfo = (state) => state?.auth?.userInfo;
 export const closepop = state => state?.auth?.closepopup
 export const service = (state) => state?.auth?.service;
 export const openservice = (state) => state?.auth?.openservice;
 export const openschool = (state) => state?.auth?.openschool;
+export const useremail = (state) => state?.auth?.email;
 export default authSlice.reducer;

@@ -20,6 +20,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
 
     verifyEmail: builder.query({
       query: (data) => ({
+        url: "/resend-token",
+        method: "GET",
+
+      }),
+    }),
+    verifyEmail: builder.query({
+      query: (data) => ({
         url: "/verify-email",
         method: "GET",
 
@@ -33,6 +40,42 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: { ...data },
       }),
     }),
+
+    fetchSingleUser: builder.mutation({
+      query: (data) => ({
+        url: "/user/fetch-single-user",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    sendCode: builder.mutation({
+      query: (data) => ({
+        url: "/recover_password",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+
+    verifyCode: builder.mutation({
+      query: (data) => ({
+        url: "/verify_code",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+
+    resetPassword: builder.mutation({
+      query: (data) => ({
+        url: "/reset-password",
+        method: "PUT",
+        body: data,
+      }),
+    }),
+
+
 
     updateUser: builder.mutation({
       query: (data) => ({
@@ -58,4 +101,8 @@ export const {
   usePostLoginMutation,
   usePostUserPaymentMutation,
   useVerifyEmailQuery,
+  useFetchSingleUserMutation,
+  useSendCodeMutation,
+  useVerifyCodeMutation,
+  useResetPasswordMutation
 } = authApiSlice;

@@ -1,11 +1,14 @@
 import React, {useState } from 'react';
 import AppointmentLayout from './AppointmentLayout';
 import {BsPlayCircle} from 'react-icons/bs'
+import { useSelector } from 'react-redux';
+import { userinfo } from '../app/features/authSlice/authSlice';
 
 
 const Popup = () => {
 
   const [isOpen, setIsOpen] = React.useState(false);
+  const user_info = useSelector(userinfo)
 
   const [details, setDetails] = useState(<></>)
 
@@ -28,7 +31,7 @@ const Popup = () => {
     <div className='flex flex-col justify-end' >
               <div onClick={handleClick} className="p-2 cursor-pointer justify-center items-stretch w-32 h-32  md:w-36 md:h-36 2xl:w-64 2xl:h-64 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center  rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">1</h1>
+                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">{user_info?.gown && user_info?.photoshoot ? "2" : user_info?.gown || user_info?.photoshoot ? "1" : "0"}</h1>
               </div>
               <h2  className="uppercase mt-2 text-center text-zinc-900 text-sm 2xl:text-2xl font-normal font-['Inter'] text-wrap leading-snug">Appointment
               
@@ -42,7 +45,7 @@ const Popup = () => {
             <div className='flex flex-col justify-end ' >
               <div className=" p-2 justify-center items-stretch w-32 h-32  md:w-36 md:h-36 2xl:w-64 2xl:h-64 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">22</h1>
+                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">{user_info?.gown ? "1" : "0"}</h1>
               </div>
               <h2  className="uppercase mt-2 text-center text-zinc-900 text-sm 2xl:text-2xl font-normal font-['Inter'] leading-snug">Gown Order
               
@@ -56,7 +59,7 @@ const Popup = () => {
             <div className='flex flex-col justify-end  ' >
               <div className=" p-2 justify-center items-stretch w-32 h-32  md:w-36 md:h-36 2xl:w-64 2xl:h-64 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">15</h1>
+                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">0</h1>
               </div>
               <h2  className="uppercase mt-2 text-center text-zinc-900 text-sm 2xl:text-2xl font-normal font-['Inter'] leading-snug">Print Orders
               
@@ -70,7 +73,7 @@ const Popup = () => {
             <div className='flex flex-col justify-end ' >
               <div className=" p-2 justify-center items-stretch w-32 h-32  md:w-36 md:h-36 2xl:w-64 2xl:h-64 flex flex-col bg-white rounded-xl shadow border border-black">
               <div className=" border border-1 text-center self-stretch rounded-lg shadow flex-1">
-                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">8</h1>
+                <h1 className="font-[900] text-4xl 2xl:text-8xl font-[poppins] text-[#61874D] flex justify-center items-center h-full  ">0</h1>
               </div>
               <h2  className="uppercase mt-2 text-center text-zinc-900 text-sm 2xl:text-2xl font-normal font-['Inter'] leading-snug">Saved
               

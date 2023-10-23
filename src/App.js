@@ -25,6 +25,9 @@ import AdminDataTable from "./components/AdminDataTable";
 import Emailsent from "./pages/Emailsent";
 import Verified from "./pages/Verified";
 import Aos from "aos";
+import ForgottenPassword from "./pages/ForgottenPassword";
+import ResetPassword from "./pages/ResetPassword";
+import VerifyCode from "./pages/VerifyCode";
 
 function App() {
 
@@ -40,11 +43,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/verify" element={<Emailsent />} />
           <Route path="/verified" element={<Verified />} />
-            <Route path="/details" element={<MoreDetails />} />
+          <Route path="/forgotten-password" element={<ForgottenPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/verify-code" element={<VerifyCode />} />
 
           {/* PROTECTED ROUTES */}
           <Route element={<Protected />}>
             <Route path="/dashboard" element={<OrderHistory />} />
+            <Route path="/details" element={<MoreDetails />} />
             <Route path="/code" element={<Code />} />
             <Route path="/select-frame" element={<SelectFrame />} />
             <Route path="/order-history" element={<OrderHistory />} />

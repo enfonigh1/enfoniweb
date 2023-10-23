@@ -4,11 +4,11 @@ import michael from "../assets/images/register.svg";
 import Input from "../components/Input";
 import mail from "../assets/images/mail.svg";
 import password from "../assets/images/icon _lock key_.svg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { usePostLoginMutation } from "../app/features/authSlice/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { userInfo } from "../app/features/authSlice/authSlice";
+import { auth} from "../app/features/authSlice/authSlice";
 import { useDispatch } from "react-redux";
 // import { useH } from "react-router-dom";
 
@@ -20,6 +20,7 @@ const Login = () => {
   });
   const [login, { isLoading }] = usePostLoginMutation();
   const [visible, setVisible] = useState(false)
+  const [isVerified, setIsVerified] = useState(true)
   const navigate = useNavigate();
   const disptach = useDispatch();
   const handleChange = (e) => {
@@ -50,7 +51,10 @@ const Login = () => {
       if (response?.status === 400) {
         toast.error(response?.data || response?.message);
       }
-      disptach(userInfo({ ...response }));
+      if (response?.verified === false) {
+        setIsVerified(false)
+      }
+      disptach(auth({ ...response }));
       
     } catch (error) {
       
@@ -63,8 +67,8 @@ const Login = () => {
   }
 
   return (
-    <AuthLayout image={michael} heading="Welcome">
-      <ToastContainer />
+    <AuthLayout image={michael} heading="Welcome" toastContainer={true}>
+      {/* <ToastContainer /> */}
       <h1 className="sm:hidden font-bold text-center mt-4">Welcome</h1>
       <p className="text-xs text-gray-400 text-center lg:hidden">
         Please enter your details
@@ -115,10 +119,18 @@ const Login = () => {
           show={true}
           handleClick={handleClick}
         />
-
+        <div className="flex justify-between items-center">
+          <div></div>
+        <Link to="/forgotten-password" className="block text-xs text-blue">Forgotten password</Link>
+        </div>
         <button className="bg-blue shadow-lg text-white rounded-md py-2.5 block w-full mt-4">
         {isLoading ? "Loading..." : "Login"}
         </button>
+        {/* {
+          setIsVerified ? <></> : <button  className="bg-blue shadow-lg text-white rounded-md py-2.5 block w-full mt-4">
+          Resend Verification Email
+        </button>
+        } */}
       </form>
       <p className="text-center mt-10 text-xs lg:w-128 mx-auto text-gray-500 lg:hidden sm:px-0 px-10 sm:pb-0 pb-10">
         Your one stop online platform that offers souvenir merchandise sales,

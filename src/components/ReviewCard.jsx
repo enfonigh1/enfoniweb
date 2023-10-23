@@ -1,10 +1,11 @@
 import React from "react";
+import profile from "../assets/images/evans.jpg"
 
 import { BsStar, BsStarFill } from "react-icons/bs";
 const ReviewCard = ({
-  image = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  name = "Andrews",
-  position = "UI Designer",
+  image = profile,
+  name = "Evans",
+  position = "Graduate",
   heading = "It was a very good experience",
   description = "Choosing the services for my graduation from this website was the best decision I made. The attention to detail in my gown and the seamless photoshoot experience truly made my day memorable",
 }) => {

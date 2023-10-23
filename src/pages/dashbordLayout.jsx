@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import Profile from "../components/profile";
 import { useSelector } from "react-redux";
 import { pcliecked } from "../app/features/profile/profileSlice";
-import { userinfo } from "../app/features/authSlice/authSlice";
+import { auth, authuser, userinfo } from "../app/features/authSlice/authSlice";
 import {IoChevronBackCircleSharp} from 'react-icons/io5'
 const DashboardLayout = ({ children }) => {
   const gradientStyle = {
@@ -21,7 +21,7 @@ const DashboardLayout = ({ children }) => {
 
   const imageUrl = `url(${Kentecloth})`;
 
-  const details = useSelector(userinfo)
+  const details = useSelector(authuser)
   
   
   const profileclicked = useSelector(pcliecked)

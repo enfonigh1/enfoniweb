@@ -3,7 +3,7 @@ import { BiSolidCaretLeftCircle } from "react-icons/bi";
 import {BiPencil} from 'react-icons/bi'
 import { useDispatch, useSelector } from "react-redux";
 import { currentProfile } from "../app/features/profile/profileSlice";
-import { userinfo } from "../app/features/authSlice/authSlice";
+import { auth, authuser, userinfo } from "../app/features/authSlice/authSlice";
 import { useUpdateUserMutation } from "../app/features/authSlice/authApiSlice";
 
 const PersonInfo = () => {
@@ -51,16 +51,16 @@ const PersonInfo = () => {
         </div>
         <div className=" my-1 md:my-3 flex flex-col">
           <label htmlFor="school" className="font-[poppins] 2xl:text-4xl  font-semibold">University</label>
-          <p className="font-semibold font-poppins text-gray-700 text-lg 2xl:text-4xl ">{details?.school || "N/A"}</p>
+          <p className="font-semibold font-poppins text-gray-700 text-lg 2xl:text-4xl ">{details?.school || "KNUST"}</p>
         </div>
         <div className=" my-1 md:my-3 flex flex-col">
           <label htmlFor="name" className="font-[poppins] 2xl:text-4xl  font-semibold">College</label>
           <p className="font-semibold font-poppins text-gray-700 text-lg 2xl:text-4xl ">{details?.college_name?.toUpperCase() || "N/A"}</p>
         </div>
-        <div className=" my-1 md:my-3 flex flex-col">
+        {/* <div className=" my-1 md:my-3 flex flex-col">
           <label htmlFor="name" className="font-[poppins] 2xl:text-4xl  font-semibold">Student ID</label>
           <p className="font-semibold font-poppins text-gray-700 text-lg 2xl:text-4xl ">{details?.student_id || "N/A"}</p>
-        </div>        
+        </div>         */}
       </form>
       <button type="submit" className="bg-black  text-white px-2 2xl:px-3 py-1 2xl:py-4 rounded-2xl font-bold tracking-tighter ml-4 shadow-lg 2xl:text-2xl mt-2 2xl:mt-8" onClick={handleUpdate}>Change information</button>
     </div>

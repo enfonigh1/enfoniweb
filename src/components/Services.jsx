@@ -4,13 +4,22 @@ import ServiceCard from "./ServiceCard";
 import gift from "../assets/images/gift.svg";
 import hat from "../assets/images/hat.svg";
 import photo from "../assets/images/photo.svg";
-import { useSelector } from "react-redux";
-import { userinfo } from "../app/features/authSlice/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { auth, authuser, userService, userinfo } from "../app/features/authSlice/authSlice";
 
 const Services = () => {
 
-  const details = useSelector(userinfo)
-  console.log(details)
+  const details = useSelector(authuser)
+  // console.log(details)
+  const userdetails = useSelector(userinfo)
+  const disptach = useDispatch()
+
+  const handleGown = () => {
+    disptach(userService("gown"))
+  }
+  const handlePhoto = () => {
+    disptach(userService("photo"))
+  }
 
   return (
     <div className="lg:px-24  px-6 bg-gray-100 py-10 pb-28" id="services">
@@ -23,6 +32,8 @@ const Services = () => {
       </p>
       <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-5 md:grid md:grid-cols-3 md:gap-5">
         <ServiceCard
+        label={userdetails?.photoshoot ? "Booked" : "Book"}
+        onClick={handlePhoto}
           route={details?.photoshoot ? "/select-frame" : "/details"}
           image={photo}
           data-aos="fade-up"
@@ -34,7 +45,9 @@ const Services = () => {
         last a lifetime."
         />
         <ServiceCard
-        route="/details"
+          label={userdetails?.gown ? "Booked" : "Book"}
+          onClick={handleGown}
+          route={userdetails?.gown ? "" : "/details"}
           image={hat}
           data-aos="fade-up"
           data-aos-duration="2000"
@@ -44,6 +57,7 @@ const Services = () => {
         />
         <ServiceCard
           image={gift}
+          label="Book"
           data-aos="fade-up"
           data-aos-duration="2000"
           data-aos-delay="500"

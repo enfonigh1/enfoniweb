@@ -5,7 +5,7 @@ const baseQuery = fetchBaseQuery({
   // baseUrl: "http://localhost:3001/api/v1",
   baseUrl: "https://enfoni.cyclic.app/api/v1",
   prepareHeaders: (headers, { getState }) => {
-    const token = getState()?.auth?.userInfo?.accessToken;
+    const token = getState()?.auth?.auth?.accessToken;
 
     if (token) {
       headers.set("auth-token", token);

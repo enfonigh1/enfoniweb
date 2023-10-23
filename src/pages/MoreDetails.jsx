@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import { usePostRegisterMutation, useUpdateUserMutation } from "../app/features/authSlice/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { registerDetails, service, userinfo } from "../app/features/authSlice/authSlice";
+import { auth, authuser, registerDetails, service, userinfo } from "../app/features/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
 import MoreDetailsLayout from "../components/MoreDetailsLayout";
 
@@ -142,14 +142,16 @@ const MoreDetails = () => {
 
 
   const [updateUser, { isLoading }] = useUpdateUserMutation();
-  const userdetails = useSelector(userinfo);
+  const userdetails = useSelector(authuser);
+  const moredetails = useSelector(userinfo);
+  console.log(userdetails)
   const navigate = useNavigate();
 
   const [faculty, setFaculty] = useState("")
   
   useEffect(() => {
     const results = graduation_info.filter(info => info.faculty === faculty)
-    setDetails({...details, college_name: results[0]?.college, date_of_graduation: results[0]?.date, session: `${results[0]?.time} (${results[0]?.session})`})
+    setDetails({...details, college_name: results[0]?.college, date_of_graduation: results[0]?.date, session: results[0]?.time })
   }, [faculty])
 
 
@@ -160,7 +162,7 @@ const MoreDetails = () => {
   };
 
   const handlePushCode = async (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     try {
       
       const response = await updateUser({
@@ -177,6 +179,12 @@ const MoreDetails = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+
+    if(!details?.college_name || !details?.phone_number || !details?.session || !details?.date_of_graduation || !faculty){ 
+      toast.error("Please fill all fields");
+      return;
+    }else{
+    
     try {
       const response = await updateUser({
         id: userdetails?.user_id,
@@ -184,13 +192,10 @@ const MoreDetails = () => {
         faculty: faculty,
         phone_number: details?.phone_number,
         date_of_graduation: details?.date_of_graduation,
-       gown: servicetype === "gown" && true,
+        session: details?.session,
+        gown: servicetype === "gown" && true,
         photoshoot: servicetype === "photoshoot" && true 
       }).unwrap();
-
-      
-
-      console.log(response)
 
       if (response?.status === 400) {
         toast.error(response?.data || response?.message, {
@@ -218,18 +223,20 @@ const MoreDetails = () => {
         toast.success(`Gown booked successfully`);
       }
     } catch (error) {}
+  }
   };
 
   return (
-    <MoreDetailsLayout loggins={false} footer={false}>
+    <MoreDetailsLayout loggins={false} footer={false} toastContainer={true}>
       {
-        userdetails?.gown || userdetails?.photoshoot ? <>
+        moredetails?.gown || moredetails?.photoshoot ? <>
         <form action="" className="w-72 mx-auto mt-8 sm:pb-0 pb-10">
         <NewInput
           label="Enter Code"
           type="text"
           value={details.phone_number}
           name="phone_number"
+          required={true}
           onChange={handleChange}
         />
         <Button
@@ -253,12 +260,15 @@ const MoreDetails = () => {
           value={details.college_name}
           name="college_name"
           // onChange={handleChange}
+          required={true}
+          
         />
         <NewInput
           label="Session"
           type="text"
           name="session"
           value={details.session}
+          required={true}
           // onChange={handleChange}
         />
         <NewInput
@@ -266,6 +276,7 @@ const MoreDetails = () => {
           type="text"
           value={details.date_of_graduation}
           name="date_of_graduation"
+          required={true}
           // onChange={handleChange}
         />
         <NewInput
@@ -273,6 +284,7 @@ const MoreDetails = () => {
           type="text"
           value={details.phone_number}
           name="phone_number"
+          required={true}
           onChange={handleChange}
         />
         <Button
@@ -282,7 +294,7 @@ const MoreDetails = () => {
         />
       </form>
       }
-      <ToastContainer />
+    
     </MoreDetailsLayout>
   );
 };
