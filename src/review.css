@@ -24,7 +24,7 @@
   
   .swiper-slide {
     width: 22rem;
-    height: 35rem;
+  height: 35rem;
     margin: 4rem 0;
     position: relative;
    
@@ -32,7 +32,7 @@
   
   .swiper-slide img {
     width: 24rem;
-    height: 35rem;
+  height: 35rem;
     border-radius: 2rem;
     object-fit: cover;
   }

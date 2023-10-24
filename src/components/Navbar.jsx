@@ -36,11 +36,15 @@ const Navbar = ({}) => {
   const handleOpenSchools = () => {
     // document.querySelector("div[role='dialog']").classList.toggle("hidden");
     dispatch(openSchool(true))
+    dispatch(openService(false))
+    setIsDash(false)
   };
   // function to handle opening of schools
   const handleOpenService = () => {
     // document.querySelector("div[role='alertdialog']").classList.toggle("hidden");
     dispatch(openService(true))
+    dispatch(openSchool(false))
+    setIsDash(false)
   };
 
   const dispatch = useDispatch()
@@ -53,6 +57,8 @@ const Navbar = ({}) => {
   const [isDash, setIsDash] = useState(false)
   const handleDashOpen = () => {
     setIsDash(!isDash)
+    dispatch(openService(false))
+    dispatch(openSchool(false))
   }
 
   const handleGown = () => {
@@ -82,7 +88,7 @@ const Navbar = ({}) => {
   const loggedininfo = useSelector(userinfo)
 
   return (
-    <header className="bg-transparent">
+    <header className="bg-transparent lg:px-28 px-6">
       <nav
         className="mx-auto flex items-center justify-between lg:py-6"
         aria-label="Global"
@@ -195,7 +201,7 @@ const Navbar = ({}) => {
                   <TiInfoLargeOutline size={30}/>
                 </div>
                 <div class="flex-auto">
-                  <Link to="/details" class="block font-semibold text-gray-900" onClick={handlePhoto}>
+                  <Link to="" class="block font-semibold text-gray-900" onClick={handlePhoto}>
                     No more service
                     <span class="absolute inset-0"></span>
                   </Link>

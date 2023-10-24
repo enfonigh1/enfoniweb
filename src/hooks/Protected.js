@@ -9,7 +9,7 @@ const Protected = () => {
 
     const user = useSelector(authuser)
     return user?.name ?
-        <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />
+        <Outlet /> : <Navigate to="/login" state={{ from: location }} replace={true} />
 }
 
 export default Protected

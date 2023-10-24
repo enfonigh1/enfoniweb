@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 import { auth, authuser, registerDetails, service, userinfo } from "../app/features/authSlice/authSlice";
 import { useNavigate } from "react-router-dom";
 import MoreDetailsLayout from "../components/MoreDetailsLayout";
+import ReactCodeInput from "react-code-input";
+import Select from "react-select";
+
 
 const MoreDetails = () => {
 
@@ -231,14 +234,16 @@ const MoreDetails = () => {
       {
         moredetails?.gown || moredetails?.photoshoot ? <>
         <form action="" className="w-72 mx-auto mt-8 sm:pb-0 pb-10">
-        <NewInput
+        {/* <NewInput
           label="Enter Code"
           type="text"
           value={details.phone_number}
           name="phone_number"
           required={true}
           onChange={handleChange}
-        />
+        /> */}
+        <p  className="text-center font-bold text-purple mb-3">Please enter code</p>
+        <ReactCodeInput fields={6} />
         <Button
           onClick={handlePushCode}
           name={isLoading ? "Loading" : servicetype === "gown" ? "Proceed to book gown" : "Proceed to book Photoshoot"}
@@ -247,13 +252,18 @@ const MoreDetails = () => {
         </form>
         </> : <form action="" className="w-72 mx-auto mt-8 sm:pb-0 pb-10">
        
-        <select name="" id="" onChange={e => setFaculty(e.target.value)} className="block appearance-none w-72 rounded-md border-0 p-3 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400">
+        {/* <select name="" id="" onChange={e => setFaculty(e.target.value)} className="block appearance-none w-72 rounded-md border-0 p-3 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400">
           <option value="">Select Faculty</option>
           {graduation_info?.map((info, index) => (
             <option value={info.faculty} className="w-48 inline-block py-3">{info.faculty}</option>
             
           ))}
-        </select>
+        </select> */}
+
+        <Select placeholder="Please select Faculty" onChange={e => setFaculty(e.value)} className="text-purple mb-3 pt-4" options={graduation_info.map(item => {
+          return {value: item.faculty, label: item.faculty}
+        })}/>
+
         <NewInput
           label="College"
           type="text"

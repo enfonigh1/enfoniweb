@@ -13,8 +13,8 @@ const initialState = {
   email: sessionStorage.getItem("email") ? sessionStorage.getItem("email") : "",
   service: sessionStorage.getItem("service") ? sessionStorage.getItem("service") : "",
   closepopup: sessionStorage.getItem("closepopup") ? sessionStorage.getItem("closepopup") : true,
-  openservice: sessionStorage.getItem("openservice") ? sessionStorage.getItem("openservice") : false,
-  openschool: sessionStorage.getItem("openschool") ? sessionStorage.getItem("openschool") : false
+  openservice: false,
+  openschool: false
 };
 
 const authSlice = createSlice({

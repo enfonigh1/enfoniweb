@@ -3,6 +3,7 @@ import { apiSlice } from "./features/api/apiSlice";
 import authReducer from "./features/authSlice/authSlice";
 import profileReducer from "./features/profile/profileSlice";
 import adminReducer from "./features/admin/adminSlice";
+import priceReducer from "./features/pricing/priceSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     auth: authReducer,
     profile: profileReducer,
     admin: adminReducer,
+    price: priceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),

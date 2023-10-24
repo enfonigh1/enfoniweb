@@ -24,6 +24,7 @@ import  slide7 from "../../assets/slides/slide7.png";
 function HeroSlider() {
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
   
+  
   return (
     <>
       <Swiper
@@ -35,7 +36,7 @@ function HeroSlider() {
           disableOnInteraction: false,
         }}
         modules={[Autoplay, EffectFade]}
-        className="mySwiper"
+        className="mySwiper lg:absolute lg:-bottom-11 w-full"
       >
         {slides.map((slide) => (
           <SwiperSlide style={{width: '100%'}}>

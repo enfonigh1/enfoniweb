@@ -15,13 +15,16 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ToastContainer, toast } from "react-toastify";
 import { set } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { price } from "../app/features/pricing/priceSlice";
 const SelectFrame = () => {
   const [frame1, setFrame1] = useState(false);
   const [frame2, setFrame2] = useState(false);
   const [part, setPartPayment] = useState(false);
   const [delivery, setDelivery] = useState(false);
   const [deposit, setDeposit] = useState(0);
-  const [total, setTotal] = useState(deposit + 300);
+  const selectedprice = useSelector(price)
+  const [total, setTotal] = useState(deposit + selectedprice || 300);
 
   const handleClick1 = () => {
     setFrame1(!frame1);
@@ -43,7 +46,7 @@ const SelectFrame = () => {
   };
 
   const navigate = useNavigate();
-  let grandTotal = 300;
+  let grandTotal = selectedprice;
 
 
 

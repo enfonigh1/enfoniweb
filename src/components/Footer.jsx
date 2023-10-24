@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/images/enfoni.svg";
+import logo from "../assets/images/knustlogo.jpg";
 import { MdPhone } from "react-icons/md";
 import { BiLogoFacebook } from "react-icons/bi";
 
@@ -13,7 +13,7 @@ const Footer = () => {
 
   return (
     <div className="pb-10">
-      <img src={logo} alt="" className="mx-auto" />
+      <img src={logo} alt="" className="mx-auto h-24" />
       <div className="h-[1px] mx-auto bg-gray-300/50 my-5"></div>
       <div className="flex justify-center items-center">
         <MdPhone className="text-gray-500" />

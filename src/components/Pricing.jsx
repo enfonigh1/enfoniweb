@@ -7,11 +7,18 @@ import faq from "../assets/images/faq.png";
 import list from "../assets/images/list.svg";
 import f1 from "../assets/images/f1.png";
 import f2 from "../assets/images/f2.png";
+import { useDispatch } from "react-redux";
+import { currentPrice } from "../app/features/pricing/priceSlice";
 
 const Pricing = () => {
+  const dispatch = useDispatch()
   const handleClick = (e) => {
-    console.log(e.target);
+    dispatch(currentPrice(300))
   };
+  const handleClick1 = (e) => {
+    dispatch(currentPrice(450))
+  };
+ 
 
   const data = [
     {
@@ -89,7 +96,7 @@ const Pricing = () => {
             GHC 300
           </h1>
           <Link
-            to=""
+            to="/select-frame"
             onClick={handleClick}
             className="inline-block text-center border-[1px] my-8 hover:transition-all duration-500 bg-green text-white hover:bg-green hover:text-white hover:ease-in border-solid border-green  w-full py-3 rounded-md"
           >
@@ -143,7 +150,8 @@ const Pricing = () => {
             GHC 450
           </h1>
           <Link
-            to=""
+          onClick={handleClick1}
+            to="/select-frame"
             className="inline-block text-center border-[1px] my-8 hover:transition-all duration-500 hover:bg-green hover:text-white hover:ease-in border-solid border-green text-gray-700 w-full py-3 rounded-md"
           >
             Choose this plan
@@ -189,7 +197,8 @@ const Pricing = () => {
             GHC 300
           </h1>
           <Link
-            to=""
+          onClick={handleClick}
+            to="/select-frame"
             className="inline-block text-center border-[1px] my-8 hover:transition-all duration-500 hover:bg-green hover:text-white hover:ease-in border-solid border-green text-gray-700 w-full py-3 rounded-md"
           >
             Choose this plan

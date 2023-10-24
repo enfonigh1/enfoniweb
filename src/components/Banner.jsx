@@ -41,7 +41,7 @@ const handleClose = () => {
 
   return (
     <div className="relative" >
-      <div className="bg-[url('./assets/images/banner2.png')] bg-no-repeat bg-cover bg-center  lg:pl-28 pl-6">
+      <div className="bg-[url('./assets/images/banner2.png')] bg-no-repeat bg-cover bg-center">
         <Navbar />
        {/* {
         openPopUp ?  <div className="relative z-50" data-aos="fade" data-aos-duration="3000">
@@ -64,7 +64,7 @@ const handleClose = () => {
         </div>
       </div> : <></>
        } */}
-        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative " onClick={handleClose}>
+        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative lg:pl-28 pl-0" onClick={handleClose}>
           <div>
             <Text
               data-aos="fade-up"

@@ -14,7 +14,7 @@ html{
 
 
 .scrollbar-hide::-webkit-scrollbar {
-    width: 0; /* Set width to 0 to hide the scrollbar */
+    width: 0; 
     background: transparent;
   }
 
@@ -26,7 +26,6 @@ html{
     display: none;
   }
 
-/* Add ripple effect */
 .ripple-container {
   position: relative;
   overflow: hidden;
