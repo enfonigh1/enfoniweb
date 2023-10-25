@@ -14,7 +14,8 @@ const OrderComponent = ({ handleOpen }) => {
         <FaBarsStaggered />
       </div>
 
-      {orderInPrintArray}
+      {/* {orderInPrintArray} */}
+      <h1 className='text-center  self-center lg:mt-36 text-gray-700 text-[1.5rem]'>Oops! Nothing here at the moment</h1>
     </div>
   );
 };
