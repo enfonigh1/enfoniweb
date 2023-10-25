@@ -38,7 +38,7 @@ const [data, setData] = useState([])
   
   
   return (
-    <>
+    <div className='lg:block hidden'>
       <Swiper
         spaceBetween={0}
         effect={'fade'}
@@ -56,7 +56,7 @@ const [data, setData] = useState([])
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 }
 

@@ -48,14 +48,15 @@ const Services = () => {
       <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-5 md:grid md:grid-cols-3 md:gap-5">
         {
           data.map((item, index) =>  <ServiceCard
-          label={userdetails?.photoshoot ? "Booked" : "Book"}
+          label={index === 2 ? "Buy" :  userdetails?.photoshoot ? "Booked" : "Book"}
           onClick={handlePhoto}
-            route={details?.photoshoot ? "/select-frame" : "/details"}
+            route={index === 2 ? "" : details?.photoshoot ? "/select-frame" : "/details"}
             image={icons[index]?.fields?.file?.url}
             data-aos="fade-up"
             data-aos-duration="2000"
             data-aos-delay="0"
             heading={item?.fields?.header}
+            // show={index === 2 ? false : true}
             description={item?.fields?.body?.content[0]?.content[0]?.value}
           />)
         }

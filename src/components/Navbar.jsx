@@ -477,7 +477,7 @@ const Navbar = ({}) => {
                   >
                     Pricing
                   </a>
-                  <a
+                  {/* <a
                    onClick={handleOpenMenu}
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -491,7 +491,7 @@ const Navbar = ({}) => {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Schools
-                  </a>
+                  </a> */}
                 </div>
                 <div className="py-6">
                  {details?.name ? <Link to="/order-history" className=" font-bold flex justify-between items-center space-x-2">

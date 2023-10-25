@@ -106,7 +106,7 @@ const handleClose = () => {
           </div>
           <div data-aos="fade-left" data-aos-duration="3000" className="">
            <Heroslide />
-            {/* <img className="" src={bannerimg} alt="" /> */}
+            <img className="lg:hidden" src={bannerimg} alt=""  />
           </div>
         </div>
       </div>

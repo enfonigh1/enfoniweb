@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ServiceCard = ({ heading, description, route, image, onClick, label, ...props }) => {
+const ServiceCard = ({ heading, description, route, image, onClick, label, show = true, ...props }) => {
   return (
     <div
     onClick={onClick}
@@ -16,7 +16,7 @@ const ServiceCard = ({ heading, description, route, image, onClick, label, ...pr
       </p>
       <Link
         to={route}
-        className="bg-green text-white font-bold rounded-md py-1 px-4 shadow-lg 2xl:py-2 2xl:px-10 2xl:text-3xl"
+        className={show ? "bg-green text-white font-bold rounded-md py-1 px-4 shadow-lg 2xl:py-2 2xl:px-10 2xl:text-3xl" : ""}
       >
         {label}
       </Link>
