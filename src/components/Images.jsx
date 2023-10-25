@@ -3,6 +3,7 @@ import howtoorder from "../assets/images/howtoorder.svg";
 import faq from "../assets/images/faq.svg";
 import faqframe from "../assets/images/faqframe.png";
 import enfonigif from "../assets/gif/mobile.gif";
+import f1 from "../assets/images/f1.png"
 
 const Images = () => {
   const [activeItem, setActiveItem] = useState(null);
@@ -164,7 +165,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
           
           </div>
           <div>
-          <img src={faqframe} alt="" className="mx-auto"/>
+          <img src={f1} alt="" className="mx-auto"/>
           </div>
 
           {/*  */}
