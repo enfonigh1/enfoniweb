@@ -2,11 +2,10 @@
   width: 100%;
 } */
 
-.swiper-slide {
+/* .swiper-slide {
   text-align: center;
   font-size: 18px;
-/* background-color: white; */
-  /* Center slide text vertically */
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,11 +13,13 @@
   width: 100% !important;
   margin: 0rem 0 !important;
 }
+
+*/
    
 .swiper-slide img {
   display: block;
   width: 100% !important;
 
-  object-fit: contain !important;
-  border-radius: 0px !important;
-}
+  object-fit: cover !important;
+  /* border-radius: 10px !important; */
+} 

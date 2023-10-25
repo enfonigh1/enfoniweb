@@ -4,7 +4,7 @@ import michael from "../assets/images/register.svg";
 import Input from "../components/Input";
 import mail from "../assets/images/mail.svg";
 import password from "../assets/images/icon _lock key_.svg";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { usePostLoginMutation } from "../app/features/authSlice/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
@@ -23,6 +23,7 @@ const Login = () => {
   const [isVerified, setIsVerified] = useState(true)
   const navigate = useNavigate();
   const disptach = useDispatch();
+  const location = useLocation();
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -44,7 +45,8 @@ const Login = () => {
       }
       if (response?.status === 200) {
         setTimeout(() => {
-          navigate("/");
+          const from = location?.state?.from?.pathname || "/";
+          navigate(from, { replace: true });
         }, 4000);
         toast.success(response?.message);
       }

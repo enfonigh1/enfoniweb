@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -21,8 +21,20 @@ import  slide4 from "../../assets/slides/slide4.png";
 import slide5  from "../../assets/slides/slide5.png";
 import  slide6  from "../../assets/slides/slide6.png";
 import  slide7 from "../../assets/slides/slide7.png";
+import axios from 'axios';
 function HeroSlider() {
-  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
+const [data, setData] = useState([])
+  useEffect(() => {
+    const fetchImages = async () => {
+      const response = await axios.get("https://cdn.contentful.com/spaces/eiay889h63d6/entries?access_token=_ER0elHI8f-x6bMEay5J_14Ku1T-wa4pXfUcBaoF6Po&content_type=images")
+      setData(response?.data?.includes?.Asset)
+      console.log(response)
+    }
+    fetchImages()
+  }, [])
+
+  // const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
+
   
   
   return (
@@ -36,11 +48,11 @@ function HeroSlider() {
           disableOnInteraction: false,
         }}
         modules={[Autoplay, EffectFade]}
-        className="mySwiper lg:absolute lg:-bottom-11 w-full"
+        className=" inline-block"
       >
-        {slides.map((slide) => (
-          <SwiperSlide style={{width: '100%'}}>
-            <img src={slide} alt="" className=""/>
+        {data.map((slide) => (
+          <SwiperSlide  key={slide?.fields?.title}>
+            <img src={slide?.fields?.file?.url} alt={slide?.fields?.title} className="block"/>
           </SwiperSlide>
         ))}
       </Swiper>

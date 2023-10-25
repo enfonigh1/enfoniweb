@@ -22,7 +22,7 @@ const AuthLayout = ({
 }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(-1);
+    navigate("/");
   };
 
   const images = [image1, image2, image3, image4, image5];

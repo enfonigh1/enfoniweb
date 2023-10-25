@@ -104,7 +104,7 @@ const handleClose = () => {
           </div>
           
           </div>
-          <div data-aos="fade-left" data-aos-duration="3000">
+          <div data-aos="fade-left" data-aos-duration="3000" className="">
            <Heroslide />
             {/* <img className="" src={bannerimg} alt="" /> */}
           </div>

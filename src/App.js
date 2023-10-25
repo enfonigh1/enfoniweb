@@ -47,6 +47,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/verify-code" element={<VerifyCode />} />
 
+
           {/* PROTECTED ROUTES */}
           <Route element={<Protected />}>
             <Route path="/dashboard" element={<OrderHistory />} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Text from "./Text";
 import ServiceCard from "./ServiceCard";
 import gift from "../assets/images/gift.svg";
@@ -6,8 +6,21 @@ import hat from "../assets/images/hat.svg";
 import photo from "../assets/images/photo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, authuser, userService, userinfo } from "../app/features/authSlice/authSlice";
+import axios from "axios";
 
 const Services = () => {
+
+  const [data, setData] = useState([])
+  const [icons, setIcons] = useState([])
+  useEffect(() => {
+    const fetchImages = async () => {
+      const response = await axios.get("https://cdn.contentful.com/spaces/eiay889h63d6/entries?access_token=_ER0elHI8f-x6bMEay5J_14Ku1T-wa4pXfUcBaoF6Po&content_type=services")
+      setData(response?.data?.items)
+      setIcons(response?.data?.includes?.Asset)
+      console.log(response)
+    }
+    fetchImages()
+  }, [])
 
   const details = useSelector(authuser)
   // console.log(details)
@@ -21,6 +34,8 @@ const Services = () => {
     disptach(userService("photo"))
   }
 
+  console.log(icons)
+
   return (
     <div className="lg:px-24  px-6 bg-gray-100 py-10 pb-28" id="services">
       <h1 className="lg:text-5xl font-Poppins text-4xl font-[700] mt-8 text-green text-center 2xl:text-8xl">
@@ -31,20 +46,21 @@ const Services = () => {
         ensure every detail is perfected.{" "}
       </p>
       <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-5 md:grid md:grid-cols-3 md:gap-5">
-        <ServiceCard
-        label={userdetails?.photoshoot ? "Booked" : "Book"}
-        onClick={handlePhoto}
-          route={details?.photoshoot ? "/select-frame" : "/details"}
-          image={photo}
-          data-aos="fade-up"
-          data-aos-duration="2000"
-          data-aos-delay="0"
-          heading="Graduation Photoshoot"
-          description="Immortalize Your Milestone with Elegance and Style. With expert
-        photographers and captivating backdrops, we promise memories that will
-        last a lifetime."
-        />
-        <ServiceCard
+        {
+          data.map((item, index) =>  <ServiceCard
+          label={userdetails?.photoshoot ? "Booked" : "Book"}
+          onClick={handlePhoto}
+            route={details?.photoshoot ? "/select-frame" : "/details"}
+            image={icons[index]?.fields?.file?.url}
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="0"
+            heading={item?.fields?.header}
+            description={item?.fields?.body?.content[0]?.content[0]?.value}
+          />)
+        }
+       
+        {/* <ServiceCard
           label={userdetails?.gown ? "Booked" : "Book"}
           onClick={handleGown}
           route={userdetails?.gown ? "" : "/details"}
@@ -63,7 +79,7 @@ const Services = () => {
           data-aos-delay="500"
           heading="Souvenir and Merchandise"
           description="Commemorate your educational journey with our carefully curated selection of keepsakes, designed to celebrate your achievement."
-        />
+        /> */}
       </div>
     </div>
   );
