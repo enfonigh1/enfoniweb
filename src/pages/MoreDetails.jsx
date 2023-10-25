@@ -197,7 +197,7 @@ const MoreDetails = () => {
         date_of_graduation: details?.date_of_graduation,
         session: details?.session,
         gown: servicetype === "gown" && true,
-        photoshoot: servicetype === "photoshoot" && true 
+        photoshoot: servicetype === "photo" && true 
       }).unwrap();
 
       if (response?.status === 400) {

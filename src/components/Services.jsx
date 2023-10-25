@@ -33,6 +33,11 @@ const Services = () => {
   const handlePhoto = () => {
     disptach(userService("photo"))
   }
+  const handleMerch = () => {
+    // disptach(userService("photo"))
+  }
+
+  const handleResponse = [handlePhoto, handleGown, handleMerch]
 
   console.log(icons)
 
@@ -49,14 +54,14 @@ const Services = () => {
         {
           data.map((item, index) =>  <ServiceCard
           label={index === 2 ? "Buy" :  userdetails?.photoshoot ? "Booked" : "Book"}
-          onClick={handlePhoto}
-            route={index === 2 ? "" : details?.photoshoot ? "/select-frame" : "/details"}
+          onClick={handleResponse[index]}
+            route={index === 2 ? "" : index === 0 && details?.photoshoot ? "/select-frame" : index === 1 && details?.gown ? "" : "/details"}
             image={icons[index]?.fields?.file?.url}
             data-aos="fade-up"
             data-aos-duration="2000"
             data-aos-delay="0"
             heading={item?.fields?.header}
-            // show={index === 2 ? false : true}
+            show={index === 2 ? false : true}
             description={item?.fields?.body?.content[0]?.content[0]?.value}
           />)
         }

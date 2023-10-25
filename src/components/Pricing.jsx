@@ -14,7 +14,7 @@ import promo from "../assets/gif/promo.gif"
 const Pricing = () => {
   const dispatch = useDispatch()
   const handleClick = (e) => {
-    dispatch(currentPrice(300))
+    dispatch(currentPrice(200))
   };
   const handleClick1 = (e) => {
     dispatch(currentPrice(450))
@@ -85,7 +85,7 @@ const Pricing = () => {
         
           className="border-2 relative border-green/50 hover:bg-gray-50 hover:transition-all duration-500 border-solid rounded-xl lg:p-8 p-8"
         >
-          <img src={promo} alt="" className="h-16 absolute -top-4 -left-2"/>
+          <img src={promo} alt="" className="h-16 absolute top-2 left-2 mix-blend-darken"/>
           <div className="h-56">       
           <div className="flex justify-center items-center mb-0 pb-0 h-24">
             <h1 className="text-green font-Poppins font-semibold text-center text-[7rem]">7</h1>

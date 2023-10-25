@@ -24,7 +24,7 @@ const SelectFrame = () => {
   const [delivery, setDelivery] = useState(false);
   const [deposit, setDeposit] = useState(0);
   const selectedprice = useSelector(price)
-  const [total, setTotal] = useState(deposit + selectedprice || 300);
+  const [total, setTotal] = useState(deposit + selectedprice || 200);
 
   const handleClick1 = () => {
     setFrame1(!frame1);
@@ -105,9 +105,7 @@ const SelectFrame = () => {
               />
             </div>
             <p className="text-xs text-red-300 text-center w-96 lg:block hidden">
-              Your one stop online platform that offers sourvirs, merchandise
-              sales, graduation gown, booking services, graduation photoshoot,
-              bookings for universities in Ghana
+              <span className="font-bold bg-red-100 text-red-400 px-1 mx-2 py-[0.5px]">NOTE:</span>Base price Ghc 200.00. Select a desired frame and the price will be added to the base price as your total.
             </p>
           </div>
         </div>
