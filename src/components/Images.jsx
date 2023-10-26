@@ -165,7 +165,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
           
           </div>
           <div>
-          <img src={f1} alt="" className="mx-auto"/>
+          <img src={f1} alt="" className="mx-auto lg:h-128"/>
           </div>
 
           {/*  */}
