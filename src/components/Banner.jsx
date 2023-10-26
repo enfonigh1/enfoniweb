@@ -41,7 +41,7 @@ const handleClose = () => {
 
   return (
     <div className="relative" >
-      <div className="bg-[url('./assets/images/banner2.png')] bg-no-repeat bg-cover bg-center">
+      <div className="bg-[url('./assets/images/banner3.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
         <Navbar />
        {/* {
         openPopUp ?  <div className="relative z-50" data-aos="fade" data-aos-duration="3000">
@@ -64,8 +64,8 @@ const handleClose = () => {
         </div>
       </div> : <></>
        } */}
-        <div className="lg:grid lg:grid-cols-2 lg:items-center mx-auto relative lg:pl-28 pl-0" onClick={handleClose}>
-          <div>
+        <div className="lg:flex lg:flex-row flex-col lg:items-start mx-auto relative " onClick={handleClose}>
+          <div className="lg:w-[50%]">
             <Text
               data-aos="fade-up"
               data-aos-duration="3000"
@@ -96,7 +96,7 @@ const handleClose = () => {
               // data-aos="fade-up"
               // data-aos-duration="2000"
               to="/register"
-              className="bg-white rounded-full text-green py-3 px-8 inline-block mt-8"
+              className="bg-white rounded-full text-green py-3 px-8 inline-block lg:mt-8 mt-2"
             >
               GET STARTED
             </Link>
@@ -104,9 +104,9 @@ const handleClose = () => {
           </div>
           
           </div>
-          <div data-aos="fade-left" data-aos-duration="3000" className="">
+          <div data-aos="fade-left" data-aos-duration="3000" className="lg:w-[50%] w-[100%] lg:mt-0 md:mt-20 mt-5">
            <Heroslide />
-            <img className="lg:hidden" src={bannerimg} alt=""  />
+            {/* <img className="" src={bannerimg} alt="" /> */}
           </div>
         </div>
       </div>

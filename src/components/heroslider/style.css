@@ -1,26 +1,29 @@
-/* .swiper {
+.swiper {
   width: 100%;
-} */
+  
+}
 
-/* .swiper-slide {
-  text-align: center;
+.hero-slider-container{
+
   font-size: 18px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* background-color: white; */
+  /* Center slide text vertically */
   border-radius: 0;
   width: 100% !important;
   margin: 0rem 0 !important;
+  /* background-color: black; */
+  padding: 0px !important;
 }
-
-*/
    
-.swiper-slide img {
+.hero-slider-container img {
   display: block;
   width: 100% !important;
+  object-fit:contain !important;
+  border-radius: 0px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
 
-  object-fit: cover !important;
-  /* border-radius: 10px !important; */
-} 
-
+.hero-slider-slide{
+  margin:0 !important;
+}

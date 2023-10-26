@@ -88,7 +88,7 @@ const Navbar = ({}) => {
   const loggedininfo = useSelector(userinfo)
 
   return (
-    <header className="bg-transparent lg:px-28 px-6">
+    <header className="bg-transparent">
       <nav
         className="mx-auto flex items-center justify-between lg:py-6"
         aria-label="Global"

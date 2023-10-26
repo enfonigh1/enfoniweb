@@ -71,7 +71,7 @@ const AuthLayout = ({
          <img
             src={knust}
             alt=""
-            className="mx-auto h-16"
+            className="mx-auto h-16 mix-blend-overlay"
             data-aos="fade"
             data-aos-duration="2000"
             
