@@ -7,11 +7,19 @@ import photo from "../assets/images/photo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, authuser, userService, userinfo } from "../app/features/authSlice/authSlice";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import {FaTimes} from "react-icons/fa"
+import { toast } from "react-toastify";
+import { PaystackButton } from "react-paystack";
 
 const Services = () => {
 
   const [data, setData] = useState([])
   const [icons, setIcons] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
+  const [isClicked1, setIsClicked1] = useState(false)
+  const [isClicked2, setIsClicked2] = useState(false)
+  const [isClicked3, setIsClicked3] = useState(false)
   useEffect(() => {
     const fetchImages = async () => {
       const response = await axios.get("https://cdn.contentful.com/spaces/eiay889h63d6/entries?access_token=_ER0elHI8f-x6bMEay5J_14Ku1T-wa4pXfUcBaoF6Po&content_type=services")
@@ -22,6 +30,8 @@ const Services = () => {
     fetchImages()
   }, [])
 
+  const navigate = useNavigate()
+
   const details = useSelector(authuser)
   // console.log(details)
   const userdetails = useSelector(userinfo)
@@ -29,17 +39,66 @@ const Services = () => {
 
   const handleGown = () => {
     disptach(userService("gown"))
+    if(!details?.gown || details?.gown === false){
+    navigate("/details")
+    }
   }
   const handlePhoto = () => {
     disptach(userService("photo"))
+    if(details?.photoshoot){
+      navigate("/select-frame")
+    }else{
+      navigate("/details")
+    }
   }
+
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
   const handleMerch = () => {
     // disptach(userService("photo"))
+    setIsOpen(!isOpen)
   }
 
-  const handleResponse = [handlePhoto, handleGown, handleMerch]
+  const handleResponse = [handleMerch, handlePhoto, handleGown]
 
-  console.log(icons)
+  const handleShadow = (e) => {
+    switch(e){
+      case "1":
+        setIsClicked1(true)
+        setIsClicked2(false)
+        setIsClicked3(false)
+      case "2":
+        setIsClicked2(true)
+        setIsClicked1(false)
+        setIsClicked3(false)
+      case "3":
+        setIsClicked3(true)
+        setIsClicked2(false)
+        setIsClicked1(false)
+      default:
+        setIsClicked3(false)
+        setIsClicked2(false)
+        setIsClicked1(false)
+    }
+  }
+
+  const componentsProps = {
+    email: "user@gmail.com",
+    amount:  100,
+    publicKey: "pk_test_23f924a439b032f8ec5c594e55dbda122545ad1e",
+    currency: "GHS",
+    text: "CHECKOUT",
+    onSuccess: (data) => {
+      // sessionStorage.setItem("data", JSON.stringify(data));
+      // toast.success(data?.status);
+      // setTimeout(() => {
+      //   navigate("/code");
+      // }, 4000);
+      console.log(data)
+    },
+  };
 
   return (
     <div className="lg:px-24  px-6 bg-gray-100 py-10 pb-28" id="services">
@@ -53,19 +112,68 @@ const Services = () => {
       <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-5 md:grid md:grid-cols-3 md:gap-5">
         {
           data.map((item, index) =>  <ServiceCard
-          label={index === 2 ? "Buy" :  userdetails?.photoshoot ? "Booked" : "Book"}
+          label={userdetails?.photoshoot ? "Booked" : "Book"}
           onClick={handleResponse[index]}
-            route={index === 2 ? "" : index === 0 && details?.photoshoot ? "/select-frame" : index === 1 && details?.gown ? "" : "/details"}
+            // route={index === 1 && details?.photoshoot ? "/select-frame" : index === 2 && details?.gown ? "" : ""}
             image={icons[index]?.fields?.file?.url}
             data-aos="fade-up"
             data-aos-duration="2000"
             data-aos-delay="0"
             heading={item?.fields?.header}
-            show={index === 2 ? false : true}
+            // show={index === 2 ? false : true}
             description={item?.fields?.body?.content[0]?.content[0]?.value}
           />)
         }
        
+       {/* <!-- Modal container --> */}
+    <div id="myModal" className={ isOpen ? "fixed top-0 left-0 w-full h-full flex items-center justify-center z-500 bg-black/70" : "hidden"}>
+        <div className="modal-dialog bg-white w-1/2 p-6 rounded shadow-lg">
+            <div className="modal-content">
+              <div className="flex justify-between items-center">
+              <span></span>
+                <span onClick={handleClose} id="closeModalBtn" className="right-0 text-gray-700 text-2xl cursor-pointer">&times;</span>
+              </div>
+                <div className="card">
+                    <form>
+
+                        <div className="mb-4">
+                            <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                            <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
+                        </div>
+                        <div className="mb-4">
+                            <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+                            <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
+                        </div>
+                        <div className="grid  grid-cols space-x-3 grid-cols-3 justify-center items-center mx-auto">
+                          <div className={isClicked1 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("1")}>
+                            <h4 className="font-bold text-green h-8 text-center">Basic</h4>
+                            <div className="space-x-2 text-center">
+                              <input type="radio" name="price" defaultChecked className="accent-green" aria-label=""/>
+                              <label htmlFor="" className=" mx-auto">GHC 200</label>
+                            </div>
+                          </div>
+                          <div className={isClicked2 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("2")}>
+                            <h4 className="font-bold text-green h-8">Basic Wooden Frame</h4>
+                            <div className="space-x-2 text-center">
+                              <input type="radio" name="price" className="accent-green"/>
+                              <label htmlFor="" className=" mx-auto">GHC 500</label>
+                            </div>
+                          </div>
+                          <div className={isClicked3 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("3")}>
+                            <h4 className="font-bold text-green h-8 text-center">Basic Mount Card</h4>
+                            <div className="space-x-2 text-center">
+                              <input type="radio" name="price" className="accent-green"/>
+                              <label htmlFor="" className=" mx-auto">GHC 350</label>
+                            </div>
+                          </div>
+                        </div>
+                        <PaystackButton {...componentsProps} className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
         {/* <ServiceCard
           label={userdetails?.gown ? "Booked" : "Book"}
           onClick={handleGown}

@@ -11,7 +11,7 @@ const ServiceCard = ({ heading, description, route, image, onClick, label, class
       <h3 className="text-green  font-bold lg:text-2xl 2xl:text-5xl lg:w-[60%] 2xl:w-[80%]">
         {heading}
       </h3>
-      <p className="my-4 overflow-hidden line-clamp-4 2xl:leading-normal hover:text-clip 2xl:text-3xl 2xl:my-8">
+      <p className="my-4 overflow-hidden h-24 line-clamp-4 2xl:leading-normal hover:text-clip 2xl:text-3xl 2xl:my-8">
         {description}
       </p>
       <Link

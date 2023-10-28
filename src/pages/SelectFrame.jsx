@@ -119,12 +119,12 @@ const SelectFrame = () => {
               >
                 1
               </NavLink>
-              {!delivery ? (
+              {delivery ? (
                 <span className="w-20 h-[1px] bg-gray-600"></span>
               ) : (
                 <></>
               )}
-              {!delivery ? (
+              {delivery ? (
                 <NavLink
                   to=""
                   className="border-[1px] border-solid border-black h-5 w-5 flex justify-center items-center rounded-sm text-xs"
@@ -136,13 +136,13 @@ const SelectFrame = () => {
               )}
               <span
                 data-aos=""
-                className={`${!delivery ? "w-20" : "w-48"} h-[1px] bg-gray-600`}
+                className={`${!delivery ? "w-48" :  "w-20"} h-[1px] bg-gray-600`}
               ></span>
               <NavLink
                 to=""
                 className="border-[1px] border-solid border-black h-5 w-5 flex justify-center items-center rounded-sm text-xs"
               >
-                {!delivery ? 3 : 2}
+                {delivery ? 3 : 2}
               </NavLink>
             </div>
             <div className="flex justify-center items-center mt-4 space-x-4">
