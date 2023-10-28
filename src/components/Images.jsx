@@ -93,15 +93,15 @@ Yes, EEP takes the security of your personal information seriously. We use indus
       <div className="relative  bg-gray-100 lg:py-5 py-3">
         <div className="lg:h-full">
           {/* <img src={howtoorder} alt="" /> */}
-          <h1 className="text-green text-4xl font-bold lg:ml-10 lg:pt-10 font-Poppins lg:w-52 text-center lg:text-left my-10">
+          <h1 className="text-green text-4xl 2xl:text-6xl font-bold lg:ml-10 lg:pt-10 font-Poppins lg:w-52 2xl:w-64 text-center lg:text-left my-10">
             HOW TO ORDER
           </h1>
-          <h1 className="text-gray-700 text-4xl font-bold lg:inline-block hidden  font-Poppins  absolute right-0   rotate-90 translate-x-24 translate-y-48">
+          <h1 className="text-gray-700 text-4xl 2xl:text-6xl font-bold lg:inline-block hidden  font-Poppins  absolute right-0   rotate-90 translate-x-24 2xl:translate-x-36 translate-y-48 2xl:translate-y-24">
             INSTRUCTIONS
           </h1>
           <div className=" mx-auto flex flex-col justify-center items-center">
             <div className="">
-              <img src={enfonigif} alt="" className="lg:h-96 px-3" />
+              <img src={enfonigif} alt="" className="lg:h-96 px-3 2xl:h-128" />
             </div>
             <div className="grid grid-cols-2 mt-4 lg:w-150 space-x-3">
               <button className=" shadow-lg py-2 px-5 rounded-md font-bold shadow-light-green">
@@ -114,17 +114,17 @@ Yes, EEP takes the security of your personal information seriously. We use indus
           </div>
         </div>
       </div>
-      <div className="lg:mt-10 lg:mb-24 mt-24 bg-[url('./assets/images/faqb.jpg')] bg-no-repeat bg-cover bg-center">
-        <div className="lg:px-10 lg:grid lg:grid-cols-2 px-6">
-          <div className="lg:w-[30rem]">
+      <div className="lg:mt-10 2xl:mt-24 lg:mb-24 2xl:mb-48 mt-24 bg-[url('./assets/images/faqb.jpg')] bg-no-repeat bg-cover bg-center">
+        <div className="lg:px-10 2xl:px-24 lg:grid lg:grid-cols-2 px-6">
+          <div className="lg:w-[30rem] 2xl:w-[60rem]">
             {/* <p>hLLO</p> */}
-            <h1 className="text-4xl font-Poppins font-bold lg:text-black text-green">
+            <h1 className="text-4xl 2xl:text-6xl font-Poppins font-bold lg:text-black text-green">
               Frequently
             </h1>
-            <h1 className="text-4xl font-Poppins font-bold lg:text-black text-green">
+            <h1 className="text-4xl 2xl:text-6xl font-Poppins font-bold lg:text-black text-green">
               Asked Questions
             </h1>
-            <h3 className="text-gray-500 font-Poppins lg:font-[700] mt-4">
+            <h3 className="text-gray-500 font-Poppins lg:font-[700] mt-4 2xl:text-3xl">
               Answers for common questions about services and clients usually
               ask
             </h3>
@@ -141,7 +141,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
                   <div className="flex flex-col">
                     
                     <span
-                      className="flex justify-between border-b-4 border-solid border-black items-center font-semibold  text-lg cursor-pointer"
+                      className="flex justify-between border-b-4 border-solid border-black items-center font-semibold  text-lg 2xl:text-4xl cursor-pointer 2xl:mb-4"
                       onClick={() => toggleItem(index)}
                     >
                       <span className="">{item?.question}</span>
@@ -153,7 +153,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
                         activeItem === index
                           ? "opacity-100"
                           : "opacity-0 max-h-0 overflow-hidden"
-                      } transition-opacity duration-500 text-gray-700`}
+                      } transition-opacity duration-500 text-gray-700 2xl:text-3xl`}
                     >
                       {item?.answer}
                     </span>
@@ -165,7 +165,7 @@ Yes, EEP takes the security of your personal information seriously. We use indus
           
           </div>
           <div>
-          <img src={f1} alt="" className="mx-auto lg:h-128"/>
+          <img src={f1} alt="" className="mx-auto lg:h-128 2xl:h-[60rem]"/>
           </div>
 
           {/*  */}

@@ -20,11 +20,14 @@ const ForgottenPassword = () => {
         try {
             dispatch(userEmail(codeInput))
             const results = await sendCode({email: codeInput})
+            console.log(results)
             if(results?.data?.data === "ok"){
                 setTimeout(() => {
                     navigate("/verify-code")
                 }, 3000)
                 toast.success(results?.data?.message)
+            }else{
+                toast?.error(results?.data?.message)
             }
         } catch (error) {
             

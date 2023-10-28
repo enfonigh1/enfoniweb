@@ -43,10 +43,10 @@ const Services = () => {
 
   return (
     <div className="lg:px-24  px-6 bg-gray-100 py-10 pb-28" id="services">
-      <h1 className="lg:text-5xl font-Poppins text-4xl font-[700] mt-8 text-green text-center 2xl:text-8xl">
+      <h1 className="lg:text-5xl font-Poppins text-4xl font-[700] mt-8 2xl:mt-24 text-green text-center 2xl:text-8xl">
         Our Services
       </h1>
-      <p className="lg:w-128 w-80 mx-auto font-Poppins text-center  mt-4 2xl:text-3xl 2xl:w-165 2xl:my-8">
+      <p className="lg:w-128 w-80 mx-auto font-Poppins text-center  mt-4 2xl:text-3xl 2xl:w-[60rem] 2xl:my-8">
         From personalised gown fittings to professional photography sessions, we
         ensure every detail is perfected.{" "}
       </p>

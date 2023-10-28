@@ -37,14 +37,14 @@ const Gallery = () => {
         <div className="md:mt-24  mt-10 mb-24 md:px-24 py-24 px-6">
           <div className="md:grid md:grid-cols-2 gap-4 md:space-y-0 space-y-10 border-spacing-y-8">
             <div className="">
-              <p className="text-green lg:text-5xl font-bold text-4xl text-center lg:text-left 2xl:text-7xl">
+              <p className="text-green lg:text-5xl font-bold text-4xl text-center lg:text-left 2xl:text-8xl">
                 TESTIMONIALS
               </p>
-              <h1 className="text-green font-bold text-2xl my-3 text-center lg:text-left 2xl:text-4xl">
+              <h1 className="text-green font-bold text-2xl my-3 2xl:my-7 text-center lg:text-left 2xl:text-5xl">
                 Client Reviews{" "}
               </h1>
               <p
-                className="text-justify 2xl:text-3xl font-Poppins text-[14px]"
+                className="text-justify 2xl:text-3xl font-Poppins text-[14px] 2xl:leading-normal"
                 data-aos="fade-right"
                 data-aos-duration="2000"
               >

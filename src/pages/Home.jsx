@@ -48,12 +48,13 @@ const Home = () => {
       {showArrow && (
         <a
           href="#home"
-          className="fixed right-10 bottom-10 bg-green text-white p-3 rounded-md"
+          className="fixed left-10 bottom-5 bg-green text-white p-3 rounded-md"
           onClick={scrollToTop}
         >
           <FaArrowUp className="text-[2rem]" />
         </a>
       )}
+      
     </div>
   );
 };

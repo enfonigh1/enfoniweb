@@ -125,7 +125,7 @@ const Navbar = ({}) => {
           <div className="relative">
             <button
               type="button"
-              className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
+              className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 2xl:text-2xl lg:text-white"
               aria-expanded="false"
             >
               Home
@@ -138,7 +138,7 @@ const Navbar = ({}) => {
             <div class="relative">
               <button
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white 2xl:text-3xl"
+                className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white 2xl:text-2xl"
                 aria-expanded="false"
                 onClick={handleOpenService}
                 // onBlur={handleBlur}
@@ -221,7 +221,7 @@ const Navbar = ({}) => {
             <div class="relative">
               <button
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white 2xl:text-3xl"
+                className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white 2xl:text-2xl"
                 // aria-expanded="false"
                 onClick={handleOpenSchools}
               >
@@ -293,19 +293,19 @@ const Navbar = ({}) => {
 
           <a
             href="#gallery"
-            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
+            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-2xl lg:text-white"
           >
             Gallery
           </a>
           <a
             href="#pricing"
-            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
+            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-2xl lg:text-white"
           >
             Pricing
           </a>
           <a
             href="#"
-            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-3xl lg:text-white"
+            className="text-sm font-semibold leading-6 text-gray-900 2xl:text-2xl lg:text-white"
           >
             About
           </a>
@@ -337,7 +337,7 @@ const Navbar = ({}) => {
           ) : (
             <Link
               to="/login"
-              className="text-sm font-semibold leading-6 text-gray-900 lg:text-white 2xl:text-3xl"
+              className="text-sm font-semibold leading-6 text-gray-900 lg:text-white 2xl:text-2xl"
             >
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>

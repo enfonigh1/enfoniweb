@@ -41,7 +41,7 @@ const handleClose = () => {
 
   return (
     <div className="relative" >
-      <div className="bg-[url('./assets/images/banner3.png')] bg-no-repeat bg-cover bg-center  lg:px-28 px-6">
+      <div className="bg-[url('./assets/images/banner3.png')] bg-no-repeat bg-cover bg-center  lg:px-16 xl:px-28 2xl:px-56 px-6">
         <Navbar />
        {/* {
         openPopUp ?  <div className="relative z-50" data-aos="fade" data-aos-duration="3000">
@@ -64,18 +64,18 @@ const handleClose = () => {
         </div>
       </div> : <></>
        } */}
-        <div className="lg:flex lg:flex-row flex-col lg:items-start mx-auto relative " onClick={handleClose}>
+        <div className="lg:flex lg:flex-row flex-col lg:items-start 2xl:h-[75vh] mx-auto relative " onClick={handleClose}>
           <div className="lg:w-[50%]">
             <Text
               data-aos="fade-up"
               data-aos-duration="3000"
               text="Graduation Made Memorable"
-              className="font-bold text-white lg:text-5xl md:text-4xl lg:text-left text-center 2xl:text-7xl"
+              className="font-bold text-white lg:text-5xl md:text-4xl lg:text-left text-center 2xl:text-8xl"
             />
             <p
               data-aos="fade-right"
               data-aos-duration="2000"
-              className="text-white lg:inline-block lg:text-left hidden  my-8 2xl:text-4xl"
+              className="text-white lg:inline-block lg:text-left hidden  my-8 2xl:my-16 2xl:text-3xl"
             >
               Join us in commemorating your educational milestone with joy and
               pride. Discover how we make your graduation experience truly
@@ -84,7 +84,7 @@ const handleClose = () => {
            <div className=" flex justify-center items-center lg:justify-start lg:items-start">
             <p
        
-              className="text-white text-center lg:text-left 2xl:text-4xl "
+              className="text-white text-center lg:text-left 2xl:text-3xl "
             >
               Create an account to join the community.
             </p>
@@ -96,7 +96,7 @@ const handleClose = () => {
               // data-aos="fade-up"
               // data-aos-duration="2000"
               to="/register"
-              className="bg-white rounded-full text-green py-3 px-8 inline-block lg:mt-8 mt-2"
+              className="bg-white rounded-full text-green py-3 2xl:py-6 px-8 2xl:px-16 inline-block lg:mt-8 mt-2 2xl:mt-16"
             >
               GET STARTED
             </Link>
