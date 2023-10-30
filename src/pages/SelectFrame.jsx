@@ -11,12 +11,13 @@ import money from "../assets/images/vaadin_money.svg";
 import uptoGod from "../assets/images/uptoGod.svg";
 import knustlogo from "../assets/images/knustlogo.jpg";
 import { usePaystackPayment, PaystackButton } from "react-paystack";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ToastContainer, toast } from "react-toastify";
 import { set } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { price } from "../app/features/pricing/priceSlice";
+import Select from "react-select";
 const SelectFrame = () => {
   const [frame1, setFrame1] = useState(false);
   const [frame2, setFrame2] = useState(false);
@@ -85,10 +86,30 @@ const SelectFrame = () => {
     },
   };
 
+  const options = [{value: "Kumasi", label: "Kumasi"}, {value: "Outside Kumasi", label: "Outside Kumasi"}]
+
+  const [Proceed, setProceed] = useState(false)
+  const handleProceed = () => {
+    setProceed(true)
+  }
+
+  const [location, setLocation] = useState("")
+  const [deliverLocation, setDeliveryLocation] = useState("")
+  const [clx, setClx] = useState(false)
+
+  useEffect(() => {
+    if(location && deliverLocation){
+      setClx(true)
+    }
+  }, [location,deliverLocation])
+
+  console.log(clx)
+
   return (
     <div>
       <ToastContainer />
-      <div className="lg:grid lg:grid-cols-2">
+      <div className="lg:grid lg:grid-cols-2 relative">
+      <Link to="/" className="absolute lg:top-4 left-8 text-sm border border-solid border-green px-3 rounded-full text-green">SKIP</Link>
         <div className=" inset-0 bg-[url(./assets/images/uptoGod.png)] bg-no-repeat bg-cover h-screen">
           <div className="flex justify-center items-center flex-col space-y-5 bg-white/95 h-screen">
             <img
@@ -109,7 +130,10 @@ const SelectFrame = () => {
             </p>
           </div>
         </div>
-        <div className="bg-light-green lg:h-[95vh] lg:w-[80%] w-[90%]  mx-auto mt-4 rounded-lg shadow-xl lg:mb-0 mb-10 lg:pb-0 pb-5 ">
+        <div className="bg-light-green lg:h-[95vh] lg:w-[80%] w-[90%]  mx-auto mt-4 rounded-lg shadow-xl lg:mb-0 mb-10 lg:pb-0 pb-5">
+       
+       
+          {/*  */}
           <div className="shadow-xl lg:h-[95%] w-[95%] mx-auto rounded-lg pb-10">
             <h1 className="text-center mt-4 text-xl">SELECT A FRAME</h1>
             <div className="flex justify-center items-center space-x-2 mt-3">
@@ -127,7 +151,7 @@ const SelectFrame = () => {
               {delivery ? (
                 <NavLink
                   to=""
-                  className="border-[1px] border-solid border-black h-5 w-5 flex justify-center items-center rounded-sm text-xs"
+                  className={`${delivery ? "bg-black text-white" : ""} border-[1px] border-solid border-black h-5 w-5 flex justify-center items-center rounded-sm text-xs`}
                 >
                   2
                 </NavLink>
@@ -145,76 +169,95 @@ const SelectFrame = () => {
                 {delivery ? 3 : 2}
               </NavLink>
             </div>
-            <div className="flex justify-center items-center mt-4 space-x-4">
-              <div
-                className={`${
-                  frame1
-                    ? "border-2 border-solid border-green "
-                    : "border-2 border-solid border-white"
-                } shadow-xl rounded-md relative p-1 cursor-pointer bg-white`}
-                onClick={handleClick1}
-              >
-                <div className="w-28 h-36">
-                  <img
-                    src={frame}
-                    alt=""
-                    className="w-full h-full mix-blend-darken object-cover pointer-events-none"
-                  />
+
+            {/*  */}
+           {
+            delivery ? <>
+              <form action="" className="w-64 mx-auto my-8 space-y-4">
+                <div className="flex flex-col">
+                  <label htmlFor="">Location <span>*</span></label>
+                  <Select placeholder="Please select location" onChange={e => setLocation(e.value)} options={options}/>
                 </div>
-                <p className="text-center text-sm">GHC 300</p>
-                <input
-                  type="checkbox"
-                  onChange={handleChange}
-                  value="300"
-                  className="absolute h-full w-full top-0 bottom-0 left-0 right-0 opacity-0 cursor-pointer"
-                />
-                {frame1 ? (
-                  <img
-                    src={checkedicon}
-                    alt=""
-                    className="absolute -top-2 -right-2"
-                    width={20}
-                  />
-                ) : (
-                  ""
-                )}
-              </div>
-              <div
-                className={`${
-                  frame2
-                    ? "border-2 border-solid border-green "
-                    : "border-2 border-solid border-white"
-                } shadow-xl rounded-md relative p-1 cursor-pointer bg-white`}
-                onClick={handleClick2}
-              >
-                <div className="w-28 h-36">
-                  <img
-                    src={goldframe}
-                    alt=""
-                    className="w-full h-full mix-blend-darken object-cover pointer-events-none"
-                  />
+                <div className="flex flex-col">
+                  <label htmlFor="">Delivery Address <span>*</span></label>
+                  <input type="text" className="rounded border h-9 border-black border-solid px-3" onChange={e => setDeliveryLocation(e.target.value)}/>
                 </div>
-                <input
-                  onChange={handleChange}
-                  type="checkbox"
-                  value="150"
-                  className="absolute h-full w-full top-0 bottom-0 left-0 right-0 opacity-0 cursor-pointer"
+              </form>
+            </> :  <div className="flex justify-center items-center mt-4 space-x-4">
+            <div
+              className={`${
+                frame1
+                  ? "border-2 border-solid border-green "
+                  : "border-2 border-solid border-white"
+              } shadow-xl rounded-md relative p-1 cursor-pointer bg-white`}
+              onClick={handleClick1}
+            >
+              <div className="w-28 h-36">
+                <img
+                  src={frame}
+                  alt=""
+                  className="w-full h-full mix-blend-darken object-cover pointer-events-none"
                 />
-                <p className="text-center text-sm">GHC 150</p>
-                {frame2 ? (
-                  <img
-                    src={checkedicon}
-                    alt=""
-                    className="absolute -right-2 -top-2"
-                    width={20}
-                  />
-                ) : (
-                  ""
-                )}
               </div>
+              <p className="text-center text-sm">GHC 300</p>
+              <input
+                type="checkbox"
+                onChange={handleChange}
+                value="300"
+                className="absolute h-full w-full top-0 bottom-0 left-0 right-0 opacity-0 cursor-pointer"
+              />
+              {frame1 ? (
+                <img
+                  src={checkedicon}
+                  alt=""
+                  className="absolute -top-2 -right-2"
+                  width={20}
+                />
+              ) : (
+                ""
+              )}
             </div>
+            <div
+              className={`${
+                frame2
+                  ? "border-2 border-solid border-green "
+                  : "border-2 border-solid border-white"
+              } shadow-xl rounded-md relative p-1 cursor-pointer bg-white`}
+              onClick={handleClick2}
+            >
+              <div className="w-28 h-36">
+                <img
+                  src={goldframe}
+                  alt=""
+                  className="w-full h-full mix-blend-darken object-cover pointer-events-none"
+                />
+              </div>
+              <input
+                onChange={handleChange}
+                type="checkbox"
+                value="150"
+                className="absolute h-full w-full top-0 bottom-0 left-0 right-0 opacity-0 cursor-pointer"
+              />
+              <p className="text-center text-sm">GHC 150</p>
+              {frame2 ? (
+                <img
+                  src={checkedicon}
+                  alt=""
+                  className="absolute -right-2 -top-2"
+                  width={20}
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+           }
+
+            {/*  */}
             <div className="mt-5 lg:ml-14 ml-8">
-              <div className="flex  w-80 mx-auto items-center leading-none mb-0">
+              {
+                delivery ? <></> : <>
+                <div className="flex  w-80 mx-auto items-center leading-none mb-0">
                 <NavLink to="" className="p-2 text-sm shadow-lg bg-white">
                   Product Options
                 </NavLink>
@@ -229,8 +272,10 @@ const SelectFrame = () => {
                 <p>Durability: High</p>
                 <p>Finish: Multiple</p>
               </div>
+                </>
+              }
               <div className="mt-2 flex items-center w-80 mx-auto space-x-4">
-                <div className="flex space-x-2">
+                {/* <div className="flex space-x-2">
                   <input
                     type="checkbox"
                     name=""
@@ -241,7 +286,7 @@ const SelectFrame = () => {
                   <label htmlFor="" className="text-sm">
                     PART PAYMENT
                   </label>
-                </div>
+                </div> */}
                 <div className="flex space-x-2">
                   <input
                     type="checkbox"
@@ -256,7 +301,7 @@ const SelectFrame = () => {
                 </div>
               </div>
 
-              <div className="flex items-end w-80 mx-auto space-x-4 text-sm mb-2">
+              <div className="flex items-end w-80 mx-auto space-x-4 text-sm mb-2 mt-3">
                 <label htmlFor="" className="w-14">
                   TOTAL
                 </label>
@@ -269,13 +314,18 @@ const SelectFrame = () => {
                     className="focus:outline-none border-none p-1 text-xs mt-2 border-gray-400 border-[1px]  rounded-md w-24 bg-transparent"
                   />
                 </div>
-                <PaystackButton
+                {
+                  delivery ? <PaystackButton
+                  {...componentsProps}
+                  className={clx ? "border-2 bg-white tracking-widest uppercase border-solid border-black py-0.5 px-2 rounded-md shadow-xl text-sm" : "hidden"}
+                /> : <PaystackButton
                   {...componentsProps}
                   className="border-2 bg-white tracking-widest uppercase border-solid border-black py-0.5 px-2 rounded-md shadow-xl text-sm"
                 />
+                }
               </div>
 
-              {part ? (
+              {/* {part ? (
                 <div
                   data-aos="fade"
                   data-aos-duration="1500"
@@ -300,7 +350,7 @@ const SelectFrame = () => {
                 </div>
               ) : (
                 <></>
-              )}
+              )} */}
              
             </div>
           </div>

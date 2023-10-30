@@ -127,7 +127,7 @@ const Services = () => {
        
        {/* <!-- Modal container --> */}
     <div id="myModal" className={ isOpen ? "fixed top-0 left-0 w-full h-full flex items-center justify-center z-500 bg-black/70" : "hidden"}>
-        <div className="modal-dialog bg-white w-1/2 p-6 rounded shadow-lg">
+        <div className="modal-dialog bg-white md:w-1/2 w-[80%] p-6 rounded shadow-lg">
             <div className="modal-content">
               <div className="flex justify-between items-center">
               <span></span>
@@ -144,7 +144,7 @@ const Services = () => {
                             <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
                             <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
                         </div>
-                        <div className="grid  grid-cols space-x-3 grid-cols-3 justify-center items-center mx-auto">
+                        <div className="lg:grid  lg:grid-cols lg:space-x-3 lg:grid-cols-3 lg:justify-center space-y-3 lg:items-center mx-auto">
                           <div className={isClicked1 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("1")}>
                             <h4 className="font-bold text-green h-8 text-center">Basic</h4>
                             <div className="space-x-2 text-center">
@@ -153,7 +153,7 @@ const Services = () => {
                             </div>
                           </div>
                           <div className={isClicked2 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("2")}>
-                            <h4 className="font-bold text-green h-8">Basic Wooden Frame</h4>
+                            <h4 className="font-bold text-green h-8 text-center">Basic Wooden Frame</h4>
                             <div className="space-x-2 text-center">
                               <input type="radio" name="price" className="accent-green"/>
                               <label htmlFor="" className=" mx-auto">GHC 500</label>
