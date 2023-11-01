@@ -28,6 +28,11 @@ import Aos from "aos";
 import ForgottenPassword from "./pages/ForgottenPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyCode from "./pages/VerifyCode";
+import UshersHome from "./pages/Ushers/Home";
+import UsherLogin from "./pages/Ushers/Login";
+import UsherDashboard from "./pages/Ushers/Dashboard";
+import Dashboard from "./pages/Ushers/Dashboard";
+import ProtectedUsher from "./hooks/ProtectedUsher";
 
 function App() {
 
@@ -46,10 +51,14 @@ function App() {
           <Route path="/forgotten-password" element={<ForgottenPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/verify-code" element={<VerifyCode />} />
+          <Route path="/verify-code" element={<VerifyCode />} />
+          <Route path="/ushers/signup" element={<UshersHome />} />
+          <Route path="/ushers/login" element={<UsherLogin />} />
+          <Route path="/ushers/dashboard" element={<UsherLogin />} />
 
 
           {/* PROTECTED ROUTES */}
-          <Route element={<Protected />}>
+          < Route element={<Protected />}>
             <Route path="/dashboard" element={<OrderHistory />} />
             <Route path="/details" element={<MoreDetails />} />
             <Route path="/code" element={<Code />} />
@@ -59,6 +68,12 @@ function App() {
             <Route path="/my-photoshoots" element={<MyPhotoshoots />} />
             <Route path="/frames" element={<Frames />} />
             <Route path="/admin" element={<AdminDataTable />} />
+
+          </Route>
+
+          {/* Usher Protected Routes */}
+          <Route element={<ProtectedUsher />}>
+            <Route path="/ushers/home" element={<Dashboard />} />
 
           </Route>
           {/* 404 PAGE */}

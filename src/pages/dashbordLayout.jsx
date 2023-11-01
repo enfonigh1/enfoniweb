@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { pcliecked } from "../app/features/profile/profileSlice";
 import { auth, authuser, userinfo } from "../app/features/authSlice/authSlice";
 import {IoChevronBackCircleSharp} from 'react-icons/io5'
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ show = true, children }) => {
   const gradientStyle = {
     backgroundColor: "#537d3d",
     color: "#fff",
@@ -34,7 +34,8 @@ const DashboardLayout = ({ children }) => {
         </NavLink>
 
         <div className="middle mt-24 2xl:mt-40 flex flex-col items-start ">
-  <NavLink
+  {
+    show ? <><NavLink
     to="/my-photoshoots"
     className="font-[900] text-[16px] 2xl:text-4xl relative z-50 font-['Poppins'] rounded flex items-center w-full hover:bg-[#537d3d] hover:text-white capitalize 2xl:rounded-xl my-2 py-1 md:py-2 lg:py-1.5 2xl:py-4 2xl:my-8 2xl:px-8 px-2  track-[10px] 2xl:track-[20px]"
     style={({ isActive }) => (isActive ? gradientStyle : {})}
@@ -77,13 +78,17 @@ const DashboardLayout = ({ children }) => {
   >
     <BsFillBookmarkFill className="mr-3" />
     Saved items
-  </NavLink>
+  </NavLink></> : <></>
+  }
 </div>
 
 
          <div className="footer flex flex-col mb-1">
           <p className="text-[#537d3d] px-0 2xl:px-8 md:px-6 lg:px-4 md:text-xl lg:text-xl relative z-50 uppercase tracking-tighter font-bold sm:text-left text-lg 2xl:text-5xl 2xl:pl-20 text-center w-full 
-         mb-4 flash-element">Hello, {details?.name?.split(" ")[0]}</p>
+         mb-4 flash-element">Hello, { details?.name?.split(" ")[0]}</p>
+          <p className="text-[#537d3d] px-0 2xl:px-8 md:px-6 lg:px-4 md:text-xl lg:text-xl relative z-50 uppercase tracking-tighter font-bold sm:text-left text-lg 2xl:text-5xl 2xl:pl-20 text-center w-full 
+         mb-4 flash-element">CODE: { details?.user_id?.slice(0, 6)}</p>
+         
         
         <hr className="border-0 h-[2px] w-full mb-4 2xl:mt-8 mx-auto 2xl:w-[85%] 2xl:mb-12 md:mb-6 text-center bg-slate-400"/>
         <p className="whitespace-normal relative z-50 flex md:text-md text-center  overflow-hidden break-words lg:text-md  2xl:text-4xl text-[#537d3d] w-full text-[12px] md:pl-1 uppercase font-bold 2xl:mt-6 2xl:mb-12

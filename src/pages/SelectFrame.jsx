@@ -15,17 +15,25 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ToastContainer, toast } from "react-toastify";
 import { set } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { price } from "../app/features/pricing/priceSlice";
 import Select from "react-select";
+import ReactCodeInput from "react-code-input";
+import axios from "axios";
+import { usePostPaymentMutation, useSubmitOtpMutation } from "../app/features/payment/paymentApiSlice";
 const SelectFrame = () => {
   const [frame1, setFrame1] = useState(false);
   const [frame2, setFrame2] = useState(false);
   const [part, setPartPayment] = useState(false);
   const [delivery, setDelivery] = useState(false);
   const [deposit, setDeposit] = useState(0);
+  const [otp, setOtp] = useState("");
   const selectedprice = useSelector(price)
   const [total, setTotal] = useState(deposit + selectedprice || 200);
+  const [phone, setPhone] = useState("")
+  const [provider, setProvider] = useState("")
+  const [postpayment, {isLoading}] = usePostPaymentMutation()
+  const [submitopt] = useSubmitOtpMutation()
 
   const handleClick1 = () => {
     setFrame1(!frame1);
@@ -72,9 +80,9 @@ const SelectFrame = () => {
   };
 
   const componentsProps = {
-    email: "user@gmail.com",
+    email: "info@enfonigh.com",
     amount: total * 100,
-    publicKey: "pk_test_23f924a439b032f8ec5c594e55dbda122545ad1e",
+    publicKey: "pk_test_141b3eb35c4d93a67e8973362212a778be57b17e",
     currency: "GHS",
     text: "CHECKOUT",
     onSuccess: (data) => {
@@ -85,6 +93,34 @@ const SelectFrame = () => {
       }, 4000);
     },
   };
+
+  const disptach = useDispatch()
+  const handleCheckout = async (e) => {
+    e.preventDefault()
+    try {
+      if(!phone && !provider){
+        return toast.error("Please enter phone number and provider")
+      }
+      const results = await postpayment({amount: total, provider: provider, phone: phone}).unwrap()
+      if(results?.status === true){
+        setIsOpen(results?.status)
+        disptach({...results})
+      }
+      toast.error("Too many attempt please try again later")
+    } catch (error) {
+      
+    }  
+  }
+
+  const handleOtp = async (e) => {
+    e.preventDefault()
+    try {
+      const results = await submitopt({otp: otp, reference: ""}).unwrap
+    } catch (error) {
+      
+    }
+  }
+  
 
   const options = [{value: "Kumasi", label: "Kumasi"}, {value: "Outside Kumasi", label: "Outside Kumasi"}]
 
@@ -104,6 +140,14 @@ const SelectFrame = () => {
   }, [location,deliverLocation])
 
   console.log(clx)
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
+
 
   return (
     <div>
@@ -257,20 +301,12 @@ const SelectFrame = () => {
             <div className="mt-5 lg:ml-14 ml-8">
               {
                 delivery ? <></> : <>
-                <div className="flex  w-80 mx-auto items-center leading-none mb-0">
-                <NavLink to="" className="p-2 text-sm shadow-lg bg-white">
-                  Product Options
-                </NavLink>
-                <NavLink to="" className="p-2 text-sm shadow-lg bg-white">
-                  Product Details
-                </NavLink>
-              </div>
-              <div className="md:ml-52 shadow-lg h-32 lg:w-[17rem] w-64 bg-white border-gray-400 border-[1px] border-solid text-sm p-2 rounded-md lg:ml-[3.3rem]">
-                <p>Material: Wood</p>
-                <p>Size Options: Various</p>
-                <p>Design Variety: Yes</p>
-                <p>Durability: High</p>
-                <p>Finish: Multiple</p>
+              
+              <div className="md:ml-52 lg:w-[17rem] w-64 text-sm p-2 rounded-md lg:ml-[3.3rem]">
+               <input type="tel" onChange={e => setPhone(e.target.value)} className="h-[2.5rem] w-full focus:outline-gray-600 px-2 rounded" placeholder="Enter Momo number"/>
+               
+               <Select placeholder="Please select provider" className="my-2" onChange={e => setProvider(e.value)} options={[{value: "mtn", label: "MTN"}, {value: "tgo", label: "Airtel/Tigo"},{value: "vod", label: "Vodafone"},]}/>
+               
               </div>
                 </>
               }
@@ -314,15 +350,13 @@ const SelectFrame = () => {
                     className="focus:outline-none border-none p-1 text-xs mt-2 border-gray-400 border-[1px]  rounded-md w-24 bg-transparent"
                   />
                 </div>
-                {
-                  delivery ? <PaystackButton
-                  {...componentsProps}
-                  className={clx ? "border-2 bg-white tracking-widest uppercase border-solid border-black py-0.5 px-2 rounded-md shadow-xl text-sm" : "hidden"}
-                /> : <PaystackButton
-                  {...componentsProps}
-                  className="border-2 bg-white tracking-widest uppercase border-solid border-black py-0.5 px-2 rounded-md shadow-xl text-sm"
-                />
-                }
+                
+                 <button
+                
+                  onClick={handleCheckout}
+                  className="border-2 w-28 flex justify-start items-center mx-auto bg-white tracking-widest uppercase border-solid border-black py-0.5 px-2 rounded-md shadow-xl text-sm"
+                >{isLoading ? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-dasharray="15" stroke-dashoffset="15" stroke-linecap="round" stroke-width="2" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></svg> : "CHECKOUT"}</button>
+                
               </div>
 
               {/* {part ? (
@@ -351,6 +385,27 @@ const SelectFrame = () => {
               ) : (
                 <></>
               )} */}
+
+                    {/* <!-- Modal container --> */}
+    <div id="myModal" className={ isOpen ? "fixed top-0 left-0 w-full h-full flex items-center justify-center z-500 bg-black/70" : "hidden"}>
+        <div className="modal-dialog bg-white md:w-1/2 w-[80%] p-6 rounded shadow-lg">
+            <div className="modal-content">
+              <div className="flex justify-between items-center">
+              <span></span>
+                <span onClick={handleClose} id="closeModalBtn" className="right-0 text-gray-700 text-2xl cursor-pointer">&times;</span>
+              </div>
+                <div className="card">
+                    <form className="flex flex-col justify-center items-center">
+                      <p className="text-sm my-2 text-green">Please enter the OTP sent to your mobile device</p>
+                       <ReactCodeInput fields={6} />
+                       
+                     
+                        <button onClick={handleOtp} className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">CHECKOUT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
              
             </div>
           </div>

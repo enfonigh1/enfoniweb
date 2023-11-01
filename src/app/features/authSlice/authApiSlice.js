@@ -10,6 +10,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
           full_name: data?.full_name,
           email: data?.email,
           password: data?.password,
+          usher: true,
           college_name: data?.college_name,
           student_id: data?.student_id,
           phone_number: data?.phone_number,

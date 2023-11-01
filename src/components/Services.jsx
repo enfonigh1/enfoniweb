@@ -112,7 +112,7 @@ const Services = () => {
       <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-5 md:grid md:grid-cols-3 md:gap-5">
         {
           data.map((item, index) =>  <ServiceCard
-          label={userdetails?.photoshoot ? "Booked" : "Book"}
+          label={userdetails?.photoshoot && index === 1 ? "Booked" : userdetails?.gown && index === 2 ? "Booked" : index === 0 ? "Buy"  : "Book"}
           onClick={handleResponse[index]}
             // route={index === 1 && details?.photoshoot ? "/select-frame" : index === 2 && details?.gown ? "" : ""}
             image={icons[index]?.fields?.file?.url}

@@ -19,6 +19,8 @@ const AuthLayout = ({
   children,
   footer = true,
   toastContainer = false,
+  logins="/login",
+  registers="/register"
 }) => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -89,7 +91,7 @@ const AuthLayout = ({
                 <NavLink
                   data-aos="fade-left"
                   data-aos-duration="1000"
-                  to="/login"
+                  to={logins}
                   className={({ isActive }) =>
                     isActive
                       ? "bg-white rounded text-sm py-1.5 px-12 text-black"
@@ -101,7 +103,7 @@ const AuthLayout = ({
                 <NavLink
                   data-aos="fade-right"
                   data-aos-duration="1000"
-                  to="/register"
+                  to={registers}
                   className={({ isActive }) =>
                     isActive
                       ? "bg-white rounded text-sm py-1.5 px-12 text-black"
