@@ -8,7 +8,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { usePostLoginMutation } from "../../app/features/authSlice/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { auth} from "../../app/features/authSlice/authSlice";
+import { auth } from "../../app/features/authSlice/authSlice";
 import { useDispatch } from "react-redux";
 import Html5QrcodePlugin from "../../components/Html5QrcodePlugin";
 // import { useH } from "react-router-dom";
@@ -20,8 +20,8 @@ const UsherLogin = () => {
     password: "",
   });
   const [login, { isLoading }] = usePostLoginMutation();
-  const [visible, setVisible] = useState(false)
-  const [isVerified, setIsVerified] = useState(true)
+  const [visible, setVisible] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
   const navigate = useNavigate();
   const disptach = useDispatch();
   const location = useLocation();
@@ -37,10 +37,9 @@ const UsherLogin = () => {
     e.preventDefault();
     try {
       const response = await login({ ...details }).unwrap();
-      console.log(response)
-      console.log(response)
-      if(response?.verified === false){
-
+      console.log(response);
+      console.log(response);
+      if (response?.verified === false) {
         toast.error("Please verify your email to continue");
         return;
       }
@@ -55,34 +54,41 @@ const UsherLogin = () => {
         toast.error(response?.data || response?.message);
       }
       if (response?.verified === false) {
-        setIsVerified(false)
+        setIsVerified(false);
       }
       disptach(auth({ ...response }));
-      
     } catch (error) {
-      
-      console.log(error)
+      console.log(error);
     }
   };
 
   const handleClick = () => {
-    setVisible(!visible)
-  }
+    setVisible(!visible);
+  };
 
-  const onNewScanResult = (decodedText, decodedResult) => {
+  const onNewScanResult = (decodedText) => {
     // handle decoded results here
-    console.log(decodedResult, decodedText)
-};
+    if (decodedText) {
+      navigate("/ushers/home");
+    }
+  };
 
   return (
-    <AuthLayout image={michael} footer={false} toastContainer={false} loggins={false} logins="/ushers/login" registers="/ushers/signup">
+    <AuthLayout
+      image={michael}
+      footer={false}
+      toastContainer={false}
+      loggins={false}
+      logins="/ushers/login"
+      registers="/ushers/signup"
+    >
       <div className="lg:w-96 w-80 rounded-md mx-auto mt-4">
-      <Html5QrcodePlugin
-                fps={10}
-                qrbox={250}
-                disableFlip={false}
-                qrCodeSuccessCallback={onNewScanResult}
-            />
+        <Html5QrcodePlugin
+          fps={10}
+          qrbox={250}
+          disableFlip={false}
+          qrCodeSuccessCallback={onNewScanResult}
+        />
       </div>
     </AuthLayout>
   );
