@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import register from "../assets/images/register.svg";
 import chev from "../assets/images/chev_left.svg";
 import logo from "../assets/images/enfoni.svg";
-import knust from "../assets/images/knustlogo.jpg";
+import knust from "../assets/images/knustlogo.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import image1 from "../assets/images/1.jpg";
 import image2 from "../assets/images/2.jpg";

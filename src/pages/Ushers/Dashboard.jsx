@@ -44,9 +44,9 @@ const Dashboard = () => {
         </div>
         <div className='flex flex-col mb-7'>
           <label htmlFor="" className='font-bold text-gray-700 font-[poppins] mb-3'>Client Number</label>
-          <input onChange={e => setPhoneNumber(e.target.value)} required={true} placeholder='0501311122' type="text" className='lg:w-96 w-72 px-4 text-gray-700 h-12 rounded-lg bg-transparent border border-solid border-gray-700/50'/>
+          <input onChange={e => setPhoneNumber(e.target.value)} required={true} placeholder='0501311122' type="text" className='lg:w-96 w-72 px-4 text-gray-700 h-12 rounded-lg bg-transparent border border-solid border-gray-700/50 '/>
         </div>
-        <button onClick={handlePayment} className='lg:w-96 w-72 px-4 h-12 shadow-lg rounded-lg bg-gray-700 hover:bg-gray-800 transition-all duration-300 text-white bg-transparent border border-solid border-gray-700/50'>submit</button>
+        <button onClick={handlePayment} className='lg:w-96 w-72 px-4 h-12 shadow-lg text-white rounded-lg bg-gray-700'>submit</button>
       </form>
       </div>
     </DashboardLayout>

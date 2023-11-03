@@ -54,7 +54,8 @@ function App() {
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/ushers/signup" element={<UshersHome />} />
           <Route path="/ushers/login" element={<UsherLogin />} />
-          <Route path="/ushers/dashboard" element={<UsherLogin />} />
+          <Route path="/ushers/dashboard" element={<UsherLogin />} /> 
+          <Route path="/ushers/home" element={<Dashboard />} />
 
 
           {/* PROTECTED ROUTES */}
@@ -73,7 +74,7 @@ function App() {
 
           {/* Usher Protected Routes */}
           <Route element={<ProtectedUsher />}>
-            <Route path="/ushers/home" element={<Dashboard />} />
+            
 
           </Route>
           {/* 404 PAGE */}

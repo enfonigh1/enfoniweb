@@ -29,7 +29,7 @@ const DashboardLayout = ({ show = true, children }) => {
     <div className="w-[100%] flex h-screen  justify-between ">
       <div className=" hidden md:block md: md:basis-[30%] lg:basis-[20%] w-[100%] h-screen overflow-y-auto">
         <div className="overflow-y-scroll scrollbar-hide flex items-center wrap  h-screen flex-col relative">
-         <NavLink to="/" className="absolute top-8 2xl:top-12 text-xl 2xl:text-2xl text-zinc-600  z-[20000]">
+         <NavLink to="" className="absolute top-8 2xl:top-12 text-xl 2xl:text-2xl text-zinc-600  z-[20000]">
         <IoChevronBackCircleSharp  className="cursor md:w-10 md:h-10 w-7 h-7 lg:p-2 p-1 2xl:w-16 2xl:h-16 bg-slate-50 rounded-full"/>
         </NavLink>
 

@@ -106,6 +106,7 @@ const SelectFrame = () => {
         setIsOpen(results?.status)
         disptach({...results})
       }
+      console.log(results)
       toast.error("Too many attempt please try again later")
     } catch (error) {
       
@@ -116,13 +117,12 @@ const SelectFrame = () => {
     e.preventDefault()
     try {
       const results = await submitopt({otp: otp, reference: ""}).unwrap
-    } catch (error) {
-      
+    } catch (error) { 
     }
   }
   
 
-  const options = [{value: "Kumasi", label: "Kumasi"}, {value: "Outside Kumasi", label: "Outside Kumasi"}]
+  const options = [{value: "Kumasi", label: "Kumasi GHS 20"}, {value: "Outside Kumasi", label: "Outside Kumasi GHS 30"}]
 
   const [Proceed, setProceed] = useState(false)
   const handleProceed = () => {
