@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    currentSelected: sessionStorage.getItem("price") ? sessionStorage.getItem("price") : 200,
+    currentSelected: sessionStorage.getItem("price") ? sessionStorage.getItem("price") : 0.02,
 
 }
 

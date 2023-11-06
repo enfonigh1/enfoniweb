@@ -69,9 +69,9 @@ const UsherLogin = () => {
     setVisible(!visible)
   }
 
-  const onNewScanResult = (decodedText, decodedResult) => {
+  const onNewScanResult = (decodedText) => {
     // handle decoded results here
-    console.log(decodedResult, decodedText)
+    console.log(decodedText)
 };
 
   return (

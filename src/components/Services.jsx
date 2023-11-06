@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import {FaTimes} from "react-icons/fa"
 import { toast } from "react-toastify";
 import { PaystackButton } from "react-paystack";
+import Select from "react-select";
 
 const Services = () => {
 
@@ -25,7 +26,7 @@ const Services = () => {
       const response = await axios.get("https://cdn.contentful.com/spaces/eiay889h63d6/entries?access_token=_ER0elHI8f-x6bMEay5J_14Ku1T-wa4pXfUcBaoF6Po&content_type=services")
       setData(response?.data?.items)
       setIcons(response?.data?.includes?.Asset)
-      console.log(response)
+      // console.log(response)
     }
     fetchImages()
   }, [])
@@ -65,24 +66,30 @@ const Services = () => {
 
   const handleShadow = (e) => {
     switch(e){
-      case "1":
+      case "200":
         setIsClicked1(true)
         setIsClicked2(false)
         setIsClicked3(false)
-      case "2":
+        break;
+      case "500":
         setIsClicked2(true)
         setIsClicked1(false)
         setIsClicked3(false)
-      case "3":
+        break;
+      case "350":
         setIsClicked3(true)
-        setIsClicked2(false)
         setIsClicked1(false)
-      default:
+        setIsClicked2(false)
+        break;
+      default: 
         setIsClicked3(false)
-        setIsClicked2(false)
         setIsClicked1(false)
+        setIsClicked2(false)
+        break;
     }
   }
+
+  console.log(isClicked1, isClicked2, isClicked3)
 
   const componentsProps = {
     email: "user@gmail.com",
@@ -112,7 +119,7 @@ const Services = () => {
       <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-5 md:grid md:grid-cols-3 md:gap-5">
         {
           data.map((item, index) =>  <ServiceCard
-          label={userdetails?.photoshoot && index === 1 ? "Booked" : userdetails?.gown && index === 2 ? "Booked" : index === 0 ? "Buy"  : "Book"}
+          label={userdetails?.photoshoot && index === 1 ? "Booked" : userdetails?.gown && index === 2 ? "Booked"  : "Book"}
           onClick={handleResponse[index]}
             // route={index === 1 && details?.photoshoot ? "/select-frame" : index === 2 && details?.gown ? "" : ""}
             image={icons[index]?.fields?.file?.url}
@@ -144,25 +151,31 @@ const Services = () => {
                             <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
                             <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
                         </div>
-                        <div className="lg:grid  lg:grid-cols lg:space-x-3 lg:grid-cols-3 lg:justify-center space-y-3 lg:items-center mx-auto">
-                          <div className={isClicked1 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("1")}>
+                        <div className="mb-4">
+                            <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Provider:</label>
+                            <Select placeholder="Please select provider" className="my-2" options={[{value: "mtn", label: "MTN"}, {value: "tgo", label: "Airtel/Tigo"},{value: "vod", label: "Vodafone"},]}/>
+
+                            {/* <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" /> */}
+                        </div>
+                        <div className="lg:grid  lg:grid-cols lg:space-x-3 lg:grid-cols-3 lg:justify-center lg:space-y-0 space-y-3 lg:items-center mx-auto">
+                          <div className="hover:cursor-pointer border border-green border-solid rounded px-2 py-4" onClick={() => handleShadow("200")}>
                             <h4 className="font-bold text-green h-8 text-center">Basic</h4>
                             <div className="space-x-2 text-center">
-                              <input type="radio" name="price" defaultChecked className="accent-green" aria-label=""/>
+                              <input type="radio" defaultChecked name="price"  className="accent-green" aria-label="" checked={isClicked1}/>
                               <label htmlFor="" className=" mx-auto">GHC 200</label>
                             </div>
                           </div>
-                          <div className={isClicked2 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("2")}>
+                          <div className="hover:cursor-pointer border border-green border-solid rounded px-2 py-4" onClick={() => handleShadow("500")}>
                             <h4 className="font-bold text-green h-8 text-center">Basic Wooden Frame</h4>
                             <div className="space-x-2 text-center">
-                              <input type="radio" name="price" className="accent-green"/>
+                              <input type="radio" name="price" className="accent-green" checked={isClicked2}/>
                               <label htmlFor="" className=" mx-auto">GHC 500</label>
                             </div>
                           </div>
-                          <div className={isClicked3 ? "border border-green border-solid rounded px-2 py-4 shadow-lg" : "border border-green border-solid rounded px-2 py-4"} onClick={() => handleShadow("3")}>
+                          <div className="hover:cursor-pointer border border-green border-solid rounded px-2 py-4" onClick={() => handleShadow("350")}>
                             <h4 className="font-bold text-green h-8 text-center">Basic Mount Card</h4>
                             <div className="space-x-2 text-center">
-                              <input type="radio" name="price" className="accent-green"/>
+                              <input type="radio" name="price" className="accent-green" checked={isClicked3}/>
                               <label htmlFor="" className=" mx-auto">GHC 350</label>
                             </div>
                           </div>

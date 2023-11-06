@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    paymentinfo: sessionStorage.getItem("paymentinfo") ? JSON.parse(sessionStorage.getItem("paymetinfo")) : {}
+    paymentinfo: sessionStorage.getItem("paymentinfo") ? JSON.parse(sessionStorage.getItem("paymentinfo")) : {}
 }
 
 export const paymentSlice = createSlice({
@@ -18,5 +18,7 @@ export const paymentSlice = createSlice({
 })
 
 export const { paymentInfo } = paymentSlice.actions
+
+export const paymentinfo = state => state?.payment?.paymentinfo?.data?.reference
 
 export default paymentSlice.reducer
