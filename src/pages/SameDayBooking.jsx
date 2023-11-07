@@ -21,6 +21,10 @@ const SameDayBooking = () => {
     const [postpayment, {isLoading}] = usePostPaymentMutation()
     const [submitopt, {isLoading: isOtpLoading}] = useSubmitOtpMutation()
     const [showCode, setShowCode] = useState(false)
+    const [frames, setFrames] = useState({
+      type: "Basic",
+      price: 200
+    })
   const handleShadow = (e) => {
     switch(e){
       case "200":
@@ -28,6 +32,7 @@ const SameDayBooking = () => {
         setIsClicked2(false)
         setIsClicked3(false)
         setTotal(0.01)
+        setFrames({ type: "Basic", price: 200})
         break;
         case "500":
           setIsClicked2(true)
@@ -90,11 +95,11 @@ const SameDayBooking = () => {
     const checkPaymentStatus = async () => {
       
       try {
-        const results = await axios.post("http://localhost:3001/api/v1/user/check-payment-status", {reference: reference, frame: frames})
+        const results = await axios.post("https://enfoni.cyclic.app/api/v1/user/check-payment-status", {reference: reference, frame: frames})
       if(results?.data?.data?.amount){
         setIsOpen(false)
-        setShowCode(true)
-        setValue(userdetails?.user_id.slice(0, 6).toUpperCase())
+        // setShowCode(true)
+        // setValue(userdetails?.user_id.slice(0, 6).toUpperCase())
       }
       } catch (error) {
         console.log("An error occured")
