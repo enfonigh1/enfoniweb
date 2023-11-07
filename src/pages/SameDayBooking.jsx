@@ -115,11 +115,11 @@ const SameDayBooking = () => {
           </span>
           <form action="" className='px-5 my-4'>
           <div className="mb-4">
-                          <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                          <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Graduant Name:</label>
                           <input  type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
                       </div>
           <div className="mb-4">
-                          <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+                          <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Mobile Money Number:</label>
                           <input onChange={e => setPhone(e.target.value)} type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
                       </div>
 
