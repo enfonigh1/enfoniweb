@@ -28,7 +28,7 @@ import clsx from "clsx";
 const SelectFrame = () => {
   const [frame1, setFrame1] = useState(false);
   const [frame2, setFrame2] = useState(false);
-  const [frame, setFrame] = useState({type: "Basic", price: "GHS 200"});
+  const [frames, setFrame] = useState({type: "Basic", price: "GHS 200"});
   const [part, setPartPayment] = useState(false);
   const [delivery, setDelivery] = useState(false);
   const [showcode, setShowCode] = useState(false);
@@ -144,7 +144,7 @@ const SelectFrame = () => {
     const checkPaymentStatus = async () => {
       
       try {
-        const results = await axios.post("http://localhost:3001/api/v1/user/check-payment-status", {reference: reference, id: userdetails?.user_id, frame: frame})
+        const results = await axios.post("http://localhost:3001/api/v1/user/check-payment-status", {reference: reference, id: userdetails?.user_id, frame: frames})
       if(results?.data?.data?.amount){
         setIsOpen(false)
         setShowCode(true)
@@ -279,7 +279,7 @@ const SelectFrame = () => {
               <div className="w-28 h-36">
                 <img
                   src={frame}
-                  alt=""
+                  alt="300"
                   className="w-full h-full mix-blend-darken object-cover pointer-events-none"
                 />
               </div>
