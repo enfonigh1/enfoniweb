@@ -87,9 +87,9 @@ const SameDayBooking = () => {
   }
 
   const [count, setCount] = useState(1)
-  setInterval(() => {
-    setCount(count + 1)
-  }, 5000)
+  // setInterval(() => {
+  //   setCount(count + 1)
+  // }, 5000)
 
   useEffect(() => {
     const checkPaymentStatus = async () => {
@@ -106,7 +106,7 @@ const SameDayBooking = () => {
       }
     }
     checkPaymentStatus()
-  }, [count])
+  }, [])
 
 
 
