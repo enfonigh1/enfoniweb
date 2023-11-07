@@ -95,7 +95,7 @@ const SameDayBooking = () => {
     const checkPaymentStatus = async () => {
       
       try {
-        const results = await axios.post("http://localhost:3001/api/v1/user/check-payment-status", {reference: reference, frame: frames})
+        const results = await axios.post("https://enfoni.cyclic.app/api/v1/user/check-payment-status", {reference: reference, frame: frames})
       if(results?.data?.data?.amount){
         setIsOpen(false)
         // setShowCode(true)
