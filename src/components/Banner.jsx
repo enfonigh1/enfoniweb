@@ -92,14 +92,14 @@ const handleClose = () => {
           <div className="lg:block flex justify-center items-center lg:my-0 my-4">
             {
               details?.name ? <></> : 
-          <a
+          <Link to="/same-day-booking"
               // data-aos="fade-up"
               // data-aos-duration="2000"
-              href="#services"
+              // href="#services"
               className="bg-white rounded-full text-green py-3 2xl:py-6 px-8 2xl:px-16 inline-block lg:mt-8 mt-2 2xl:mt-16"
             >
               GET STARTED
-            </a>
+            </Link>
             }
           </div>
           

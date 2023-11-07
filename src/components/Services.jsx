@@ -220,7 +220,7 @@ const Services = () => {
                           </div>
                         </div>
                         <div className="hover:cursor-pointer border border-green border-solid rounded px-2 py-4" onClick={() => handleShadow("500")}>
-                          <h4 className="font-bold text-green h-12 text-center">Pictures with 1 Card Frame</h4>
+                          <h4 className="font-bold text-green h-12 text-center">Pictures with 1 Wooden Frame</h4>
                           <div className="space-x-2 text-center">
                             <input type="radio" name="price" className="accent-green" checked={isClicked2}/>
                             <label htmlFor="" className=" mx-auto">GHC 500</label>
