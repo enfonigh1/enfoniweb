@@ -41,8 +41,8 @@ const Home = () => {
     <div className="relative">
       <Banner />
       <Services />
-      <Gallery />
       <Pricing />
+      <Gallery />
       <Images />
       <Footer />
       {showArrow && (

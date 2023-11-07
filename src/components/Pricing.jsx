@@ -119,24 +119,24 @@ const Pricing = () => {
             <span className="2xl:text-3xl">Retouched</span>
           </span>
 
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          {/* <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <LiaTimesSolid className="text-xl 2xl:text-4xl font-bold text-red-400" />
             </span>
             <span className="2xl:text-3xl">Free Delivery</span>
-          </span>
+          </span> */}
           <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <LiaTimesSolid className="text-xl 2xl:text-4xl font-bold text-red-400" />
             </span>
             <span className="2xl:text-3xl">Frame</span>
           </span>
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          {/* <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <LiaTimesSolid className="text-xl 2xl:text-4xl font-bold text-red-400" />
             </span>
             <span className="2xl:text-3xl">Mount Card</span>
-          </span>
+          </span> */}
         </div>
 
         {/* END OF ONE */}
@@ -172,24 +172,24 @@ const Pricing = () => {
             </span>
             <span className="2xl:text-3xl">Retouched</span>
           </span>
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          <span className="flex items-start text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <BiCheck className="text-2xl 2xl:text-4xl font-bold text-gray-700" />
             </span>
             <span className="2xl:text-3xl">Mount Card + 7 digital pictures</span>
           </span>
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          {/* <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <LiaTimesSolid className="text-xl 2xl:text-4xl font-bold text-red-400" />
             </span>
             <span className="2xl:text-3xl">Free Delivery</span>
-          </span>
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          </span> */}
+          {/* <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <LiaTimesSolid className="text-xl 2xl:text-4xl font-bold text-red-400" />
             </span>
             <span className="2xl:text-3xl">Mount Card</span>
-          </span>
+          </span> */}
         </div>
 
         {/* END OF TWO */}
@@ -223,24 +223,24 @@ const Pricing = () => {
             </span>
             <span className="2xl:text-3xl">Retouched</span>
           </span>
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          <span className="flex items-start text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <BiCheck className="text-2xl 2xl:text-4xl font-bold text-gray-700" />
             </span>
-            <span className="2xl:text-3xl">Mount Card + 7 digital pictures</span>
+            <span className="2xl:text-3xl">Wooden Frame + 7 digital pictures</span>
           </span>
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          {/* <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <LiaTimesSolid className="text-xl 2xl:text-4xl font-bold text-red-400" />
             </span>
             <span className="2xl:text-3xl">Free Delivery</span>
-          </span>
-          <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
+          </span> */}
+          {/* <span className="flex items-center text-gray-700 space-x-4 2xl:mb-1">
             <span>
               <LiaTimesSolid className="text-xl 2xl:text-4xl font-bold text-red-400" />
             </span>
             <span className="2xl:text-3xl">Mount Card</span>
-          </span>
+          </span> */}
         </div>
 
         {/* END OF THREE */}

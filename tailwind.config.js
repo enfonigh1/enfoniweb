@@ -25,8 +25,8 @@ export default {
       animation: {
         fadedown: 'fadedown 1s ease-out'
       },
-      
-      boxShadow: {    
+
+      boxShadow: {
         '3xl': ['40px -50px 10px rgba(71,159,9,0.1)', '-2px 1px 30px rgba(0,0,0,0.07)']
       },
       fontFamily: {
@@ -40,11 +40,11 @@ export default {
         'green': '#119E09',
         'deep-green': '#119E09',
         'light-green': '#D5F2D4',
-        'purple':'#563D8E',
+        'purple': '#563D8E',
         'blue': '#01A1CF',
         'shadow-green': '#D5F2D4',
-        'color1':'#3FD494',
-        'color2':'#0CE301'
+        'color1': '#3FD494',
+        'color2': '#0CE301'
       },
       backgroundImage: {
         'hero': "url('/assets/images/banner.png')"
@@ -64,8 +64,8 @@ export default {
       borderSpacing: {
         '1': "1px"
       },
-      
-      
+
+
     },
   },
   plugins: [],

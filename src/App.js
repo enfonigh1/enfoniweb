@@ -33,7 +33,7 @@ import UsherLogin from "./pages/Ushers/Login";
 import UsherDashboard from "./pages/Ushers/Dashboard";
 import Dashboard from "./pages/Ushers/Dashboard";
 import ProtectedUsher from "./hooks/ProtectedUsher";
-import CheckIns from "./pages/Ushers/CheckIns";
+import SameDayBooking from "./pages/SameDayBooking";
 
 function App() {
 
@@ -55,9 +55,9 @@ function App() {
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/ushers/signup" element={<UshersHome />} />
           <Route path="/ushers/login" element={<UsherLogin />} />
-          <Route path="/ushers/dashboard" element={<UsherLogin />} /> 
+          <Route path="/ushers/dashboard" element={<UsherLogin />} />
           <Route path="/ushers/home" element={<Dashboard />} />
-          <Route path="/ushers/check-ins" element={<CheckIns />} />
+          <Route path="/same-day-booking" element={<SameDayBooking />} />
 
 
           {/* PROTECTED ROUTES */}
@@ -76,7 +76,7 @@ function App() {
 
           {/* Usher Protected Routes */}
           <Route element={<ProtectedUsher />}>
-            
+
 
           </Route>
           {/* 404 PAGE */}

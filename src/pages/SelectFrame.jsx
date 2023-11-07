@@ -20,12 +20,18 @@ import { price } from "../app/features/pricing/priceSlice";
 import Select from "react-select";
 import ReactCodeInput from "react-code-input";
 import axios from "axios";
-import { usePostPaymentMutation, useSubmitOtpMutation } from "../app/features/payment/paymentApiSlice";
+import { useCheckPaymentStatusMutation, usePostPaymentMutation, useSubmitOtpMutation } from "../app/features/payment/paymentApiSlice";
+import { IoChevronBack } from "react-icons/io5";
+import { paymentInfo, paymentinfo } from "../app/features/payment/paymentSlice";
+import { authuser, userinfo } from "../app/features/authSlice/authSlice";
+import clsx from "clsx";
 const SelectFrame = () => {
   const [frame1, setFrame1] = useState(false);
   const [frame2, setFrame2] = useState(false);
+  const [frames, setFrame] = useState({type: "Basic", price: "GHS 200"});
   const [part, setPartPayment] = useState(false);
   const [delivery, setDelivery] = useState(false);
+  const [showcode, setShowCode] = useState(false);
   const [deposit, setDeposit] = useState(0);
   const [otp, setOtp] = useState("");
   const selectedprice = useSelector(price)
@@ -34,6 +40,9 @@ const SelectFrame = () => {
   const [provider, setProvider] = useState("")
   const [postpayment, {isLoading}] = usePostPaymentMutation()
   const [submitopt] = useSubmitOtpMutation()
+  const [paymentStatus] = useCheckPaymentStatusMutation()
+  const [value, setValue] = useState("")
+  
 
   const handleClick1 = () => {
     setFrame1(!frame1);
@@ -66,11 +75,13 @@ const SelectFrame = () => {
         // setTotal((prev) => prev + 300);
         grandTotal = frame1 ? grandTotal : grandTotal + 300
         setTotal(grandTotal);
+        setFrame({type: "Wooden Frame", price: "GHS 300"})
         break;
       case "150":
         // setTotal((prev) => prev + 150);
         grandTotal =frame2 ? grandTotal : grandTotal + 150
         setTotal(grandTotal);
+        setFrame({type: "Mount Card", price: "GHS 150"})
         break;
       default:
         // setTotal(total);
@@ -97,6 +108,7 @@ const SelectFrame = () => {
   const disptach = useDispatch()
   const handleCheckout = async (e) => {
     e.preventDefault()
+   
     try {
       if(!phone && !provider){
         return toast.error("Please enter phone number and provider")
@@ -104,7 +116,7 @@ const SelectFrame = () => {
       const results = await postpayment({amount: total, provider: provider, phone: phone}).unwrap()
       if(results?.status === true){
         setIsOpen(results?.status)
-        disptach({...results})
+        disptach(paymentInfo({...results}))
       }
       console.log(results)
       toast.error("Too many attempt please try again later")
@@ -120,6 +132,33 @@ const SelectFrame = () => {
     } catch (error) { 
     }
   }
+
+  const reference = useSelector(paymentinfo)
+  const userdetails = useSelector(authuser)
+  const [count, setCount] = useState(1)
+  setInterval(() => {
+    setCount(count + 1)
+  }, 5000)
+
+  useEffect(() => {
+    const checkPaymentStatus = async () => {
+      
+      try {
+        const results = await axios.post("http://localhost:3001/api/v1/user/check-payment-status", {reference: reference, id: userdetails?.user_id, frame: frames})
+      if(results?.data?.data?.amount){
+        setIsOpen(false)
+        setShowCode(true)
+        setValue(userdetails?.user_id.slice(0, 6).toUpperCase())
+      }
+      } catch (error) {
+        console.log("An error occured")
+      }
+    }
+    checkPaymentStatus()
+  }, [count])
+
+  console.log(value)
+
   
 
   const options = [{value: "Kumasi", label: "Kumasi GHS 20"}, {value: "Outside Kumasi", label: "Outside Kumasi GHS 30"}]
@@ -139,12 +178,13 @@ const SelectFrame = () => {
     }
   }, [location,deliverLocation])
 
-  console.log(clx)
+
 
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClose = () => {
     setIsOpen(false)
+    setShowCode(false)
   }
 
 
@@ -153,7 +193,7 @@ const SelectFrame = () => {
     <div>
       <ToastContainer />
       <div className="lg:grid lg:grid-cols-2 relative">
-      <Link to="/" className="absolute lg:top-4 left-8 text-sm border border-solid border-green px-3 rounded-full text-green">SKIP</Link>
+      <Link to="/" className="absolute lg:top-4 left-8 text-sm border border-solid border-green px-3 rounded-full flex items-center text-green"><IoChevronBack /> Back</Link>
         <div className=" inset-0 bg-[url(./assets/images/uptoGod.png)] bg-no-repeat bg-cover h-screen">
           <div className="flex justify-center items-center flex-col space-y-5 bg-white/95 h-screen">
             <img
@@ -239,7 +279,7 @@ const SelectFrame = () => {
               <div className="w-28 h-36">
                 <img
                   src={frame}
-                  alt=""
+                  alt="300"
                   className="w-full h-full mix-blend-darken object-cover pointer-events-none"
                 />
               </div>
@@ -397,7 +437,26 @@ const SelectFrame = () => {
                 <div className="card">
                     <form className="flex flex-col justify-center items-center">
                       <p className="text-sm my-2 text-green">Please enter the OTP sent to your mobile device</p>
-                       <ReactCodeInput fields={6} />
+                       <ReactCodeInput fields={6} value={value}/>
+                       
+                     
+                        <button onClick={handleOtp} className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">CHECKOUT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" className={ showcode ? "fixed top-0 left-0 w-full h-full flex items-center justify-center z-500 bg-black/70" : "hidden"}>
+        <div className="modal-dialog bg-white md:w-1/2 w-[80%] p-6 rounded shadow-lg">
+            <div className="modal-content">
+              <div className="flex justify-between items-center">
+              <span></span>
+                <span onClick={handleClose} id="closeModalBtn" className="right-0 text-gray-700 text-2xl cursor-pointer">&times;</span>
+              </div>
+                <div className="card">
+                    <form className="flex flex-col justify-center items-center">
+                      {/* <p className="text-sm my-2 text-green">Please enter the OTP sent to your mobile device</p> */}
+                       <ReactCodeInput fields={6} value={value}/>
                        
                      
                         <button onClick={handleOtp} className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">CHECKOUT</button>

@@ -249,6 +249,7 @@ const MoreDetails = () => {
           name={isLoading ? "Loading" : servicetype === "gown" ? "Proceed to book gown" : "Proceed to book Photoshoot"}
           className="bg-purple shadow-lg text-white rounded-md py-2.5 block w-full mt-4"
         />
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut accusamus accusantium, aliquid recusandae magnam itaque temporibus voluptates numquam commodi placeat quidem illo quasi quibusdam iure voluptatibus laudantium reiciendis eos dignissimos ducimus nisi vel. Velit ad vitae nulla dolorem minus eligendi autem necessitatibus cum nihil ullam quod sequi mollitia, asperiores similique facilis labore in esse omnis! Magnam consequuntur incidunt iure similique animi. Sequi, cum? Alias fuga dolorum doloremque. Ut accusantium, amet in quaerat odit optio aperiam quod ducimus quia facilis tenetur tempora necessitatibus nam quasi eligendi! Cum, ipsam laudantium. Itaque quidem hic iusto eaque eos aliquid, a, accusamus architecto optio repudiandae cupiditate.
         </form>
         </> : <form action="" className="w-72 mx-auto mt-8 sm:pb-0 pb-10">
        
