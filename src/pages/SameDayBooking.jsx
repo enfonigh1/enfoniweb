@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { useCheckPaymentStatusMutation, usePostPaymentMutation, useSubmitOtpMutation } from '../app/features/payment/paymentApiSlice'
 import { payer, payerInfo, paymentInfo, paymentinfo } from '../app/features/payment/paymentSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import ReactCodeInput from 'react-code-input'
 import axios from 'axios'
 
@@ -22,7 +22,7 @@ const SameDayBooking = () => {
     const [otp, setOtp] = useState("");
     const [postpayment, {isLoading}] = usePostPaymentMutation()
     const [submitopt, {isLoading: isOtpLoading}] = useSubmitOtpMutation()
-    const [paymentStatus] = useCheckPaymentStatusMutation()
+    const [paymentStatus, {isLoading: isGetPaymentLoading}] = useCheckPaymentStatusMutation()
     const [showCode, setShowCode] = useState(false)
     const [isOtp, setIsOtp] = useState(false)
     const [frames, setFrames] = useState({
@@ -104,10 +104,14 @@ const SameDayBooking = () => {
     try {
       const results = await paymentStatus({reference: reference, payerinfo: payerinfomation}).unwrap()
       console.log(results)
+      if(results?.status === 400){
+        return toast.error(results?.message)
+      }
       if(results?.status === 200){
         setShowCode(true)
         setUserCode(results?.data?._id?.slice(0, 6).toUpperCase())
       }
+      
     } catch (error) {
       
     }
@@ -117,6 +121,7 @@ const SameDayBooking = () => {
 
   return (
     <div className='flex justify-center items-center h-screen w-full'>
+      <ToastContainer/>
         <div className='w-96 h-[90%] rounded-3xl border-solid border-white border-2 shadow-lg flex flex-col overflow-y-scroll'>
           <span className='h-16 w-full bg-green self-start rounded-t-3xl flex justify-center items-center'>
             <img src={knustemblem} alt="" className='h-12 mx-auto'/>
@@ -192,7 +197,7 @@ const SameDayBooking = () => {
                       <p className='text-center'><span className='font-bold'>NOTE</span>: If you received a payment prompt on your phone direct please use the button below to check your code   </p>
                       </form> 
                    
-                      <button onClick={handlePaymentStatus}  className="bg-green/70 shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isOtpLoading ? "Loading...": "GET CODE"}</button>
+                      <button onClick={handlePaymentStatus}  className="bg-green/70 shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isGetPaymentLoading ? "Loading...": "GET CODE"}</button>
                       </>
                     }
                 </div>
