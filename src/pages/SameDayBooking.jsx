@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import knustemblem from "../assets/images/knustlogo.png"
 import Select from 'react-select'
-import { usePostPaymentMutation, useSubmitOtpMutation } from '../app/features/payment/paymentApiSlice'
-import { paymentInfo, paymentinfo } from '../app/features/payment/paymentSlice'
+import { useCheckPaymentStatusMutation, usePostPaymentMutation, useSubmitOtpMutation } from '../app/features/payment/paymentApiSlice'
+import { payer, payerInfo, paymentInfo, paymentinfo } from '../app/features/payment/paymentSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import ReactCodeInput from 'react-code-input'
@@ -15,11 +15,14 @@ const SameDayBooking = () => {
     const [isClicked3, setIsClicked3] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [total, setTotal] = useState(200);
+    const [full_name, setFullName] = useState("")
     const [phone, setPhone] = useState("")
     const [provider, setProvider] = useState("")
+    const [userCode, setUserCode] = useState("")
     const [otp, setOtp] = useState("");
     const [postpayment, {isLoading}] = usePostPaymentMutation()
     const [submitopt, {isLoading: isOtpLoading}] = useSubmitOtpMutation()
+    const [paymentStatus] = useCheckPaymentStatusMutation()
     const [showCode, setShowCode] = useState(false)
     const [frames, setFrames] = useState({
       type: "Basic",
@@ -31,26 +34,29 @@ const SameDayBooking = () => {
         setIsClicked1(true)
         setIsClicked2(false)
         setIsClicked3(false)
-        setTotal(200)
+        setTotal(0.01)
         setFrames({ type: "Basic", price: 200})
         break;
         case "500":
           setIsClicked2(true)
           setIsClicked1(false)
           setIsClicked3(false)
-          setTotal(500)
+          setTotal(0.05)
+          setFrames({ type: "Wooden Frame", price: 500})
           break;
           case "350":
             setIsClicked3(true)
             setIsClicked1(false)
             setIsClicked2(false)
-            setTotal(350)
-        break;
-      default: 
-        setIsClicked3(false)
-        setIsClicked1(false)
-        setIsClicked2(false)
-        setTotal(200)
+            setTotal(0.035)
+            setFrames({ type: "Mount Card", price: 350})
+            break;
+            default: 
+            setIsClicked3(false)
+            setIsClicked1(false)
+            setIsClicked2(false)
+            setTotal(0.01)
+            setFrames({ type: "Basic", price: 200})
         break;
     }
   }
@@ -59,6 +65,7 @@ const SameDayBooking = () => {
 
   const handlePayment = async (e) => {
     e.preventDefault()
+    disptach(payerInfo({phone, full_name, frames}))
     try {
     
       const results = await postpayment({amount: total, provider: provider, phone: phone}).unwrap()
@@ -76,7 +83,7 @@ const SameDayBooking = () => {
   const handleOtp = async (e) => {
     e.preventDefault()
     try {
-      const results = await submitopt({otp: otp, reference: reference}).unwrap
+      const results = await submitopt({otp: otp, reference: reference}).unwrap()
     } catch (error) { 
     }
   }
@@ -86,27 +93,21 @@ const SameDayBooking = () => {
     setIsOpen(false)
   }
 
-  const [count, setCount] = useState(1)
-  setInterval(() => {
-    setCount(count + 1)
-  }, 5000)
-
-  useEffect(() => {
-    const checkPaymentStatus = async () => {
+  const payerinfomation = useSelector(payer)
+  
+  const handlePaymentStatus = async (e) => {
+    e.preventDefault()
+    try {
+      const results = await paymentStatus({reference: reference, payerinfo: payerinfomation}).unwrap()
+      console.log(results)
+      if(results?.status === 200){
+        setShowCode(true)
+        setUserCode(results?.data?._id?.slice(0, 6).toUpperCase())
+      }
+    } catch (error) {
       
-      try {
-        const results = await axios.post("http://localhost:3001/api/v1/user/check-payment-status", {reference: reference, frame: frames})
-      if(results?.data?.data?.amount){
-        setIsOpen(false)
-        // setShowCode(true)
-        // setValue(userdetails?.user_id.slice(0, 6).toUpperCase())
-      }
-      } catch (error) {
-        console.log("An error occured")
-      }
     }
-    checkPaymentStatus()
-  }, [count])
+  }
 
 
 
@@ -119,7 +120,7 @@ const SameDayBooking = () => {
           <form action="" className='px-5 my-4'>
           <div className="mb-4">
                           <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
-                          <input  type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
+                          <input onChange={e => setFullName(e.target.value)}  type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
                       </div>
           <div className="mb-4">
                           <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
@@ -170,12 +171,26 @@ const SameDayBooking = () => {
               </div>
                 <div className="card">
                    
-                     <form className="flex flex-col justify-center items-center text-green">
+                    {
+                      showCode ? <>
+                      <div className='text-center text-green'>
+                      <p>🎉🎉🎊🎊🎊</p>
+                      <p className='font-bold text-2xl'>CONGRATULATIONS</p>
+                      <p>Your code for your graduation. Please write your code before closing this modal</p>
+                      </div>
+                      <h1 className='text-center text-xl font-bold'>{userCode}</h1>
+                      </> : <>
+                       <form className="flex flex-col justify-center items-center text-green">
                         <p className="text-center text-xs my-2">Please complete the authorisation process by inputting your PIN on your mobile device</p>
                       <ReactCodeInput fields={6} className=""/>
                       <button onClick={handleOtp}  className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isOtpLoading ? "Loading...": "SUBMIT"}</button>
+                      
+                      <p className='text-xs text-center'><span className='font-bold'>NOTE</span>: If you received a payment prompt on your phone direct please use the button below to check your code</p>
                       </form> 
                    
+                      <button onClick={handlePaymentStatus}  className="bg-green/70 shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isOtpLoading ? "Loading...": "GET CODE"}</button>
+                      </>
+                    }
                 </div>
             </div>
         </div>
