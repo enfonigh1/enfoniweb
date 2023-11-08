@@ -24,6 +24,7 @@ const SameDayBooking = () => {
     const [submitopt, {isLoading: isOtpLoading}] = useSubmitOtpMutation()
     const [paymentStatus] = useCheckPaymentStatusMutation()
     const [showCode, setShowCode] = useState(false)
+    const [isOtp, setIsOtp] = useState(false)
     const [frames, setFrames] = useState({
       type: "Basic",
       price: 200
@@ -34,28 +35,28 @@ const SameDayBooking = () => {
         setIsClicked1(true)
         setIsClicked2(false)
         setIsClicked3(false)
-        setTotal(0.01)
+        setTotal(200)
         setFrames({ type: "Basic", price: 200})
         break;
         case "500":
           setIsClicked2(true)
           setIsClicked1(false)
           setIsClicked3(false)
-          setTotal(0.05)
+          setTotal(500)
           setFrames({ type: "Wooden Frame", price: 500})
           break;
           case "350":
             setIsClicked3(true)
             setIsClicked1(false)
             setIsClicked2(false)
-            setTotal(0.035)
+            setTotal(350)
             setFrames({ type: "Mount Card", price: 350})
             break;
             default: 
             setIsClicked3(false)
             setIsClicked1(false)
             setIsClicked2(false)
-            setTotal(0.01)
+            setTotal(200)
             setFrames({ type: "Basic", price: 200})
         break;
     }
@@ -84,6 +85,9 @@ const SameDayBooking = () => {
     e.preventDefault()
     try {
       const results = await submitopt({otp: otp, reference: reference}).unwrap()
+      if(results?.status === 200){
+        setIsOpen(true)
+      }
     } catch (error) { 
     }
   }
@@ -185,7 +189,7 @@ const SameDayBooking = () => {
                       <ReactCodeInput fields={6} className=""/>
                       <button onClick={handleOtp}  className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isOtpLoading ? "Loading...": "SUBMIT"}</button>
                       
-                      <p className='text-xs text-center'><span className='font-bold'>NOTE</span>: If you received a payment prompt on your phone direct please use the button below to check your code</p>
+                      <p className='text-center'><span className='font-bold'>NOTE</span>: If you received a payment prompt on your phone direct please use the button below to check your code   </p>
                       </form> 
                    
                       <button onClick={handlePaymentStatus}  className="bg-green/70 shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isOtpLoading ? "Loading...": "GET CODE"}</button>
