@@ -58,6 +58,7 @@ function App() {
           <Route path="/ushers/dashboard" element={<UsherLogin />} />
           <Route path="/ushers/home" element={<Dashboard />} />
           <Route path="/same-day-booking" element={<SameDayBooking />} />
+          <Route path="/admin" element={<AdminDataTable />} />
 
 
           {/* PROTECTED ROUTES */}
@@ -70,7 +71,6 @@ function App() {
             <Route path="/saved-items" element={<SavedItems />} />
             <Route path="/my-photoshoots" element={<MyPhotoshoots />} />
             <Route path="/frames" element={<Frames />} />
-            <Route path="/admin" element={<AdminDataTable />} />
 
           </Route>
 

@@ -3,16 +3,33 @@ import DashboardLayout from '../dashbordLayout'
 import { PaystackButton, usePaystackPayment } from 'react-paystack'
 import { ToastContainer, toast } from 'react-toastify'
 import Select from 'react-select'
+import { useCheckPaymentStatusMutation, usePostPaymentMutation, useSubmitOtpMutation } from '../../app/features/payment/paymentApiSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { payer, payerInfo, paymentInfo, paymentinfo } from '../../app/features/payment/paymentSlice'
+import ReactCodeInput from 'react-code-input'
 
 const Dashboard = () => {
 
   const [full_name, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [phone_number, setPhoneNumber] = useState("")
+  const [showCode, setShowCode] = useState(false)
+  const [userCode, setUserCode] = useState("")
+  const [provider, setProvider] = useState("")
+  const [otp, setOtp] = useState("");
+    const [phone, setPhone] = useState("")
+    const [frames, setFrames] = useState({
+      type: "Basic",
+      price: 200
+    })
   const [isClicked1, setIsClicked1] = useState(false)
   const [isClicked2, setIsClicked2] = useState(false)
   const [isClicked3, setIsClicked3] = useState(false)
-
+  const [isOpen, setIsOpen] = useState(false)
+  const [total, setTotal] = useState(200);
+  const [postpayment, {isLoading}] = usePostPaymentMutation()
+  const [submitopt, {isLoading: isOtpLoading}] = useSubmitOtpMutation()
+  const [paymentStatus, {isLoading: isGetPaymentLoading}] = useCheckPaymentStatusMutation()
   const payment = usePaystackPayment({
     email: email || "info@enfonigh.com",
     amount: 200 * 100,
@@ -21,14 +38,9 @@ const Dashboard = () => {
     firstname: full_name,
     phone: phone_number,
   })
-  const handlePayment = async (e) => {
-    e.preventDefault()
-    if(!full_name && !phone_number){
-      return toast.error("Please enter required fields")
-    }
-    const results = await payment()
-    console.log(results)
-  }
+  const disptach = useDispatch()
+
+ 
 
   const handleShadow = (e) => {
     switch(e){
@@ -36,111 +48,175 @@ const Dashboard = () => {
         setIsClicked1(true)
         setIsClicked2(false)
         setIsClicked3(false)
+        setTotal(200)
+        setFrames({ type: "Basic", price: 200})
         break;
-      case "500":
-        setIsClicked2(true)
-        setIsClicked1(false)
-        setIsClicked3(false)
-        break;
-      case "350":
-        setIsClicked3(true)
-        setIsClicked1(false)
-        setIsClicked2(false)
-        break;
-      default: 
-        setIsClicked3(false)
-        setIsClicked1(false)
-        setIsClicked2(false)
+        case "500":
+          setIsClicked2(true)
+          setIsClicked1(false)
+          setIsClicked3(false)
+          setTotal(500)
+          setFrames({ type: "Wooden Frame", price: 500})
+          break;
+          case "350":
+            setIsClicked3(true)
+            setIsClicked1(false)
+            setIsClicked2(false)
+            setTotal(350)
+            setFrames({ type: "Mount Card", price: 350})
+            break;
+            default: 
+            setIsClicked3(false)
+            setIsClicked1(false)
+            setIsClicked2(false)
+            setTotal(200)
+            setFrames({ type: "Basic", price: 200})
         break;
     }
   }
 
-  const componentsProps = {
-    email: "user@gmail.com",
-    amount:  100,
-    publicKey: "pk_test_23f924a439b032f8ec5c594e55dbda122545ad1e",
-    currency: "GHS",
-    text: "CHECKOUT",
-    onSuccess: (data) => {
-      // sessionStorage.setItem("data", JSON.stringify(data));
-      // toast.success(data?.status);
-      // setTimeout(() => {
-      //   navigate("/code");
-      // }, 4000);
-      console.log(data)
-    },
-  };
+  const handlePayment = async (e) => {
+    e.preventDefault()
+    disptach(payerInfo({phone, full_name, frames}))
+    try {
+      if(!full_name && !phone_number){
+        return toast.error("Please enter required fields")
+      }
+      const results = await postpayment({amount: total, provider: provider, phone: phone}).unwrap()
+      if(results?.status === true){
+        setIsOpen(results?.status)
+        disptach(paymentInfo({...results}))
+      }
+      console.log(results)
+      toast.error("Too many attempt please try again later")
+    } catch (error) {
+      
+    }  
+  }
+  console.log(total)
+
+  const reference = useSelector(paymentinfo)
+  const handleOtp = async (e) => {
+    e.preventDefault()
+    try {
+      const results = await submitopt({otp: otp, reference: reference}).unwrap()
+      if(results?.status === 200){
+        setIsOpen(true)
+      }
+    } catch (error) { 
+    }
+  }
 
   
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
+  const payerinfomation = useSelector(payer)
+  
+  const handlePaymentStatus = async (e) => {
+    e.preventDefault()
+    try {
+      const results = await paymentStatus({reference: reference, payerinfo: payerinfomation}).unwrap()
+      console.log(results)
+      if(results?.status === 400){
+        return toast.error(results?.message)
+      }
+      if(results?.status === 200){
+        setShowCode(true)
+        setUserCode(results?.data?._id?.slice(0, 6).toUpperCase())
+      }
+      
+    } catch (error) {
+      
+    }
+  }
+
+
+
   return (
     <DashboardLayout show={false}>
       <ToastContainer/>
       <div className='h-screen flex justify-center items-center mx-auto'>
-
-      {/* <form action="" className='bg-white shadow-lg rounded-lg lg:w-128 px-5 lg:mx-0 mx-5 flex flex-col justify-center items-center py-10'>
-        <div className='flex flex-col mb-7'>
-          <label htmlFor="" className='font-bold text-gray-700 font-[poppins] mb-3'>Client Name</label>
-          <input required={true} onChange={e => setFullName(e.target.value)} placeholder='Andrews Opoku' type="text" className='lg:w-96 w-72 px-4 text-gray-700 h-12 rounded-lg bg-transparent border border-solid border-gray-700/50'/>
-        </div>
-        <div className='flex flex-col mb-7'>
-          <label htmlFor="" className='font-bold text-gray-700 font-[poppins] mb-3'>Client Email</label>
-          <input onChange={e => setEmail(e.target.value)} placeholder='aopoku255@gmail.com' type="text" className='lg:w-96 w-72 px-4 text-gray-700 h-12 rounded-lg bg-transparent border border-solid border-gray-700/50'/>
-        </div>
-        <div className='flex flex-col mb-7'>
-          <label htmlFor="" className='font-bold text-gray-700 font-[poppins] mb-3'>Client Number</label>
-          <input onChange={e => setPhoneNumber(e.target.value)} required={true} placeholder='0501311122' type="text" className='lg:w-96 w-72 px-4 text-gray-700 h-12 rounded-lg bg-transparent border border-solid border-gray-700/50 '/>
-        </div>
-        <button onClick={handlePayment} className='lg:w-96 w-72 px-4 h-12 shadow-lg text-white rounded-lg bg-gray-700'>submit</button>
-      </form> */}
       <div  className="bg-white shadow-lg rounded-lg lg:w-[38rem] px-5 lg:mx-0 mx-5 flex flex-col justify-center items-center py-10">
         <div className="">
             <div className="modal-content">
-              {/* <div className="flex justify-between items-center">
-              <span></span>
-                <span onClick={handleClose} id="closeModalBtn" className="right-0 text-gray-700 text-2xl cursor-pointer">&times;</span>
-              </div> */}
+          
                 <div className="card">
                     <form>
 
                         <div className="mb-4">
                             <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
-                            <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
+                            <input onChange={e => setFullName(e.target.value)} type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
                         </div>
                         <div className="mb-4">
                             <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
-                            <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
+                            <input onChange={e => setPhone(e.target.value)} type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" />
                         </div>
                         <div className="mb-4">
                             <label for="inputField" className="block text-gray-700 text-sm font-bold mb-2">Provider:</label>
-                            <Select placeholder="Please select provider" className="my-2" options={[{value: "mtn", label: "MTN"}, {value: "tgo", label: "Airtel/Tigo"},{value: "vod", label: "Vodafone"},]}/>
+                            <Select onChange={e => setProvider(e.value)} placeholder="Please select provider" className="my-2" options={[{value: "mtn", label: "MTN"}, {value: "tgo", label: "Airtel/Tigo"},{value: "vod", label: "Vodafone"},]}/>
 
                             {/* <input type="text" id="inputField" required name="inputField" className="w-full p-2 border border-green/50 rounded focus:ring-green focus:border-green focus:outline-green" /> */}
                         </div>
                         <div className="lg:grid  lg:grid-cols lg:space-x-3 lg:grid-cols-3 lg:justify-center lg:space-y-0 space-y-3 lg:items-center mx-auto">
                           <div className="hover:cursor-pointer border border-green border-solid rounded px-2 py-4" onClick={() => handleShadow("200")}>
-                            <h4 className="font-bold text-green h-8 text-center">Basic</h4>
+                            <h4 className="font-bold text-green h-12 text-center">Basic (7 Pictures)</h4>
                             <div className="space-x-2 text-center">
                               <input type="radio" defaultChecked name="price"  className="accent-green" aria-label="" checked={isClicked1}/>
                               <label htmlFor="" className=" mx-auto">GHC 200</label>
                             </div>
                           </div>
                           <div className="hover:cursor-pointer border border-green border-solid rounded px-2 py-4" onClick={() => handleShadow("500")}>
-                            <h4 className="font-bold text-green h-8 text-center">Basic Wooden Frame</h4>
+                            <h4 className="font-bold text-green h-12 text-center">Pictures with 1 Wooden Frame</h4>
                             <div className="space-x-2 text-center">
                               <input type="radio" name="price" className="accent-green" checked={isClicked2}/>
                               <label htmlFor="" className=" mx-auto">GHC 500</label>
                             </div>
                           </div>
                           <div className="hover:cursor-pointer border border-green border-solid rounded px-2 py-4" onClick={() => handleShadow("350")}>
-                            <h4 className="font-bold text-green h-8 text-center">Basic Mount Card</h4>
+                            <h4 className="font-bold text-green h-12 text-center">Pictures with 1 Card Frame</h4>
                             <div className="space-x-2 text-center">
                               <input type="radio" name="price" className="accent-green" checked={isClicked3}/>
                               <label htmlFor="" className=" mx-auto">GHC 350</label>
                             </div>
                           </div>
                         </div>
-                        <PaystackButton {...componentsProps} className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center"/>
+                        <button onClick={handlePayment}  className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isLoading ? "Loading...": "CHECKOUT"}</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" className={ isOpen ? "fixed top-0 left-0 w-full h-full flex items-center justify-center  bg-black/70 overflow-y-scroll" : "hidden"}>
+        <div className="modal-dialog bg-white md:w-1/2 w-[90%] p-6 rounded shadow-lg">
+            <div className="modal-content">
+              <div className="flex justify-between items-center">
+              <span></span>
+                <span onClick={handleClose} id="closeModalBtn" className="right-0 text-gray-700 text-2xl cursor-pointer">&times;</span>
+              </div>
+                <div className="card">
+                   
+                    {
+                      showCode ? <>
+                      <div className='text-center text-green'>
+                      <p>🎉🎉🎊🎊🎊</p>
+                      <p className='font-bold text-2xl'>CONGRATULATIONS</p>
+                      <p>Your code for your graduation. Please write your code before closing this modal</p>
+                      </div>
+                      <h1 className='text-center text-xl font-bold'>{userCode}</h1>
+                      </> : <>
+                       <form className="flex flex-col justify-center items-center text-green">
+                        <p className="text-center text-xs my-2">Please complete the authorisation process by inputting your PIN on your mobile device</p>
+                      <ReactCodeInput fields={6} className=""/>
+                      <button onClick={handleOtp}  className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isOtpLoading ? "Loading...": "SUBMIT"}</button>
+                      
+                      <p className='text-center'><span className='font-bold'>NOTE</span>: If you received a payment prompt on your phone direct please use the button below to check your code   </p>
+                      </form> 
+                   
+                      <button onClick={handlePaymentStatus}  className="bg-green/70 shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isGetPaymentLoading ? "Loading...": "GET CODE"}</button>
+                      </>
+                    }
                 </div>
             </div>
         </div>

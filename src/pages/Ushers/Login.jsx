@@ -5,7 +5,7 @@ import Input from "../../components/Input";
 import mail from "../../assets/images/mail.svg";
 import password from "../../assets/images/icon _lock key_.svg";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { usePostLoginMutation } from "../../app/features/authSlice/authApiSlice";
+import { usePostLoginMutation, useUsherLoginMutation } from "../../app/features/authSlice/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { auth} from "../../app/features/authSlice/authSlice";
@@ -20,6 +20,7 @@ const UsherLogin = () => {
     password: "",
   });
   const [login, { isLoading }] = usePostLoginMutation();
+  const [usherlogin, { isLoading: isUsherLogin }] = useUsherLoginMutation();
   const [visible, setVisible] = useState(false)
   const [isVerified, setIsVerified] = useState(true)
   const navigate = useNavigate();
@@ -69,9 +70,16 @@ const UsherLogin = () => {
     setVisible(!visible)
   }
 
-  const onNewScanResult = (decodedText) => {
+  const onNewScanResult = async (decodedText) => {
     // handle decoded results here
-    console.log(decodedText)
+    // console.log(decodedText)
+    const results = await usherlogin({code: decodedText}).unwrap()
+    if(results?.status === 200){
+      navigate("/usher/home")
+    }
+    else{
+      toast.error(results?.message)
+    }
 };
 
   return (

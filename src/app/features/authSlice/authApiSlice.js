@@ -42,6 +42,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    usherLogin: builder.mutation({
+      query: (data) => ({
+        url: "/usher/login",
+        method: "POST",
+        body: { ...data },
+      }),
+    }),
+
     fetchSingleUser: builder.mutation({
       query: (data) => ({
         url: "/user/fetch-single-user",
@@ -105,5 +113,6 @@ export const {
   useFetchSingleUserMutation,
   useSendCodeMutation,
   useVerifyCodeMutation,
-  useResetPasswordMutation
+  useResetPasswordMutation,
+  useUsherLoginMutation
 } = authApiSlice;
