@@ -31,20 +31,20 @@ const SameDayBooking = () => {
         setIsClicked1(true)
         setIsClicked2(false)
         setIsClicked3(false)
-        setTotal(0.01)
+        setTotal(200)
         setFrames({ type: "Basic", price: 200})
         break;
         case "500":
           setIsClicked2(true)
           setIsClicked1(false)
           setIsClicked3(false)
-          setTotal(0.05)
+          setTotal(500)
           break;
           case "350":
             setIsClicked3(true)
             setIsClicked1(false)
             setIsClicked2(false)
-            setTotal(0.035)
+            setTotal(350)
         break;
       default: 
         setIsClicked3(false)
@@ -95,7 +95,7 @@ const SameDayBooking = () => {
     const checkPaymentStatus = async () => {
       
       try {
-        const results = await axios.post("https://enfoni.cyclic.app/api/v1/user/check-payment-status", {reference: reference, frame: frames})
+        const results = await axios.post("http://localhost:3001/api/v1/user/check-payment-status", {reference: reference, frame: frames})
       if(results?.data?.data?.amount){
         setIsOpen(false)
         // setShowCode(true)
