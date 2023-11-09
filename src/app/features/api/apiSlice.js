@@ -2,8 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // import { BASE_URL } from "../../../private/keys";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3001/api/v1",
+  // baseUrl: "http://localhost:3001/api/v1",
   // baseUrl: "https://enfoni.cyclic.app/api/v1",
+  baseUrl: "http://ec2-54-195-173-101.eu-west-1.compute.amazonaws.com:3001/api/v1",
   prepareHeaders: (headers, { getState }) => {
     const token = getState()?.auth?.auth?.accessToken;
 
