@@ -86,9 +86,9 @@ const SameDayBooking = () => {
     e.preventDefault()
     try {
       const results = await submitopt({otp: otp, reference: reference}).unwrap()
-      if(results?.status === 200){
-        setIsOpen(true)
-      }
+      // if(results?.status === 200){
+      //   setIsOpen(true)
+      // }
     } catch (error) { 
     }
   }
@@ -192,7 +192,7 @@ const SameDayBooking = () => {
                       </> : <>
                        <form className="flex flex-col justify-center items-center text-green">
                         <p className="text-center text-xs my-2">Please complete the authorisation process by inputting your PIN on your mobile device</p>
-                      <ReactCodeInput fields={6} className=""/>
+                      <ReactCodeInput fields={6} className="" onChange={e => setOtp(e)}/>
                       <button onClick={handleOtp}  className="bg-green shadow-lg text-white px-3 py-3 justify-center items-center font-bold rounded flex my-4 w-full text-center">{isOtpLoading ? "Loading...": "SUBMIT"}</button>
                       
                       <p className='text-center'><span className='font-bold'>NOTE</span>: If you received a payment prompt on your phone direct please use the button below to check your code   </p>
