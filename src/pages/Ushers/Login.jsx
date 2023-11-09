@@ -75,7 +75,7 @@ const UsherLogin = () => {
     // console.log(decodedText)
     const results = await usherlogin({code: decodedText}).unwrap()
     if(results?.status === 200){
-      navigate("/usher/home")
+      navigate("/ushers/home")
     }
     else{
       toast.error(results?.message)
