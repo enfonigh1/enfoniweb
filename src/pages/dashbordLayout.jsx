@@ -80,7 +80,7 @@ const DashboardLayout = ({ show = true, children }) => {
     Saved items
   </NavLink></> : <>
   <NavLink
-    to=""
+    to="/ushers/checkins"
     className="font-[900] text-[16px] 2xl:text-4xl relative z-50 font-['Poppins'] rounded flex flex-1 w-full items-center hover:bg-[#537d3d] hover:text-white capitalize 2xl:rounded-xl my-2 py-1 md:py-2 lg:py-1.5 2xl:py-4 2xl:my-8 2xl:px-8  px-2  track-[10px] 2xl:track-[20px]"
     style={({ isActive }) => (isActive ? gradientStyle : {})}
     data-aos="fade-up"
