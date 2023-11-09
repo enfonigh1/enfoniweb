@@ -34,6 +34,7 @@ import UsherDashboard from "./pages/Ushers/Dashboard";
 import Dashboard from "./pages/Ushers/Dashboard";
 import ProtectedUsher from "./hooks/ProtectedUsher";
 import SameDayBooking from "./pages/SameDayBooking";
+import CheckIns from "./pages/Ushers/CheckIns";
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
           <Route path="/ushers/login" element={<UsherLogin />} />
           <Route path="/ushers/dashboard" element={<UsherLogin />} />
           <Route path="/ushers/home" element={<Dashboard />} />
+          <Route path="/ushers/checkins" element={<CheckIns />} />
           <Route path="/same-day-booking" element={<SameDayBooking />} />
           <Route path="/admin" element={<AdminDataTable />} />
 

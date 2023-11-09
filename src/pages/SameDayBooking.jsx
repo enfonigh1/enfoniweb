@@ -73,9 +73,10 @@ const SameDayBooking = () => {
       if(results?.status === true){
         setIsOpen(results?.status)
         disptach(paymentInfo({...results}))
+        return
       }
       console.log(results)
-      toast.error("Too many attempt please try again later")
+      return toast.error("Too many attempt please try again later")
     } catch (error) {
       
     }  

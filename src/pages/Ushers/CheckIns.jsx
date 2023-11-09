@@ -62,7 +62,7 @@ const CheckIns = () => {
               htmlFor=""
               className="font-bold text-gray-700 font-[poppins] mb-3"
             >
-              Enter user code
+              Enter graduant's code
             </label>
             <input
               required={true}
