@@ -101,6 +101,20 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: { ...data },
       }),
     }),
+    sameDayBookiing: builder.mutation({
+      query: (data) => ({
+        url: "/same-day-booking",
+        method: "POST",
+        body: { ...data },
+      }),
+    }),
+    usherCheckins: builder.mutation({
+      query: (data) => ({
+        url: "/user/usher-checkins",
+        method: "POST",
+        body: { ...data },
+      }),
+    }),
   }),
 });
 
@@ -114,5 +128,7 @@ export const {
   useSendCodeMutation,
   useVerifyCodeMutation,
   useResetPasswordMutation,
-  useUsherLoginMutation
+  useUsherLoginMutation,
+  useSameDayBookiingMutation,
+  useUsherCheckinsMutation
 } = authApiSlice;

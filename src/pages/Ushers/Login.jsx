@@ -5,10 +5,13 @@ import Input from "../../components/Input";
 import mail from "../../assets/images/mail.svg";
 import password from "../../assets/images/icon _lock key_.svg";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { usePostLoginMutation, useUsherLoginMutation } from "../../app/features/authSlice/authApiSlice";
+import {
+  usePostLoginMutation,
+  useUsherLoginMutation,
+} from "../../app/features/authSlice/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { auth} from "../../app/features/authSlice/authSlice";
+import { auth } from "../../app/features/authSlice/authSlice";
 import { useDispatch } from "react-redux";
 import Html5QrcodePlugin from "../../components/Html5QrcodePlugin";
 // import { useH } from "react-router-dom";
@@ -21,11 +24,12 @@ const UsherLogin = () => {
   });
   const [login, { isLoading }] = usePostLoginMutation();
   const [usherlogin, { isLoading: isUsherLogin }] = useUsherLoginMutation();
-  const [visible, setVisible] = useState(false)
-  const [isVerified, setIsVerified] = useState(true)
+  const [visible, setVisible] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
   const navigate = useNavigate();
   const disptach = useDispatch();
   const location = useLocation();
+  const [info, setInfo] = useState({});
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -38,10 +42,9 @@ const UsherLogin = () => {
     e.preventDefault();
     try {
       const response = await login({ ...details }).unwrap();
-      console.log(response)
-      console.log(response)
-      if(response?.verified === false){
-
+      console.log(response);
+      console.log(response);
+      if (response?.verified === false) {
         toast.error("Please verify your email to continue");
         return;
       }
@@ -56,41 +59,52 @@ const UsherLogin = () => {
         toast.error(response?.data || response?.message);
       }
       if (response?.verified === false) {
-        setIsVerified(false)
+        setIsVerified(false);
       }
       disptach(auth({ ...response }));
-      
     } catch (error) {
-      
-      console.log(error)
+      console.log(error);
     }
   };
 
   const handleClick = () => {
-    setVisible(!visible)
-  }
+    setVisible(!visible);
+  };
 
   const onNewScanResult = async (decodedText) => {
     // handle decoded results here
     // console.log(decodedText)
-    const results = await usherlogin({code: decodedText}).unwrap()
-    if(results?.status === 200){
-      navigate("/ushers/home")
+    try {
+      const results = await usherlogin({ code: decodedText }).unwrap();
+      console.log(results);
+
+      if (results?.status === 200) {
+        disptach(auth({ ...results?.data }));
+        navigate("/ushers/home");
+      } else {
+        toast.error(results?.message);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    else{
-      toast.error(results?.message)
-    }
-};
+  };
 
   return (
-    <AuthLayout image={michael} footer={false} toastContainer={false} loggins={false} logins="/ushers/login" registers="/ushers/signup">
+    <AuthLayout
+      image={michael}
+      footer={false}
+      toastContainer={false}
+      loggins={false}
+      logins="/ushers/login"
+      registers="/ushers/signup"
+    >
       <div className="lg:w-96 w-80 rounded-md mx-auto mt-4">
-      <Html5QrcodePlugin
-                fps={10}
-                qrbox={250}
-                disableFlip={false}
-                qrCodeSuccessCallback={onNewScanResult}
-            />
+        <Html5QrcodePlugin
+          fps={10}
+          qrbox={250}
+          disableFlip={false}
+          qrCodeSuccessCallback={onNewScanResult}
+        />
       </div>
     </AuthLayout>
   );

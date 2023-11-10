@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import DashboardLayout from "../dashbordLayout";
 import { usePaystackPayment } from "react-paystack";
 import { ToastContainer, toast } from "react-toastify";
+import ReactCodeInput from "react-code-input";
+import { useUsherCheckinsMutation } from "../../app/features/authSlice/authApiSlice";
+import { authuser } from "../../app/features/authSlice/authSlice";
+import { useSelector } from "react-redux";
 
 const CheckIns = () => {
   const [full_name, setFullName] = useState("");
+  const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
   const [isClicked1, setIsClicked1] = useState(false);
   const [isClicked2, setIsClicked2] = useState(false);
   const [isClicked3, setIsClicked3] = useState(false);
+  const [postcode, { isLoading }] = useUsherCheckinsMutation();
 
   const payment = usePaystackPayment({
     email: email || "info@enfonigh.com",
@@ -49,6 +55,21 @@ const CheckIns = () => {
     }
   };
 
+  const details = useSelector(authuser);
+  const handleSubitCheckin = async (e) => {
+    e.preventDefault();
+    const results = await postcode({
+      clientCode: details?.code,
+      code: code,
+    }).unwrap();
+    if (results?.status === 200) {
+      toast.success(results?.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
+  };
+
   return (
     <DashboardLayout show={false}>
       <ToastContainer />
@@ -64,20 +85,21 @@ const CheckIns = () => {
             >
               Enter graduant's code
             </label>
-            <input
+            {/* <input
               required={true}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Please enter user code to check-in"
               type="text"
               className="lg:w-96 w-72 px-4 text-gray-700 h-12 rounded-lg bg-transparent border border-solid border-gray-700/50"
-            />
+            /> */}
+            <ReactCodeInput fields={6} onChange={(e) => setCode(e)} />
           </div>
 
           <button
-            // onClick={handlePayment}
+            onClick={handleSubitCheckin}
             className="lg:w-96 w-72 px-4 h-12 shadow-lg text-white rounded-lg bg-gray-700"
           >
-            submit
+            {isLoading ? "Loading" : "Submit"}
           </button>
         </form>
       </div>
