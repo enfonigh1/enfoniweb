@@ -48,7 +48,7 @@ const SameDayBooking = () => {
         setIsClicked1(true);
         setIsClicked2(false);
         setIsClicked3(false);
-        setTotal(0.01);
+        setTotal(200);
         setFrames({ type: "Basic", price: 200 });
         break;
       case "500":
